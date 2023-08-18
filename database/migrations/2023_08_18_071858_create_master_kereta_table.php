@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('table_master_kereta', function (Blueprint $table) {
+        Schema::create('master_kereta', function (Blueprint $table) {
             $table->id();
             $table->string('username');
             $table->string('password');
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('table_master_kereta');
+        Schema::dropIfExists('master_kereta');
     }
 };
