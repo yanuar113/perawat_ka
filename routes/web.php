@@ -19,5 +19,5 @@ Route::get('/', function () {
 
 //view template
 Route::get('/app', function () {
-    return view('app');
+    return view('dashboard.show');
 });
