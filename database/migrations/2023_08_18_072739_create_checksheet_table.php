@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('checklist', function (Blueprint $table) {
+        Schema::create('checksheet', function (Blueprint $table) {
             $table->id();
             $table->dateTime('date_time');
             $table->integer('no_kereta');
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('checklist');
+        Schema::dropIfExists('checksheet');
     }
 };
