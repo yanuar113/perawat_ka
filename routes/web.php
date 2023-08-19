@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\KeretaController;
+use App\Http\Controllers\SparepartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,10 +16,23 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dashboard.show');
 });
 
-//view template
+//Dashboard
 Route::get('/app', function () {
     return view('dashboard.show');
 });
+
+//master kereta
+Route::resource('kereta', KeretaController::class);
+
+//Sparepart
+Route::resource('sparepart', SparepartController::class);
+
+// //Checksheet
+// Route::resource('checksheet',ChecksheetController::class);
+// //Foto
+// Route::resource('foto', FotoController::class);
+
+
