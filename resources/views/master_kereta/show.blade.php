@@ -17,7 +17,7 @@
                             <h5 class="card-title">Daftar Kereta Perawatan</h5> 
                         </div>
                         <div class="card-body">
-                            <a href="{{url('master_kereta/add.blade.php')}}" type="button" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
+                            <button id="addButton" class="btn btn-primary"><i class="material-icons">add</i>Tambah</button>
                             <table id="datatable1" class="display" style="width:100%">
                                 <thead>
                                     <tr>

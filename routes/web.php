@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//route login
+Route::get('/login', function () {
+    return view('login.login');
+});
 
 Route::get('/', function () {
     return view('dashboard.show');

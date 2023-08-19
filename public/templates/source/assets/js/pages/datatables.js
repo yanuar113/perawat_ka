@@ -2,7 +2,11 @@ $(document).ready(function () {
 
     "use strict";
 
-    $('#datatable1').DataTable();
+    $('#datatable1').DataTable({
+"searching": false,
+//hide show 10 ebtries
+"lengthChange": false,
+    });
 
     $('#datatable2').DataTable({
         "scrollY": "300px",
