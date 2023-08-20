@@ -15,7 +15,8 @@ class SparepartController extends Controller
     public function index()
     {
         $trains = Kereta::all();
-        return view('master_sparepart.sparepart.show', compact('trains'));
+        $active = 'master_sparepart';
+        return view('master_sparepart.sparepart.show', compact('trains', 'active'));
     }
 
     /**
@@ -23,7 +24,8 @@ class SparepartController extends Controller
      */
     public function create()
     {
-        //
+        $active = 'master_sparepart';
+        return view('master_sparepart.sparepart.add',compact('active'));
     }
 
     /**

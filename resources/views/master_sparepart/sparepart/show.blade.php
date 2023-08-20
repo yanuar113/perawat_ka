@@ -17,23 +17,38 @@
                             <h5 class="card-title">Daftar Sparepart Perawatan</h5>
                         </div>
                         <div class="card-body">
-                            <a href="#" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
+                            <a href="{{route('sparepart.create')}}" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
                             <table id="datatable1" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>No</th>
+                                        <th>Kategori Sparepart</th>
                                         <th>Nama Sparepart</th>
                                         <th>Jumlah</th>
                                         <th>Satuan</th>
+                                        <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($trains as $item)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
+                                            <td>kategori</td>
                                             <td>{{$item->nama_kereta}}</td>
                                             <td>{{$item->username}}</td>
                                             <td>{{$item->foto}}</td>
+                                            <td>
+                                                <a href="#"
+                                                    class="btn btn-sm btn-warning">
+                                                    <i class="material-icons">edit</i>Edit   
+                                                </a>
+                                                <form action="#"
+                                                    method="POST" class="d-inline">
+                                                    @csrf
+                                                    @method('delete')
+                                                    <button type="button" class="btn btn-sm btn-danger"><i class="material-icons">delete</i>Hapus</button>      
+                                                </form>
+                                            </td>
                                         </tr>
                                     @empty
                                         <tr>

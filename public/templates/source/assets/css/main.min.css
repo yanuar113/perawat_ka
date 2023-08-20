@@ -993,7 +993,7 @@ h6 {
     transition: all .2s ease-in-out
 }
 
-.app-menu>ul>li.active-page>a,
+.app-menu>ul>li>a.active,
 .app-menu>ul>li.open>a,
 .app-menu>ul>li>a:hover {
     color: #2269f5
@@ -1003,7 +1003,7 @@ h6 {
     padding-left: 20px
 }
 
-.app-menu>ul>li.active-page>a>i:not(.has-sub-menu).material-icons-two-tone,
+.app-menu>ul>li>a.active>i:not(.has-sub-menu).material-icons-two-tone,
 .app-menu>ul>li.open>a>i:not(.has-sub-menu).material-icons-two-tone,
 .app-menu>ul>li>a:hover>i:not(.has-sub-menu).material-icons-two-tone {
     filter: invert(34%) sepia(23%) saturate(3309%) hue-rotate(195deg) brightness(109%) contrast(115%)

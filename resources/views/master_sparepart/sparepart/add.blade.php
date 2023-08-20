@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col">
                     <div class="page-description">
-                        <h1>Data Kereta Perawatan</h1>
+                        <h1>Data Sparepart</h1>
                     </div>
                 </div>
             </div>
@@ -15,7 +15,7 @@
                     <div class="card">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Tambah Daftar Kereta</h5>
+                                <h5 class="card-title">Tambah Daftar Sparepart</h5>
                             </div>
                             <div class="card-body">
                                 <div class="card-content">
@@ -24,34 +24,38 @@
                                         {{-- create input with csrf token and bootstrap class --}}
                                         @csrf
                                         <div class="form-group">
-                                            <label for="nama_kereta">Nama Kereta</label>
-                                            <input type="text" id="nama_kereta" class="form-control" placeholder="Masukkan nama kereta"
-                                                name="nama_kereta">
-                                            @error('nama_kereta')
+                                            <label for="kategori">Kategori Sparepart</label>
+                                            <select name="kategori" id="kategori" class="form-select">
+                                                <option value="0">Pilih Kategori</option>
+                                                {{-- @foreach ($trains as $item)
+                                                    <option value="{{ $item->id_kategori_sparepart }}">{{ $item->nama_kereta }}</option>
+                                                @endforeach --}}
+                                            </select>
+                                            @error('kategori')
                                                 {{-- <span class="text-danger">{{ $message }}</span> --}}
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="username">Username</label>
-                                            <input type="text" id="username" class="form-control" placeholder="Masukkan username"
-                                                name="username">
-                                            @error('username')
+                                            <label for="nama">Nama Sparepart</label>
+                                            <input type="text" id="nama" class="form-control"
+                                                placeholder="Masukkan nama kereta" name="nama">
+                                            @error('nama')
                                                 {{-- <span class="text-danger">{{ $message }}</span> --}}
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="password">Username</label>
-                                            <input type="text" id="password" class="form-control" placeholder="Masukkan password"
-                                                name="password">
-                                            @error('password')
+                                            <label for="jumlah">Jumlah</label>
+                                            <input type="number" id="jumlah" class="form-control"
+                                                placeholder="Masukkan jumlah" name="jumlah">
+                                            @error('jumlah')
                                                 {{-- <span class="text-danger">{{ $message }}</span> --}}
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="foto">Foto</label>
-                                            <input type="file" id="foto" class="form-control" placeholder="Masukkan foto"
-                                                name="foto">
-                                            @error('foto')
+                                            <label for="satuan">Satuan</label>
+                                            <input type="text" id="satuan" class="form-control"
+                                                placeholder="Masukkan satuan" name="satuan">
+                                            @error('satuan')
                                                 {{-- <span class="text-danger">{{ $message }}</span> --}}
                                             @enderror
                                         </div>
@@ -62,15 +66,15 @@
                                 <button type="submit" class="btn btn-primary" form="form-tambah-kereta"><i
                                         class="bi bi-save me-2"></i>
                                     Simpan</button>
-                                <a href="{{ route('kereta.index') }}" class="btn btn-danger ms-2"><i
+                                <a href="{{ route('sparepart.index') }}" class="btn btn-danger ms-2"><i
                                         class="bi bi-x-circle me-2"></i>
                                     Batal</a>
-                            </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     </div>
 @endsection

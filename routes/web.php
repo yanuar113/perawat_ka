@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\KategorisparepartController;
 use App\Http\Controllers\KeretaController;
 use App\Http\Controllers\SparepartController;
 use Illuminate\Support\Facades\Route;
@@ -20,16 +21,20 @@ Route::get('/login', function () {
 });
 
 Route::get('/', function () {
-    return view('dashboard.show');
+    return view('welcome');
 });
 
 //Dashboard
 Route::get('/app', function () {
-    return view('dashboard.show');
+    $active = 'dashboard';
+    return view('dashboard.show', compact('active'));
 });
 
 //master kereta
 Route::resource('kereta', KeretaController::class);
+
+//kategori sparepart
+Route::resource('kategori', KategorisparepartController::class);
 
 //Sparepart
 Route::resource('sparepart', SparepartController::class);

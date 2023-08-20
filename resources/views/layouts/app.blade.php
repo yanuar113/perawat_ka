@@ -11,7 +11,7 @@
     <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
 
     <!-- Title -->
-    <title>Perawatan Kereta</title>
+    <title>Perawatan KA- @yield('title')</title>
 
     <!-- Styles -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -63,16 +63,16 @@
                     <li class="sidebar-title">
                         Master
                     </li>
-                    <li class="active-page">
-                        <a href="/" class="active"><i
+                    <li>
+                        <a href="/app" class="{{ $active == 'dashboard' ? 'active' : '' }}"><i
                                 class="material-icons-two-tone">dashboard</i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="{{url('kereta')}}">
+                        <a href="{{url('kereta')}}" class="{{ $active == 'master_kereta' ? 'active' : '' }}">
                             <i class="material-icons-two-tone">train</i>Master Kereta</a>
                     </li>
                     <li>
-                        <a href=""><i class="material-icons-two-tone">handyman</i>Master Sparepart<i
+                        <a class="{{ $active == 'master_sparepart' ? 'active' : '' }}"><i class="material-icons-two-tone">handyman</i>Master Sparepart<i
                                 class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li>
@@ -84,7 +84,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a href=""><i class="material-icons-two-tone">edit</i>Master Checksheet<i
+                        <a class="{{ $active == 'master_checksheet' ? 'active' : '' }}"><i class="material-icons-two-tone">edit</i>Master Checksheet<i
                                 class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li>
@@ -102,11 +102,11 @@
                         Reports
                     </li>
                     <li>
-                        <a href="mailbox.html">
+                        <a href="#" class="{{ $active == 'foto' ? 'active' : '' }}">
                             <i class="material-icons-two-tone">perm_media</i>Foto</a>
                     </li>
                     <li>
-                        <a href="mailbox.html">
+                        <a href="#" class="{{ $active == 'laporan' ? 'active' : '' }}">
                             <i class="material-icons-two-tone">receipt_long</i>Laporan</a>
                     </li>
                 </ul>
