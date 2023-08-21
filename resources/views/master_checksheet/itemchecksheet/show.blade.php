@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Kategori Checksheet')
+@section('title', 'Item Checksheet')
 
 @section('content')
     <div class="content-wrapper">
@@ -35,10 +35,10 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$item->nama_kereta}}</td>
-                                            <td>{{$item->kategori}}</td>
+                                            <td>{{$item->nama}}</td>
                                             <td>{{$item->nama_item}}</td>
                                             <td>
-                                                <a href="{{route('kategori_checksheet.edit', $item)}}" class="btn btn-sm btn-warning">
+                                                <a href="{{route('item_checksheet.edit', $item)}}" class="btn btn-sm btn-warning">
                                                     <i class="material-icons">edit</i>Edit
                                                 </a>
                                                 <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal"
@@ -75,7 +75,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
-                        <form action="{{ route('kategori_checksheet.destroy', $item->id) }}" method="POST" class="d-inline">
+                        <form action="{{ route('item_checksheet.destroy', $item->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-danger">Hapus</button>
