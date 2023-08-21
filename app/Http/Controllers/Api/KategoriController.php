@@ -10,7 +10,7 @@ class KategoriController extends Controller
 {
     public function getAll(){
         $authuser = auth()->user();
-        $categories = Kategori_checksheet::where('id_kereta', $authuser->id);
+        $categories = Kategori_checksheet::where('id_kereta', $authuser->id)->get();
         return ResponseController::customResponse(true, 'Berhasil mendapakan Kategori!', $categories);
     }
 }
