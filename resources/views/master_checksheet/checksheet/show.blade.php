@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Detail Checksheet')
+@section('title', 'Checksheet')
  
 @section('content')
     <div class="content-wrapper">
@@ -38,14 +38,14 @@
                                             <td>{{$item->date_time}}</td>
                                             <td>{{$item->nama_kereta}}</td>
                                             <td>{{$item->no_kereta}}</td>
-                                            <td>{{$item->tipe}}</td>
+                                            <td>{{$item->tipe == 0 ? "Harian":"Bulanan"}}</td>
                                             <td>{{$item->jam_engine}}</td>
                                             <td>
                                                 <a href="#"
                                                     class="btn btn-sm btn-success">
                                                     <i class="material-icons">visibility</i>Lihat   
                                                 </a>
-                                                <a href="#"
+                                                <a href="{{route('checksheet.edit', $item)}}"
                                                     class="btn btn-sm btn-warning">
                                                     <i class="material-icons">edit</i>Edit   
                                                 </a>
@@ -77,16 +77,16 @@
                     </div>
                     <div class="modal-body">
                         <p>
-                            Apakah anda yakin akan menghapus kategori ini?
+                            Apakah anda yakin akan menghapus checksheet ini?
                         </p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
-                        {{-- <form action="{{ route('checksheet.destroy', $item->id) }}" method="POST" class="d-inline">
+                        <form action="{{ route('checksheet.destroy', $item->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-danger">Hapus</button>
-                        </form> --}}
+                        </form>
                     </div>
                 </div>
             </div>

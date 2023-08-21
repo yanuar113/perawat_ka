@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Checksheet;
 use App\Models\Kereta;
+use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 
 class ChecksheetController extends Controller
@@ -15,7 +16,9 @@ class ChecksheetController extends Controller
     {
         //
         $active = 'master_checksheet';
-        $checksheets = Checksheet::all();
+        $checksheets = Checksheet::select('checksheet.*', 'master_kereta.nama_kereta')
+            ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
+            ->get();
         return view('master_checksheet.checksheet.show', compact('active', 'checksheets'));
     }
 
@@ -36,6 +39,22 @@ class ChecksheetController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'id_kereta' => 'required',
+            'date_time' => 'required',
+            'no_kereta' => 'required',
+            'tipe' => 'required',
+            'jam_engine' => 'required'
+        ], [
+            'id_kereta.required' => 'Nama kereta tidak boleh kosong',
+            'date_time.required' => 'Tanggal tidak boleh kosong',
+            'no_kereta.required' => 'No kereta tidak boleh kosong',
+            'tipe.required' => 'Tipe tidak boleh kosong',
+            'jam_engine.required' => 'Jam engine tidak boleh kosong'
+        ]);
+
+        Checksheet::create($request->all());
+        return redirect()->route('checksheet.index')->with('status', 'Data Checksheet berhasil ditambahkan!');
     }
 
     /**
@@ -52,6 +71,11 @@ class ChecksheetController extends Controller
     public function edit(string $id)
     {
         //
+        $active = 'master_checksheet';
+        $keretas = Kereta::all();
+        $checksheets = Checksheet::find($id);
+        return view('master_checksheet.checksheet.edit', compact('active', 'keretas', 'checksheets'));
+
     }
 
     /**
@@ -60,6 +84,29 @@ class ChecksheetController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'id_kereta' => 'required',
+            'date_time' => 'required',
+            'no_kereta' => 'required',
+            'tipe' => 'required',
+            'jam_engine' => 'required'
+        ], [
+            'id_kereta.required' => 'Nama kereta tidak boleh kosong',
+            'date_time.required' => 'Tanggal tidak boleh kosong',
+            'no_kereta.required' => 'No kereta tidak boleh kosong',
+            'tipe.required' => 'Tipe tidak boleh kosong',
+            'jam_engine.required' => 'Jam engine tidak boleh kosong'
+        ]);
+
+        Checksheet::where('id', $id)
+            ->update([
+                'id_kereta' => $request->id_kereta,
+                'date_time' => $request->date_time,
+                'no_kereta' => $request->no_kereta,
+                'tipe' => $request->tipe,
+                'jam_engine' => $request->jam_engine
+            ]);
+        return redirect()->route('checksheet.index')->with('status', 'Data Checksheet berhasil diubah!');
     }
 
     /**
@@ -68,5 +115,7 @@ class ChecksheetController extends Controller
     public function destroy(string $id)
     {
         //
+        Checksheet::destroy($id);
+        return redirect()->route('checksheet.index')->with('status', 'Data Checksheet berhasil dihapus!');
     }
 }

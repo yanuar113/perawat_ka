@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Kategori Checksheet')
+@section('title', 'Checksheet')
 @section('content')
     <div class="content-wrapper">
         <div class="container-fluid">
@@ -20,22 +20,24 @@
                             <div class="card-body">
                                 <div class="card-content">
                                     <form method="POST" action="{{ route('checksheet.store') }}" autocomplete="off"
-                                        id="form-tambah-kategori-checksheet">
+                                        id="form-tambah-checksheet">
                                         {{-- create input with csrf token and bootstrap class --}}
                                         @csrf
-                                        <div class="form-group">
-                                            <label for="tanggal">Tanggal</label>
-                                            <input type="date" id="tanggal" class="form-control"
-                                                name="tanggal">
-                                            @error('tanggal')
+                                        <div class="form-group w-25">
+                                            <label for="date_time">Tanggal Pemeriksaan</label>
+                                            <input type="datetime-local" id="date_time" class="form-control"
+                                                name="date_time">
+                                            @error('date_time')
                                                 {{-- <span class="text-danger">{{ $message }}</span> --}}
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="tipe">Kereta</label>
-                                            <select name="kategori" id="kategori" class="form-select">
+                                            <label for="id_kereta">Kereta</label>
+                                            <select name="id_kereta" id="id_kereta" class="form-select">
                                                 <option value="0">Pilih Kereta</option>
-                                                    <option value="">Railbus Solo</option>
+                                                @foreach ($keretas as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->nama_kereta }}</option>
+                                                @endforeach
                                             </select>
                                             @error('tipe')
                                                 {{-- <span class="text-danger">{{ $message }}</span> --}}
@@ -44,7 +46,7 @@
                                         <div class="form-group">
                                             <label for="no_kereta">No Kereta</label>
                                             <input type="text" id="no_kereta" class="form-control"
-                                                placeholder="Masukkan kelompok pekerjaan" name="no_kereta">
+                                                placeholder="Masukkan No Kereta" name="no_kereta">
                                             @error('no_kereta')
                                                 {{-- <span class="text-danger">{{ $message }}</span> --}}
                                             @enderror
@@ -52,17 +54,17 @@
                                         <div class="form-group">
                                             <label for="jam_engine">Jam Engine</label>
                                             <input type="text" id="jam_engine" class="form-control"
-                                                placeholder="Masukkan kelompok pekerjaan" name="jam_engine">
+                                                placeholder="Masukkan jam engine" name="jam_engine">
                                             @error('jam_engine')
                                                 {{-- <span class="text-danger">{{ $message }}</span> --}}
                                             @enderror
                                         </div>
                                         <div class="form-group">
                                             <label for="tipe">Tipe Laporan</label>
-                                            <select name="kategori" id="kategori" class="form-select">
-                                                <option value="0">Pilih Tipe Laporan</option>
-                                                    <option value="">Harian</option>
-                                                    <option value="">Bulanan</option>
+                                            <select name="tipe" id="tipe" class="form-select">
+                                                <option value="">Pilih Tipe Laporan</option>
+                                                    <option value="0">Harian</option>
+                                                    <option value="1">Bulanan</option>
                                             </select>
                                             @error('tipe')
                                                 {{-- <span class="text-danger">{{ $message }}</span> --}}
@@ -72,10 +74,10 @@
                                 </div>
                             </div>
                             <div class="card-footer py-0 border-top-0 pb-4">
-                                <button type="submit" class="btn btn-primary" form="form-tambah-kereta"><i
+                                <button type="submit" class="btn btn-primary" form="form-tambah-checksheet"><i
                                         class="bi bi-save me-2"></i>
                                     Simpan</button>
-                                <a href="{{route('kategori_checksheet.index')}}" class="btn btn-danger ms-2"><i
+                                <a href="{{route('item_checksheet.index')}}" class="btn btn-danger ms-2"><i
                                         class="bi bi-x-circle me-2"></i>
                                     Batal</a>
                             </div>
