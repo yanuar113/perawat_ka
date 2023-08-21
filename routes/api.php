@@ -24,6 +24,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login', [AuthController::class, 'login']);
 Route::resource('trains', KeretaController::class);
 Route::group(['middleware' => 'auth:sanctum'], function(){
-    Route::get('category-checksheet', [App\Http\Controllerss\Api\KategoriController::class, 'getAll']);
+    Route::get('category-checksheet', [App\Http\Controllers\Api\KategoriController::class, 'getAll']);
 });
 // Route::resource('spareparts', SparepartController::class);
