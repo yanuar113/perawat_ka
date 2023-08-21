@@ -25,5 +25,6 @@ Route::post('login', [AuthController::class, 'login']);
 Route::resource('trains', KeretaController::class);
 Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('category-checksheet', [App\Http\Controllers\Api\KategoriController::class, 'getAll']);
+    Route::get('check-checksheet',[App\Http\Controllers\Api\KategoriController::class, 'getstatuschecksheet'] );
 });
 // Route::resource('spareparts', SparepartController::class);
