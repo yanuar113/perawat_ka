@@ -44,6 +44,7 @@ class AuthController extends Controller
             if (password_verify($request->password, $user->password)) {
                 $token = $user->createToken('auth_token')->plainTextToken;
                 $response = [
+                    'profile'=> $user,
                     'token' => $token,
                 ];
                 return ResponseController::customResponse(true, 'Login berhasil', $response);
