@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Checksheet;
-use App\Models\Kereta;
+use App\Models\Item_checksheet;
 use Illuminate\Http\Request;
 
-class ChecksheetController extends Controller
+class ItemChecksheetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,12 @@ class ChecksheetController extends Controller
     public function index()
     {
         //
-        $active = 'master_checksheet';
-        $checksheets = Checksheet::all();
-        return view('master_checksheet.checksheet.show', compact('active', 'checksheets'));
+        $items = Item_checksheet::select('item_checksheet.*', 'master_kereta.nama_kereta', 'kategori_checksheet.nama')
+            ->join('kategori_checksheet', 'item_checksheet.id_kategori_checksheet', '=', 'kategori_checksheet.id')
+            ->join('master_kereta', 'kategori_checksheet.id_kereta', '=', 'master_kereta.id')
+            ->get();
+        $active = 'master_item_checksheet';
+        return view('master_checksheet.itemchecksheet.show', compact('active', 'items'));
     }
 
     /**
@@ -26,8 +28,7 @@ class ChecksheetController extends Controller
     {
         //
         $active = 'master_checksheet';
-        $keretas = Kereta::all();
-        return view('master_checksheet.checksheet.add', compact('active', 'keretas'));
+        return view('master_checksheet.itemchecksheet.add', compact('active'));
     }
 
     /**

@@ -6,7 +6,7 @@
             <div class="row">
                 <div class="col">
                     <div class="page-description">
-                        <h1>Data Kategori Checksheet</h1>
+                        <h1>Uraian Pekerjaan</h1>
                     </div>
                 </div>
             </div>
@@ -15,11 +15,11 @@
                     <div class="card">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Tambah Daftar Kelompok Pekerjaan</h5>
+                                <h5 class="card-title">Tambah Uraian Pekerjaan</h5>
                             </div>
                             <div class="card-body">
                                 <div class="card-content">
-                                    <form method="POST" action="{{ route('kategori_checksheet.store') }}" autocomplete="off"
+                                    <form method="POST" action="{{ route('item_checksheet.store') }}" autocomplete="off"
                                         id="form-tambah-kereta">
                                         {{-- create input with csrf token and bootstrap class --}}
                                         @csrf
@@ -32,6 +32,17 @@
                                                 @endforeach
                                             </select>
                                             @error('id_kereta')
+                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="kategori">Kelompok Pekerjaan</label>
+                                            <select name="kategori" id="kategori" class="form-select">
+                                                <option value="0">Pilih Kelompok Pekerjaan</option>
+                                                @foreach ($kategories as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                                @endforeach
+                                            @error('kategori')
                                                 {{-- <span class="text-danger">{{ $message }}</span> --}}
                                             @enderror
                                         </div>

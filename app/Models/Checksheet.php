@@ -10,6 +10,7 @@ class Checksheet extends Model
     use HasFactory;
     protected $table = 'checksheet';
     protected $fillable = [
+        'id_kereta',
         'date_time',
         'no_kereta',
         'tipe',

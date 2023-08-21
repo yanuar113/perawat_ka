@@ -10,6 +10,7 @@ class Kategori_checksheet extends Model
     use HasFactory;
     protected $table = 'kategori_checksheet';
     protected $fillable = [
-        'nama'
+        'nama',
+        'id_kereta'
     ];
 }

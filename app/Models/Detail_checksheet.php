@@ -8,10 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Detail_checksheet extends Model
 {
     use HasFactory;
+    protected $table = 'detail_checksheet';
     protected $fillable = [
-        'id_kategori_checksheet',
-        'id_sub_kategori_checksheet',
-        'uraian_pekerjaan',
+        'id_checksheet',
+        'id_item_checksheet',
         'dilakukan',
         'hasil',
         'keterangan'

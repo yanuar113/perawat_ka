@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('checksheet', function (Blueprint $table) {
+        //
+        Schema::create('item_checksheet', function (Blueprint $table) {
             $table->id();
             $table->integer('id_kereta');
-            $table->dateTime('date_time');
-            $table->integer('no_kereta');
-            $table->string('tipe');
-            $table->integer('jam_engine');
+            $table->integer('id_kategori_checksheet');
+            $table->string('nama_item');
             $table->timestamps();
         });
     }
@@ -27,6 +26,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('checksheet');
+        //
+        Schema::dropIfExists('item_checksheet');
     }
 };

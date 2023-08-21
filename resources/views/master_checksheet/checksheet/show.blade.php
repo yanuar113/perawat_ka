@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col">
                     <div class="page-description">
-                        <h1>Detail Checksheeet</h1>
+                        <h1>Daftar Checksheet</h1>
                     </div>
                 </div>
             </div>
@@ -15,7 +15,7 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Daftar Checksheeet Perawatan</h5>
+                            <h5 class="card-title">Daftar Checksheet Perawatan</h5>
                         </div>
                         <div class="card-body">
                             <a href="{{route('checksheet.create')}}" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
@@ -24,6 +24,7 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Hari Tanggal</th>
+                                        <th>Nama Kereta</th>
                                         <th>No Kereta</th>
                                         <th>Tipe Laporan</th>
                                         <th>Jam Engine</th>
@@ -35,6 +36,7 @@
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$item->date_time}}</td>
+                                            <td>{{$item->nama_kereta}}</td>
                                             <td>{{$item->no_kereta}}</td>
                                             <td>{{$item->tipe}}</td>
                                             <td>{{$item->jam_engine}}</td>

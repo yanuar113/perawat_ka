@@ -25,6 +25,17 @@
                                         @csrf
                                         @method('put')
                                         <div class="form-group">
+                                            <label for="id_kereta">Nama Kereta</label>
+                                            <select name="id_kereta" id="id_kereta" class="form-select">
+                                                @foreach ($keretas as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->nama_kereta }}</option>
+                                                @endforeach
+                                            </select>
+                                            @error('id_kereta')
+                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                            @enderror
+                                        </div>
+                                        <div class="form-group">
                                             <label for="nama">Kelompok Pekerjaan</label>
                                             <input type="text" id="nama" class="form-control" name="nama" value="{{ $kategories->nama }}">
                                             @error('nama')

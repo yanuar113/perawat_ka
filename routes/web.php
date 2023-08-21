@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ChecksheetController;
+use App\Http\Controllers\ItemChecksheetController;
 use App\Http\Controllers\KategoriChecksheetController;
 use App\Http\Controllers\KategorisparepartController;
 use App\Http\Controllers\KeretaController;
@@ -44,6 +45,7 @@ Route::resource('sparepart', SparepartController::class);
 // //Checksheet
 Route::resource('kategori_checksheet',KategoriChecksheetController::class);
 //Route::resource('sub_checksheet',SubChecksheetController::class);
+Route::resource('item_checksheet',ItemChecksheetController::class);
 Route::resource('checksheet',ChecksheetController::class);
 // Route::resource('checksheet_detail',ChecksheetDetailController::class);
 // //Foto

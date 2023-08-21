@@ -13,9 +13,8 @@ return new class extends Migration
     {
         Schema::create('detail_checksheet', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_kategori');
-            $table->integer('id_sub_kategori_checksheet');
-            $table->string('uraian_pekerjaan');
+            $table->integer('id_checksheet');
+            $table->integer('id_item_checksheet');
             $table->boolean('dilakukan');
             $table->boolean('hasil');
             $table->string('keterangan');

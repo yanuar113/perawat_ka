@@ -94,6 +94,9 @@
                                 <a href="#">Sub Kategori Checksheet</a>
                             </li>
                             <li>
+                                <a href="{{url('item_checksheet')}}">Item Checksheet</a>
+                            </li>
+                            <li>
                                 <a href="{{url('checksheet')}}">Checksheet</a>
                             </li>
                         </ul>

@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col">
                     <div class="page-description">
-                        <h1>Kelompok Pekerjaan</h1>
+                        <h1>Uraian Pekerjaan</h1>
                     </div>
                 </div>
             </div>
@@ -16,25 +16,27 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Daftar Kelompok Pekerjaan</h5> 
+                            <h5 class="card-title">Daftar Uraian Pekerjaan</h5> 
                         </div>
                         <div class="card-body">
-                            <a href="{{route('kategori_checksheet.create')}}" id="addButton" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
+                            <a href="{{route('item_checksheet.create')}}" id="addButton" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
                             <table id="datatable1" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Kereta</th>
-                                        <th>Kelompok Pekerjaan</th>
+                                        <th>Kategori Checksheet</th>
+                                        <th>Uraian Pekerjaan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($kategories as $item)
+                                    @forelse ($items as $item)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$item->nama_kereta}}</td>
-                                            <td>{{$item->nama}}</td>
+                                            <td>{{$item->kategori}}</td>
+                                            <td>{{$item->nama_item}}</td>
                                             <td>
                                                 <a href="{{route('kategori_checksheet.edit', $item)}}" class="btn btn-sm btn-warning">
                                                     <i class="material-icons">edit</i>Edit

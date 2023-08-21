@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kategori_checksheet;
+use App\Models\Kereta;
 use Illuminate\Http\Request;
 
 class KategoriChecksheetController extends Controller
@@ -12,7 +13,9 @@ class KategoriChecksheetController extends Controller
      */
     public function index()
     {
-        $kategories = Kategori_checksheet::all();
+        $kategories = Kategori_checksheet::select('kategori_checksheet.*',  'master_kereta.nama_kereta')
+            ->join('master_kereta', 'kategori_checksheet.id_kereta', '=', 'master_kereta.id')
+            ->get();
         $active = 'master_checksheet';
         return view('master_checksheet.kategori.show', compact('kategories', 'active'));
     }
@@ -24,7 +27,8 @@ class KategoriChecksheetController extends Controller
     {
         //
         $active='master_checksheet';
-        return view('master_checksheet.kategori.add',compact('active'));
+        $keretas = Kereta::all();
+        return view('master_checksheet.kategori.add',compact('active','keretas'));
     }
 
     /**
@@ -35,8 +39,10 @@ class KategoriChecksheetController extends Controller
         //
         $request->validate([
             'nama' => 'required',
+            'id_kereta' => 'required'
         ], [
             'nama.required' => 'Nama kategori tidak boleh kosong',
+            'id_kereta.required' => 'Nama kereta tidak boleh kosong'
         ]);
         
         Kategori_checksheet::create($request->all());
@@ -58,8 +64,9 @@ class KategoriChecksheetController extends Controller
     {
         //
         $kategories = Kategori_checksheet::find($id);
+        $keretas = Kereta::all();
         $active = 'master_checksheet';
-        return view('master_checksheet.kategori.edit', compact('kategories', 'active'));
+        return view('master_checksheet.kategori.edit', compact('kategories', 'active', 'keretas'));
     }
 
     /**

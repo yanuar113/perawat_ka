@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('kategori_checksheet', function (Blueprint $table) {
             $table->id();
+            $table->integer('id_kereta');
             $table->string('nama');
             $table->timestamps();
         });
