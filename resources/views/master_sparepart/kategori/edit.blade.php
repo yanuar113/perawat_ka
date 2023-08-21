@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Data Kereta')
+@section('title', 'Kategori Sparepart')
 @section('content')
     <div class="content-wrapper">
         <div class="container-fluid">

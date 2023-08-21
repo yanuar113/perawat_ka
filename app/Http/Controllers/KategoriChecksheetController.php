@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Kategori_checksheet;
 use Illuminate\Http\Request;
 
-class KategoriChecksheet extends Controller
+class KategoriChecksheetController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,9 +34,9 @@ class KategoriChecksheet extends Controller
     {
         //
         $request->validate([
-            'nama_kategori' => 'required',
+            'nama' => 'required',
         ], [
-            'nama_kategori.required' => 'Nama kategori tidak boleh kosong',
+            'nama.required' => 'Nama kategori tidak boleh kosong',
         ]);
         
         Kategori_checksheet::create($request->all());
@@ -57,6 +57,9 @@ class KategoriChecksheet extends Controller
     public function edit(string $id)
     {
         //
+        $kategories = Kategori_checksheet::find($id);
+        $active = 'master_checksheet';
+        return view('master_checksheet.kategori.edit', compact('kategories', 'active'));
     }
 
     /**
@@ -65,6 +68,16 @@ class KategoriChecksheet extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'nama' => 'required',
+        ], [
+            'nama.required' => 'Nama kategori tidak boleh kosong',
+        ]);
+        Kategori_checksheet::where('id', $id)
+            ->update([
+                'nama' => $request->nama,
+            ]);
+        return redirect()->route('kategori_checksheet.index')->with('status', 'Data Kategori Checksheet berhasil diubah!');
     }
 
     /**
@@ -73,5 +86,7 @@ class KategoriChecksheet extends Controller
     public function destroy(string $id)
     {
         //
+        Kategori_checksheet::destroy($id);
+        return redirect()->route('kategori_checksheet.index')->with('status', 'Data Kategori Sparepart berhasil dihapus!');
     }
 }

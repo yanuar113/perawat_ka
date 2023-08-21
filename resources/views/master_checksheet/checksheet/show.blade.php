@@ -1,13 +1,13 @@
 @extends('layouts.app')
-@section('title', 'Data Sparepart')
-    
+@section('title', 'Detail Checksheet')
+ 
 @section('content')
     <div class="content-wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
                     <div class="page-description">
-                        <h1>Data Sparepart</h1>
+                        <h1>Detail Checksheeet</h1>
                     </div>
                 </div>
             </div>
@@ -15,30 +15,34 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Daftar Sparepart Perawatan</h5>
+                            <h5 class="card-title">Daftar Checksheeet Perawatan</h5>
                         </div>
                         <div class="card-body">
-                            <a href="{{route('sparepart.create')}}" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
+                            <a href="{{route('checksheet.create')}}" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
                             <table id="datatable1" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Kategori Sparepart</th>
-                                        <th>Nama Sparepart</th>
-                                        <th>Jumlah</th>
-                                        <th>Satuan</th>
+                                        <th>Hari Tanggal</th>
+                                        <th>No Kereta</th>
+                                        <th>Tipe Laporan</th>
+                                        <th>Jam Engine</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($spareparts as $item)
+                                    @forelse ($checksheets as $item)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>kategori</td>
-                                            <td>{{$item->nama_kereta}}</td>
-                                            <td>{{$item->username}}</td>
-                                            <td>{{$item->foto}}</td>
+                                            <td>{{$item->date_time}}</td>
+                                            <td>{{$item->no_kereta}}</td>
+                                            <td>{{$item->tipe}}</td>
+                                            <td>{{$item->jam_engine}}</td>
                                             <td>
+                                                <a href="#"
+                                                    class="btn btn-sm btn-success">
+                                                    <i class="material-icons">visibility</i>Lihat   
+                                                </a>
                                                 <a href="#"
                                                     class="btn btn-sm btn-warning">
                                                     <i class="material-icons">edit</i>Edit   
@@ -66,7 +70,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Hapus Sparepat</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Hapus Checksheet</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -76,11 +80,11 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
-                        {{-- <form action="{{ route('sparepart.destroy', $item->id) }}" method="POST" class="d-inline">
+                        {{-- <form action="{{ route('checksheet.destroy', $item->id) }}" method="POST" class="d-inline">
                             @csrf
-                            @method('delete') --}}
+                            @method('delete')
                             <button type="submit" class="btn btn-danger">Hapus</button>
-                        {{-- </form> --}}
+                        </form> --}}
                     </div>
                 </div>
             </div>

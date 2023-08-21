@@ -1,12 +1,12 @@
 @extends('layouts.app')
-@section('title', 'Kategori Sparepart')
+@section('title', 'Data Kereta')
 @section('content')
     <div class="content-wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
                     <div class="page-description">
-                        <h1>Data Kategori Sparepart</h1>
+                        <h1>Kelompok Pekerjaan</h1>
                     </div>
                 </div>
             </div>
@@ -15,19 +15,19 @@
                     <div class="card">
                         <div class="card">
                             <div class="card-header">
-                                <h5 class="card-title">Tambah Daftar Kategori Sparepart</h5>
+                                <h5 class="card-title">Edit Kelompok Pekerjaan</h5>
                             </div>
                             <div class="card-body">
                                 <div class="card-content">
-                                    <form method="POST" action="{{ route('kategori.store') }}" autocomplete="off"
-                                        id="form-tambah-kereta">
+                                    <form method="POST" action="{{ route('kategori_checksheet.update', $kategories->id) }}" autocomplete="off"
+                                        id="form-edit-kategori-checksheet">
                                         {{-- create input with csrf token and bootstrap class --}}
                                         @csrf
+                                        @method('put')
                                         <div class="form-group">
-                                            <label for="nama_kategori">Nama Kategori</label>
-                                            <input type="text" id="nama_kategori" class="form-control"
-                                                placeholder="Masukkan nama kategori" name="nama_kategori">
-                                            @error('nama_kategori')
+                                            <label for="nama">Kelompok Pekerjaan</label>
+                                            <input type="text" id="nama" class="form-control" name="nama" value="{{ $kategories->nama }}">
+                                            @error('nama')
                                                 {{-- <span class="text-danger">{{ $message }}</span> --}}
                                             @enderror
                                         </div>
@@ -38,7 +38,7 @@
                                 <button type="submit" class="btn btn-primary" form="form-tambah-kereta"><i
                                         class="bi bi-save me-2"></i>
                                     Simpan</button>
-                                <a href="{{ route('kategori.index') }}" class="btn btn-danger ms-2"><i
+                                <a href="{{ route('kategori_checksheet.index') }}" class="btn btn-danger ms-2"><i
                                         class="bi bi-x-circle me-2"></i>
                                     Batal</a>
                             </div>

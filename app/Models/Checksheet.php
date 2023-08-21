@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Checksheet extends Model
 {
     use HasFactory;
+    protected $table = 'checksheet';
     protected $fillable = [
         'date_time',
         'no_kereta',

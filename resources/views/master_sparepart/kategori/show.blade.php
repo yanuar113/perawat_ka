@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Data Kategori Sparepart')
+@section('title', 'Kategori Sparepart')
 
 @section('content')
     <div class="content-wrapper">

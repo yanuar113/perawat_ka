@@ -1,5 +1,5 @@
 @extends('layouts.app')
-@section('title', 'Data Kereta')
+@section('title', 'Kategori Checksheet')
 @section('content')
     <div class="content-wrapper">
         <div class="container-fluid">
@@ -20,7 +20,7 @@
                             <div class="card-body">
                                 <div class="card-content">
                                     <form method="POST" action="{{ route('kategori_checksheet.store') }}" autocomplete="off"
-                                        id="form-tambah-kereta">
+                                        id="form-tambah-kategori-checksheet">
                                         {{-- create input with csrf token and bootstrap class --}}
                                         @csrf
                                         <div class="form-group">
