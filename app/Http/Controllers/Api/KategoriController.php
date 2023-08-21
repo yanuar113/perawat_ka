@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class KategoriController extends Controller
 {
-    public function getAll()[
+    public function getAll(){
         $authuser = auth()->user();
         return ResponseController::customResponse(true, 'Berhasil mendapakan Kategori!', $authuser);
-    ]
+    }
 }
