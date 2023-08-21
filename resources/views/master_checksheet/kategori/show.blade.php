@@ -1,12 +1,14 @@
 @extends('layouts.app')
 
+@section('title', 'Data Kereta ')
+
 @section('content')
     <div class="content-wrapper">
         <div class="container-fluid">
             <div class="row">
                 <div class="col">
                     <div class="page-description">
-                        <h1>Data Sparepart</h1>
+                        <h1>Kelompok Pekerjaan</h1>
                     </div>
                 </div>
             </div>
@@ -14,38 +16,32 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Daftar Sparepart Perawatan</h5>
+                            <h5 class="card-title">Daftar Kelompok Pekerjaan</h5> 
                         </div>
                         <div class="card-body">
-                            <a href="{{route('sparepart.create')}}" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
+                            <a href="{{route('kategori_checksheet.create')}}" id="addButton" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
                             <table id="datatable1" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>No</th>
-                                        <th>Kategori Sparepart</th>
-                                        <th>Nama Sparepart</th>
-                                        <th>Jumlah</th>
-                                        <th>Satuan</th>
+                                        <th>Kelompok Pekerjaan</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @forelse ($spareparts as $item)
+                                    @forelse ($kategories as $item)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>kategori</td>
-                                            <td>{{$item->nama_kereta}}</td>
-                                            <td>{{$item->username}}</td>
-                                            <td>{{$item->foto}}</td>
+                                            <td>{{$item->nama}}</td>
                                             <td>
-                                                <a href="#"
-                                                    class="btn btn-sm btn-warning">
-                                                    <i class="material-icons">edit</i>Edit   
+                                                <a href="#" class="btn btn-sm btn-warning">
+                                                    <i class="material-icons">edit</i>Edit
                                                 </a>
                                                 <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                data-bs-target="#exampleModal"><i
-                                            class="material-icons">delete</i>Hapus</button>
+                                                    data-bs-target="#exampleModal"><i
+                                                class="material-icons">delete</i>Hapus</button>
                                             </td>
+                                        </tr>
                                         </tr>
                                     @empty
                                         <tr>
@@ -65,7 +61,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Hapus Sparepat</h5>
+                        <h5 class="modal-title" id="exampleModalLabel">Hapus Kategori</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -75,11 +71,11 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
-                        {{-- <form action="{{ route('sparepart.destroy', $item->id) }}" method="POST" class="d-inline">
+                        {{-- <form action="{{ route('kategori.destroy', $item->id) }}" method="POST" class="d-inline">
                             @csrf
-                            @method('delete') --}}
+                            @method('delete')
                             <button type="submit" class="btn btn-danger">Hapus</button>
-                        {{-- </form> --}}
+                        </form> --}}
                     </div>
                 </div>
             </div>

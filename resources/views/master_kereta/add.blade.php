@@ -20,7 +20,7 @@
                             <div class="card-body">
                                 <div class="card-content">
                                     <form method="POST" action="{{ route('kereta.store') }}" autocomplete="off"
-                                        id="form-tambah-kereta">
+                                        id="form-tambah-kereta" enctype="multipart/form-data">
                                         {{-- create input with csrf token and bootstrap class --}}
                                         @csrf
                                         <div class="form-group">
@@ -40,9 +40,10 @@
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="password">Username</label>
+                                            <label for="password">Password</label>
                                             <input type="text" id="password" class="form-control" placeholder="Masukkan password"
                                                 name="password">
+                                                {{-- create hash password --}}
                                             @error('password')
                                                 {{-- <span class="text-danger">{{ $message }}</span> --}}
                                             @enderror

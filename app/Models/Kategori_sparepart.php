@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kategori_sparepart extends Model
 {
     use HasFactory;
+    protected $table = 'kategori_sparepart';
     protected $fillable = [
         'nama_kategori'
     ];   

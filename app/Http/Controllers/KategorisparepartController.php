@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori_sparepart;
 use App\Models\Kereta;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,9 @@ class KategorisparepartController extends Controller
      */
     public function index()
     {
-        $trains = Kereta::all();
+        $kategoris = Kategori_sparepart::all();
         $active = 'master_sparepart';
-        return view('master_sparepart.kategori.show', compact('trains', 'active'));
+        return view('master_sparepart.kategori.show', compact('kategoris', 'active'));
     }
 
     /**
@@ -32,6 +33,13 @@ class KategorisparepartController extends Controller
     public function store(Request $request)
     {
         //
+        $request->validate([
+            'nama_kategori' => 'required',
+        ], [
+            'nama_kategori.required' => 'Nama kategori tidak boleh kosong',
+        ]);
+        Kategori_sparepart::create($request->all());
+        return redirect()->route('kategori.index')->with('status', 'Data Kategori Sparepart berhasil ditambahkan!');
     }
 
     /**
@@ -48,6 +56,9 @@ class KategorisparepartController extends Controller
     public function edit(string $id)
     {
         //
+        $kategoris = Kategori_sparepart::find($id);
+        $active = 'master_sparepart';
+        return view('master_sparepart.kategori.edit', compact('kategoris', 'active'));
     }
 
     /**
@@ -56,6 +67,16 @@ class KategorisparepartController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'nama_kategori' => 'required',
+        ], [
+            'nama_kategori.required' => 'Nama kategori tidak boleh kosong',
+        ]);
+        Kategori_sparepart::where('id', $id)
+            ->update([
+                'nama_kategori' => $request->nama_kategori,
+            ]);
+        return redirect()->route('kategori.index')->with('status', 'Data Kategori Sparepart berhasil diubah!');
     }
 
     /**
@@ -63,6 +84,8 @@ class KategorisparepartController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        //delete kategori with id
+        Kategori_sparepart::destroy($id);
+        return redirect()->route('kategori.index')->with('status', 'Data Kategori Sparepart berhasil dihapus!');
     }
 }

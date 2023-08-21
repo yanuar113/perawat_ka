@@ -88,13 +88,13 @@
                                 class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="#">Kategori Checksheet</a>
+                                <a href="{{url('kategori_checksheet')}}">Kategori Checksheet</a>
                             </li>
                             <li>
                                 <a href="#">Sub Kategori Checksheet</a>
                             </li>
                             <li>
-                                <a href="#">Checksheet</a>
+                                <a href="{{url('detail_checksheet')}}">Checksheet</a>
                             </li>
                         </ul>
                     </li>

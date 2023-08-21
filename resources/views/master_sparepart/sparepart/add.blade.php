@@ -27,9 +27,9 @@
                                             <label for="kategori">Kategori Sparepart</label>
                                             <select name="kategori" id="kategori" class="form-select">
                                                 <option value="0">Pilih Kategori</option>
-                                                {{-- @foreach ($trains as $item)
-                                                    <option value="{{ $item->id_kategori_sparepart }}">{{ $item->nama_kereta }}</option>
-                                                @endforeach --}}
+                                                @foreach ($kategori_spareparts as $item)
+                                                    <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
+                                                @endforeach
                                             </select>
                                             @error('kategori')
                                                 {{-- <span class="text-danger">{{ $message }}</span> --}}
@@ -38,7 +38,7 @@
                                         <div class="form-group">
                                             <label for="nama">Nama Sparepart</label>
                                             <input type="text" id="nama" class="form-control"
-                                                placeholder="Masukkan nama kereta" name="nama">
+                                                placeholder="Masukkan nama sparepart" name="nama">
                                             @error('nama')
                                                 {{-- <span class="text-danger">{{ $message }}</span> --}}
                                             @enderror

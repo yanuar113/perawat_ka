@@ -2,24 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori_checksheet;
 use Illuminate\Http\Request;
-use App\Models\Kategori_sparepart;
-use App\Models\Sparepart;
 
-class SparepartController extends Controller
+class KategoriChecksheet extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-       //join table kategori_sparepart dan sparepart
-        $spareparts = Sparepart::select('sparepart.*', 'kategori_sparepart.nama_kategori')
-        ->join('kategori_sparepart', 'sparepart.id_kategori_sparepart', '=', 'kategori_sparepart.id')
-        ->get();
-
-        $active = 'master_sparepart';
-        return view('master_sparepart.sparepart.show', compact('spareparts', 'active'));
+        $kategories = Kategori_checksheet::all();
+        $active = 'master_checksheet';
+        return view('master_checksheet.kategori.show', compact('kategories', 'active'));
     }
 
     /**
@@ -27,11 +22,9 @@ class SparepartController extends Controller
      */
     public function create()
     {
-        $active = 'master_sparepart';
-        $spareparts = Sparepart::all();
-        $kategori_spareparts = Kategori_sparepart::all();
-
-        return view('master_sparepart.sparepart.add',compact('spareparts','kategori_spareparts','active'));
+        //
+        $active='master_checksheet';
+        return view('master_checksheet.kategori.add',compact('active'));
     }
 
     /**
@@ -39,8 +32,15 @@ class SparepartController extends Controller
      */
     public function store(Request $request)
     {
-        //join table kategori_sparepart dan sparepart
+        //
+        $request->validate([
+            'nama_kategori' => 'required',
+        ], [
+            'nama_kategori.required' => 'Nama kategori tidak boleh kosong',
+        ]);
         
+        Kategori_checksheet::create($request->all());
+        return redirect()->route('kategori_checksheet.index')->with('status', 'Data Kategori Checksheet berhasil ditambahkan!');
     }
 
     /**

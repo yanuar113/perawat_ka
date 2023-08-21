@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use Illuminate\Http\Request;
-use App\Models\Kategori_sparepart;
+use App\Http\Controllers\Controller;
 use App\Models\Sparepart;
+use Illuminate\Http\Request;
 
 class SparepartController extends Controller
 {
@@ -13,13 +13,10 @@ class SparepartController extends Controller
      */
     public function index()
     {
-       //join table kategori_sparepart dan sparepart
-        $spareparts = Sparepart::select('sparepart.*', 'kategori_sparepart.nama_kategori')
-        ->join('kategori_sparepart', 'sparepart.id_kategori_sparepart', '=', 'kategori_sparepart.id')
-        ->get();
-
-        $active = 'master_sparepart';
-        return view('master_sparepart.sparepart.show', compact('spareparts', 'active'));
+        //
+        $spareparts = Sparepart::all();
+        
+        return ResponseController::customResponse(true, 'Data sparepart berhasil diambil', $spareparts);
     }
 
     /**
@@ -27,11 +24,7 @@ class SparepartController extends Controller
      */
     public function create()
     {
-        $active = 'master_sparepart';
-        $spareparts = Sparepart::all();
-        $kategori_spareparts = Kategori_sparepart::all();
-
-        return view('master_sparepart.sparepart.add',compact('spareparts','kategori_spareparts','active'));
+        //
     }
 
     /**
@@ -39,8 +32,7 @@ class SparepartController extends Controller
      */
     public function store(Request $request)
     {
-        //join table kategori_sparepart dan sparepart
-        
+        //
     }
 
     /**

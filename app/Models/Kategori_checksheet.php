@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Kategori_checksheet extends Model
 {
     use HasFactory;
+    protected $table = 'kategori_checksheet';
     protected $fillable = [
         'nama'
     ];
