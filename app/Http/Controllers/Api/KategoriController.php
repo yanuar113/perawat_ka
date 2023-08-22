@@ -7,6 +7,7 @@ use App\Models\Checksheet;
 use App\Models\Kategori_checksheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class KategoriController extends Controller
 {
@@ -15,6 +16,8 @@ class KategoriController extends Controller
         $categories = Kategori_checksheet::where('id_kereta', $authuser->id)->get();
         return ResponseController::customResponse(true, 'Berhasil mendapakan Kategori!', $categories);
     }
+
+    //cehecksheet
     public function getstatuschecksheet(){
         $authuser = auth()->user();
         $data = Checksheet::where('id_kereta', $authuser->id)->whereDate('date_time', Carbon::today());
@@ -31,6 +34,35 @@ class KategoriController extends Controller
             ];
         }
         return ResponseController::customResponse(true, 'Berhasil mendapakan Kategori!', $result);
+    }
+
+    public function createChecksheet(Request $request){
+        $data = json_decode($request->getContent(), true);
+        $authuser = auth()->user();
+
+        $data = json_decode($request->getContent(), true);
+        $rules = [
+            'no_kereta' => 'required',
+            'jam_engine' => 'required'
+        ];
+
+        $messages = [
+            'no_kereta.required' => 'No kereta tidak boleh kosong',
+            'jam_engine.required' => 'Jam engine tidak boleh kosong'
+        ];
+
+        $validator = Validator::make($data, $rules, $messages);
+
+        $data = Checksheet::create([
+            'id_kereta' => $authuser->id,
+            'date_time' => Carbon::now(),
+            'no_kereta' => $request->no_kereta,
+            'tipe' => $request->tipe,
+            'jam_engine' => $request->jam_engine,
+        ]);
+
+        return ResponseController::customResponse(true, 'Berhasil menambahkan Checksheet!', $data);
+
     }
 }
 
