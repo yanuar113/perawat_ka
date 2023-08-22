@@ -11,32 +11,41 @@ use Illuminate\Support\Facades\Validator;
 
 class KategoriController extends Controller
 {
-    public function getAll(){
+    public function getAll()
+    {
         $authuser = auth()->user();
         $categories = Kategori_checksheet::where('id_kereta', $authuser->id)->get();
         return ResponseController::customResponse(true, 'Berhasil mendapakan Kategori!', $categories);
     }
 
     //cehecksheet
-    public function getstatuschecksheet(){
+    public function getstatuschecksheet(Request $request)
+    {
+        $type = $request->type;
         $authuser = auth()->user();
-        $data = Checksheet::where('id_kereta', $authuser->id)->whereDate('date_time', Carbon::today());
+        if ($type == 0) {
+            $data = Checksheet::where('id_kereta', $authuser->id)->whereDate('date_time', Carbon::today())->where('tipe', $type);
+        } else {
+            //get by this mont and type == 1
+            $data = Checksheet::where('id_kereta', $authuser->id)->whereMonth('date_time', Carbon::now()->month)->where('tipe', $type);
+        }
         $result = [];
-        if ($data->count()==0){
-            $result=[
-                'found'=>false,
-                'data'=> null
+        if ($data->count() == 0) {
+            $result = [
+                'found' => false,
+                'data' => null
             ];
-        }else{
-            $result=[
-                'found'=>true,
-                'data'=> $data->first()
+        } else {
+            $result = [
+                'found' => true,
+                'data' => $data->first()
             ];
         }
         return ResponseController::customResponse(true, 'Berhasil mendapakan Kategori!', $result);
     }
 
-    public function createChecksheet(Request $request){
+    public function createChecksheet(Request $request)
+    {
         $data = json_decode($request->getContent(), true);
         $authuser = auth()->user();
 
@@ -53,7 +62,7 @@ class KategoriController extends Controller
 
         $validator = Validator::make($data, $rules, $messages);
 
-        if($validator->fails()){
+        if ($validator->fails()) {
             $response = $validator->messages();
             $response = [
                 'validation' => true,
@@ -74,8 +83,5 @@ class KategoriController extends Controller
         ]);
 
         return ResponseController::customResponse(true, 'Berhasil menambahkan Checksheet!', $data);
-
     }
 }
-
-
