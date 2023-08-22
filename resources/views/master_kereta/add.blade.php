@@ -28,7 +28,7 @@
                                             <input type="text" id="nama_kereta" class="form-control" placeholder="Masukkan nama kereta"
                                                 name="nama_kereta">
                                             @error('nama_kereta')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
@@ -36,7 +36,7 @@
                                             <input type="text" id="username" class="form-control" placeholder="Masukkan username"
                                                 name="username">
                                             @error('username')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
@@ -45,7 +45,7 @@
                                                 name="password">
                                                 {{-- create hash password --}}
                                             @error('password')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
@@ -53,7 +53,7 @@
                                             <input type="file" id="foto" class="form-control" placeholder="Masukkan foto"
                                                 name="foto">
                                             @error('foto')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </form>

@@ -34,10 +34,10 @@
                                     @forelse ($spareparts as $item)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
-                                            <td>kategori</td>
-                                            <td>{{$item->nama_kereta}}</td>
-                                            <td>{{$item->username}}</td>
-                                            <td>{{$item->foto}}</td>
+                                            <td>{{$item->nama_kategori}}</td>
+                                            <td>{{$item->nama_sparepart}}</td>
+                                            <td>{{$item->jumlah}}</td>
+                                            <td>{{$item->satuan}}</td>
                                             <td>
                                                 <a href="#"
                                                     class="btn btn-sm btn-warning">

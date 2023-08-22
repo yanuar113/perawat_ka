@@ -19,28 +19,27 @@
                             </div>
                             <div class="card-body">
                                 <div class="card-content">
-                                    <form method="POST" action="{{ route('kereta.store') }}" autocomplete="off"
-                                        id="form-tambah-kereta">
+                                    <form method="POST" action="{{ route('sparepart.store') }}" autocomplete="off" id="form-tambah-sparepart">
                                         {{-- create input with csrf token and bootstrap class --}}
                                         @csrf
                                         <div class="form-group">
-                                            <label for="kategori">Kategori Sparepart</label>
-                                            <select name="kategori" id="kategori" class="form-select">
+                                            <label for="id_kategori_sparepart">Kategori Sparepart</label>
+                                            <select name="id_kategori_sparepart" id="id_kategori_sparepart" class="form-select">
                                                 <option value="0">Pilih Kategori</option>
                                                 @foreach ($kategori_spareparts as $item)
                                                     <option value="{{ $item->id }}">{{ $item->nama_kategori }}</option>
                                                 @endforeach
                                             </select>
-                                            @error('kategori')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                            @error('id_kategori_sparepart')
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
-                                            <label for="nama">Nama Sparepart</label>
-                                            <input type="text" id="nama" class="form-control"
-                                                placeholder="Masukkan nama sparepart" name="nama">
-                                            @error('nama')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                            <label for="nama_sparepart">Nama Sparepart</label>
+                                            <input type="text" id="nama_sparepart" class="form-control"
+                                                placeholder="Masukkan nama sparepart" name="nama_sparepart">
+                                            @error('nama_sparepart')
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
@@ -48,7 +47,7 @@
                                             <input type="number" id="jumlah" class="form-control"
                                                 placeholder="Masukkan jumlah" name="jumlah">
                                             @error('jumlah')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
@@ -56,14 +55,14 @@
                                             <input type="text" id="satuan" class="form-control"
                                                 placeholder="Masukkan satuan" name="satuan">
                                             @error('satuan')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </form>
                                 </div>
                             </div>
                             <div class="card-footer py-0 border-top-0 pb-4">
-                                <button type="submit" class="btn btn-primary" form="form-tambah-kereta"><i
+                                <button type="submit" class="btn btn-primary" form="form-tambah-sparepart"><i
                                         class="bi bi-save me-2"></i>
                                     Simpan</button>
                                 <a href="{{ route('sparepart.index') }}" class="btn btn-danger ms-2"><i

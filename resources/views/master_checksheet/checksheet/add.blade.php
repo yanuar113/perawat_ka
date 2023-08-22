@@ -40,7 +40,7 @@
                                                 @endforeach
                                             </select>
                                             @error('tipe')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
@@ -48,7 +48,7 @@
                                             <input type="text" id="no_kereta" class="form-control"
                                                 placeholder="Masukkan No Kereta" name="no_kereta">
                                             @error('no_kereta')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
@@ -56,7 +56,7 @@
                                             <input type="text" id="jam_engine" class="form-control"
                                                 placeholder="Masukkan jam engine" name="jam_engine">
                                             @error('jam_engine')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
@@ -67,7 +67,7 @@
                                                     <option value="1">Bulanan</option>
                                             </select>
                                             @error('tipe')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </form>
@@ -77,7 +77,7 @@
                                 <button type="submit" class="btn btn-primary" form="form-tambah-checksheet"><i
                                         class="bi bi-save me-2"></i>
                                     Simpan</button>
-                                <a href="{{route('item_checksheet.index')}}" class="btn btn-danger ms-2"><i
+                                <a href="{{route('checksheet.index')}}" class="btn btn-danger ms-2"><i
                                         class="bi bi-x-circle me-2"></i>
                                     Batal</a>
                             </div>

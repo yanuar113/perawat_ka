@@ -14,6 +14,7 @@ class Checksheet extends Model
         'date_time',
         'no_kereta',
         'tipe',
-        'jam_engine'
+        'jam_engine',
+        'is_so'
     ];
 }

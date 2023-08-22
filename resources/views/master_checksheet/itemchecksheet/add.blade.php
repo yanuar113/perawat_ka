@@ -32,7 +32,7 @@
                                                 @endforeach
                                             </select>
                                             @error('id_kereta')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
@@ -44,7 +44,7 @@
                                                 @endforeach
                                             </select>
                                             @error('id_kategori_checksheet')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
@@ -52,7 +52,7 @@
                                             <input type="text" id="nama_item" class="form-control"
                                                 placeholder="Masukkan kelompok pekerjaan" name="nama_item">
                                             @error('nama_item')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </form>

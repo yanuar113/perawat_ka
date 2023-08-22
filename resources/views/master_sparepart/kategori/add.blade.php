@@ -28,7 +28,7 @@
                                             <input type="text" id="nama_kategori" class="form-control"
                                                 placeholder="Masukkan nama kategori" name="nama_kategori">
                                             @error('nama_kategori')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </form>

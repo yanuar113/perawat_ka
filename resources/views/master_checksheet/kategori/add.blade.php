@@ -32,7 +32,7 @@
                                                 @endforeach
                                             </select>
                                             @error('id_kereta')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
@@ -40,7 +40,7 @@
                                             <input type="text" id="nama" class="form-control"
                                                 placeholder="Masukkan kelompok pekerjaan" name="nama">
                                             @error('nama')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </form>
