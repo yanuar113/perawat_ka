@@ -53,6 +53,18 @@ class KategoriController extends Controller
 
         $validator = Validator::make($data, $rules, $messages);
 
+        if($validator->fails()){
+            $response = $validator->messages();
+            $response = [
+                'validation' => true,
+                'message' => [
+                    'no_kereta' => $response->first('no_kereta') != '' ? $response->first('no_kereta') : null,
+                    'jam_engine' => $response->first('jam_engine') != '' ? $response->first('jam_engine') : null
+                ],
+            ];
+            return ResponseController::customResponse(false, 'Gagal menambahkan Checksheet!', $response);
+        }
+
         $data = Checksheet::create([
             'id_kereta' => $authuser->id,
             'date_time' => Carbon::now(),
