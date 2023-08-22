@@ -64,7 +64,7 @@
                         Master
                     </li>
                     <li>
-                        <a href="/app" class="{{ $active == 'dashboard' ? 'active' : '' }}"><i
+                        <a href="{{url('dashboard')}}" class="{{ $active == 'dashboard' ? 'active' : '' }}"><i
                                 class="material-icons-two-tone">dashboard</i>Dashboard</a>
                     </li>
                     <li>

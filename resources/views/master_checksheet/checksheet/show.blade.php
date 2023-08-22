@@ -18,7 +18,7 @@
                             <h5 class="card-title">Daftar Checksheet Perawatan</h5>
                         </div>
                         <div class="card-body">
-                            <a href="{{route('checksheet.create')}}" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
+                            {{-- <a href="{{route('checksheet.create')}}" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a> --}}
                             <table id="datatable1" class="display" style="width:100%">
                                 <thead>
                                     <tr>
@@ -41,14 +41,14 @@
                                             <td>{{$item->tipe == 0 ? "Harian":"Bulanan"}}</td>
                                             <td>{{$item->jam_engine}}</td>
                                             <td>
-                                                <a href="#"
+                                                <a href="{{route('checksheet.show', $item->id)}}"
                                                     class="btn btn-sm btn-success">
                                                     <i class="material-icons">visibility</i>Lihat   
                                                 </a>
-                                                <a href="{{route('checksheet.edit', $item)}}"
+                                                {{-- <a href="{{route('checksheet.edit', $item)}}"
                                                     class="btn btn-sm btn-warning">
                                                     <i class="material-icons">edit</i>Edit   
-                                                </a>
+                                                </a> --}}
                                                 <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal"><i
                                             class="material-icons">delete</i>Hapus</button>

@@ -19,6 +19,17 @@
                             <h5 class="card-title">Daftar Kelompok Pekerjaan</h5> 
                         </div>
                         <div class="card-body">
+                            {{-- <div class="btn-group">
+                                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                                    Pilih Kereta
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item" href="{{ route('kategori_checksheet.index') }}">Semua Kereta</a></li>
+                                    @foreach ($kategories as $kategori)
+                                    <li><a class="dropdown-item" href="{{ route('kategori_checksheet.show', $kategori->id) }}">{{ $kategori->nama_kereta }}</a></li>
+                                    @endforeach
+                                </ul>
+                            </div> --}}
                             <a href="{{route('kategori_checksheet.create')}}" id="addButton" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
                             <table id="datatable1" class="display" style="width:100%">
                                 <thead>

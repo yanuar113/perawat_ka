@@ -39,7 +39,20 @@ class SparepartController extends Controller
      */
     public function store(Request $request)
     {
-        //join table kategori_sparepart dan sparepart
+        $request->validate([
+            'id_kategori_sparepart' => 'required',
+            'nama_sparepart' => 'required',
+            'jumlah' => 'required',
+            'satuan' => 'required'
+        ], [
+            'id_kategori_sparepart.required' => 'Nama kategori tidak boleh kosong',
+            'nama_sparepart.required' => 'Nama sparepart tidak boleh kosong',
+            'jumlah.required' => 'jumlah tidak boleh kosong',
+            'satuan.required' => 'satuan tidak boleh kosong'
+        ]);
+
+        Sparepart::create($request->all());
+        return redirect()->route('sparepart.index')->with('status', 'Data Sparepart berhasil ditambahkan!');
         
     }
 
@@ -73,5 +86,7 @@ class SparepartController extends Controller
     public function destroy(string $id)
     {
         //
+        Sparepart::destroy($id);
+        return redirect()->route('sparepart.index')->with('status', 'Data Checksheet berhasil dihapus!');
     }
 }

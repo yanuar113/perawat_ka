@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\ChecksheetController;
+use App\Http\Controllers\ChecksheetDetailController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ItemChecksheetController;
 use App\Http\Controllers\KategoriChecksheetController;
 use App\Http\Controllers\KategorisparepartController;
@@ -28,10 +30,7 @@ Route::get('/', function () {
 });
 
 //Dashboard
-Route::get('/app', function () {
-    $active = 'dashboard';
-    return view('dashboard.show', compact('active'));
-});
+Route::resource('dashboard', DashboardController::class);
 
 //master kereta
 Route::resource('kereta', KeretaController::class);
@@ -47,8 +46,11 @@ Route::resource('kategori_checksheet',KategoriChecksheetController::class);
 //Route::resource('sub_checksheet',SubChecksheetController::class);
 Route::resource('item_checksheet',ItemChecksheetController::class);
 Route::resource('checksheet',ChecksheetController::class);
-// Route::resource('checksheet_detail',ChecksheetDetailController::class);
+
 // //Foto
 // Route::resource('foto', FotoController::class);
+
+// //Laporan
+// Route::resource('laporan', LaporanController::class);
 
 

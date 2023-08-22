@@ -15,9 +15,10 @@ return new class extends Migration
             $table->id();
             $table->integer('id_kereta');
             $table->dateTime('date_time');
-            $table->integer('no_kereta');
+            $table->string('no_kereta');
             $table->string('tipe');
-            $table->integer('jam_engine');
+            $table->string('jam_engine');
+            $table->integer('is_so')->nullable();
             $table->timestamps();
         });
     }

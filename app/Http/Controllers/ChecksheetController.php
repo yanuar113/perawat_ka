@@ -63,6 +63,13 @@ class ChecksheetController extends Controller
     public function show(string $id)
     {
         //
+        $detail = Checksheet::select('checksheet.*', 'master_kereta.nama_kereta')
+        ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
+        ->where('checksheet.id', $id)
+        ->first();
+        $active = 'master_checksheet';
+
+        return view('master_checksheet.checksheet.detail', compact('active','detail'));
     }
 
     /**
