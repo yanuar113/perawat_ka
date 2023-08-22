@@ -67,7 +67,7 @@ class KategoriController extends Controller
 
         $data = Checksheet::create([
             'id_kereta' => $authuser->id,
-            'date_time' => Carbon::now(),
+            'date_time' => Carbon::now()->setTimezone('Asia/Jakarta'),
             'no_kereta' => $request->no_kereta,
             'tipe' => $request->tipe,
             'jam_engine' => $request->jam_engine,
