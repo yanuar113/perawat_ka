@@ -23,9 +23,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('login', [AuthController::class, 'login']);
 Route::resource('trains', KeretaController::class);
-Route::group(['middleware' => 'auth:sanctum'], function(){
+Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('category-checksheet', [App\Http\Controllers\Api\KategoriController::class, 'getAll']);
-    Route::get('check-checksheet',[App\Http\Controllers\Api\KategoriController::class, 'getstatuschecksheet'] );
-    Route::post('checksheet',[App\Http\Controllers\Api\KategoriController::class, 'createChecksheet'] );
+    Route::get('check-checksheet', [App\Http\Controllers\Api\KategoriController::class, 'getstatuschecksheet']);
+    Route::post('checksheet', [App\Http\Controllers\Api\KategoriController::class, 'createChecksheet']);
+    Route::get('list-checksheet', [App\Http\Controllers\Api\KategoriController::class, 'getAllList']);
+    Route::get('list-checksheet/{id}/{id_checksheet}', [App\Http\Controllers\Api\KategoriController::class, 'getAllListById']);
 });
 // Route::resource('spareparts', SparepartController::class);

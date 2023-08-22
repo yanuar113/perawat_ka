@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Checksheet;
+use App\Models\Detail_checksheet;
+use App\Models\Item_checksheet;
 use App\Models\Kategori_checksheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -83,5 +85,34 @@ class KategoriController extends Controller
         ]);
 
         return ResponseController::customResponse(true, 'Berhasil menambahkan Checksheet!', $data);
+    }
+
+    //list item checksheet
+    public function getAllList()
+    {
+        $authuser = auth()->user();
+        $categories = Item_checksheet::where('id_kereta', $authuser->id)->get();
+        $categories = $categories->map(function ($item) {
+            $detail = Detail_checksheet::where('id_item_checksheet', $item->id)->first();
+            $item->dilakukan = $detail->dilakukan ?? null;
+            $item->hasil = $detail->hasil ?? null;
+            $item->keterangan = $detail->keterangan ?? null;
+            return $item;
+        });
+        return ResponseController::customResponse(true, 'Berhasil mendapakan item checklist!', $categories);
+    }
+
+    public function getAllListById($id, $id_checksheet)
+    {
+        $authuser = auth()->user();
+        $categories = Item_checksheet::where('id_kereta', $authuser->id)->where('id_kategori_checksheet', $id)->get();
+        $categories = $categories->map(function ($item) use ($id_checksheet) {
+            $detail = Detail_checksheet::where('id_item_checksheet', $item->id)->where('id_checksheet', $id_checksheet)->first();
+            $item->dilakukan = $detail->dilakukan ?? null;
+            $item->hasil = $detail->hasil ?? null;
+            $item->keterangan = $detail->keterangan ?? null;
+            return $item;
+        });
+        return ResponseController::customResponse(true, 'Berhasil mendapakan item checklist!', $categories);
     }
 }

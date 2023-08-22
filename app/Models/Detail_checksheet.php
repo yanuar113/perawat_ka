@@ -14,6 +14,6 @@ class Detail_checksheet extends Model
         'id_item_checksheet',
         'dilakukan',
         'hasil',
-        'keterangan'
+        'keterangan',
     ];
 }
