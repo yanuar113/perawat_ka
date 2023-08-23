@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Checksheet;
+use App\Models\Detail_checksheet;
 use App\Models\Item_checksheet;
+use App\Models\Kategori_checksheet;
 use App\Models\Kereta;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
@@ -65,12 +67,26 @@ class ChecksheetController extends Controller
     {
         //
         $detail = Checksheet::select('checksheet.*', 'master_kereta.nama_kereta')
-        ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
-        ->where('checksheet.id', $id)
-        ->first();
+            ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
+            ->where('checksheet.id', $id)
+            ->first();
+
+        $categories = Kategori_checksheet::where('id_kereta', $detail->id_kereta)->get();
+        $categories = $categories->map(function ($item) use ($id) {
+            $items = Item_checksheet::where('id_kategori_checksheet', $item->id)->get();
+            $item->lists = $items->map(function ($item) use ($id) {
+                $detail = Detail_checksheet::where('id_item_checksheet', $item->id)->where('id_checksheet', $id)->first();
+                $item->dilakukan = $detail->dilakukan ?? null;
+                $item->hasil = $detail->hasil ?? null;
+                $item->keterangan = $detail->keterangan ?? null;
+                return $item;
+            });
+            return $item;
+        });
+
         $active = 'master_checksheet';
 
-        return view('master_checksheet.checksheet.detail', compact('active','detail'));
+        return view('master_checksheet.checksheet.detail', compact('active', 'detail', 'categories'));
     }
 
     /**
@@ -83,7 +99,6 @@ class ChecksheetController extends Controller
         $keretas = Kereta::all();
         $checksheets = Checksheet::find($id);
         return view('master_checksheet.checksheet.edit', compact('active', 'keretas', 'checksheets'));
-
     }
 
     /**
