@@ -46,6 +46,8 @@ Route::resource('kategori_checksheet',KategoriChecksheetController::class);
 //Route::resource('sub_checksheet',SubChecksheetController::class);
 Route::resource('item_checksheet',ItemChecksheetController::class);
 Route::resource('checksheet',ChecksheetController::class);
+// cetak checksheet
+Route::get('checksheet/print/{id}', [ChecksheetController::class, 'print'])->name('checksheet.print');
 
 // //Foto
 // Route::resource('foto', FotoController::class);

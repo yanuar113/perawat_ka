@@ -58,6 +58,11 @@ class ChecksheetController extends Controller
         return redirect()->route('checksheet.index')->with('status', 'Data Checksheet berhasil ditambahkan!');
     }
 
+    public function print($id){
+        $item = Item_checksheet::findOrFail($id);
+        return view('master_checksheet.checksheet.print', compact('item'));
+    }
+
     /**
      * Display the specified resource.
      */

@@ -42,13 +42,12 @@
                                             <td>{{$item->jam_engine}}</td>
                                             <td>
                                                 <a href="{{route('checksheet.show', $item->id)}}"
-                                                    class="btn btn-sm btn-success">
+                                                    class="btn btn-sm btn-primary">
                                                     <i class="material-icons">visibility</i>Lihat   
                                                 </a>
-                                                {{-- <a href="{{route('checksheet.edit', $item)}}"
-                                                    class="btn btn-sm btn-warning">
-                                                    <i class="material-icons">edit</i>Edit   
-                                                </a> --}}
+                                                <a href="{{route('checksheet.print', $item->id)}}"  class="btn btn-sm btn-success">
+                                                    <i class="material-icons">print</i>Cetak
+                                                </a>
                                                 <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal"><i
                                             class="material-icons">delete</i>Hapus</button>
