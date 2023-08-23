@@ -47,25 +47,63 @@
                             <h5 class="card-title">Detail Checksheet Perawatan</h5>
                         </div>
                         <div class="card-body">
-                            <a href="{{route('checksheet.index')}}" class="btn btn-danger"><i class="material-icons">arrow_back</i>Kembali</a>
+                            <a href="{{ route('checksheet.index') }}" class="btn btn-danger"><i
+                                    class="material-icons">arrow_back</i>Kembali</a>
                             <a href="#" class="btn btn-success"><i class="material-icons">print</i>Cetak Laporan</a>
-                            <table id="datatable1" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Uraian Pekerjaan</th>
-                                        <th>Dilakukan</th>
-                                        <th>Hasil</th>
-                                        <th>Keterangan</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        
-                                        <td colspan="5" class="text-center">Tidak ada data</td>
-                                    </tr>
-                                </tbody>
-                            </table>
+
+                            @foreach ($categories as $category)
+                                <div class="alert alert-primary mt-4">{{ $category->nama }}</div>
+                                <table class="table table-bordered display" style="width:100%">
+                                    <thead>
+                                        <tr style="vertical-align : middle;text-align:center;">
+                                            <th rowspan="2">No</th>
+                                            <th rowspan="2">Uraian Pekerjaan</th>
+                                            <th colspan="2">Dilakukan</th>
+                                            <th colspan="2">Hasil</th>
+                                            <th rowspan="2">Keterangan</th>
+                                        </tr>
+                                        <tr>
+                                            <th>Ya</th>
+                                            <th>Tidak</th>
+                                            <th>Baik</th>
+                                            <th>Tidak</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($category->lists as $list)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $list->nama_item }}</td>
+                                                <td>
+                                                    @if ($list->dilakukan == '1')
+                                                        <i class="material-icons text-dark">check</i>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($list->dilakukan == '0')
+                                                        <i class="material-icons text-dark">check</i>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($list->hasil == '1')
+                                                        <i class="material-icons text-dark">check</i>
+                                                    @endif
+                                                </td>
+                                                <td>
+                                                    @if ($list->hasil == '0')
+                                                        <i class="material-icons text-dark">check</i>
+                                                    @endif
+                                                </td>
+                                                <td>{{ $list->keterangan }}</td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="5" class="text-center">Tidak ada data</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            @endforeach
                         </div>
                     </div>
                 </div>

@@ -26,10 +26,10 @@ class KategoriController extends Controller
         $type = $request->type;
         $authuser = auth()->user();
         if ($type == 0) {
-            $data = Checksheet::where('id_kereta', $authuser->id)->whereDate('date_time', Carbon::today())->where('tipe', $type);
+            $data = Checksheet::where('id_kereta', $authuser->id)->whereDate('date_time', Carbon::today()->setTimezone('Asia/Jakarta'))->where('tipe', $type);
         } else {
             //get by this mont and type == 1
-            $data = Checksheet::where('id_kereta', $authuser->id)->whereMonth('date_time', Carbon::now()->month)->where('tipe', $type);
+            $data = Checksheet::where('id_kereta', $authuser->id)->whereMonth('date_time', Carbon::now()->setTimezone('Asia/Jakarta')->month)->where('tipe', $type);
         }
         $result = [];
         if ($data->count() == 0) {
@@ -43,7 +43,7 @@ class KategoriController extends Controller
                 'data' => $data->first()
             ];
         }
-        return ResponseController::customResponse(true, 'Berhasil mendapakan Kategori!', $result);
+        return ResponseController::customResponse(true, 'Berhasil mendapakan checksheet!', $result);
     }
 
     public function createChecksheet(Request $request)
