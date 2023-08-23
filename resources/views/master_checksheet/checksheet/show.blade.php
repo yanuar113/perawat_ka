@@ -38,7 +38,7 @@
                                             <td>{{$item->date_time}}</td>
                                             <td>{{$item->nama_kereta}}</td>
                                             <td>{{$item->no_kereta}}</td>
-                                            <td>{{$item->tipe == 0 ? "Harian":"Bulanan"}}</td>
+                                            <td>{{$item->tipe == 0 ? "Harian":"P1"}}</td>
                                             <td>{{$item->jam_engine}}</td>
                                             <td>
                                                 <a href="{{route('checksheet.show', $item->id)}}"

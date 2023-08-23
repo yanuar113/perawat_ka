@@ -19,6 +19,7 @@ class ItemChecksheetController extends Controller
             ->join('kategori_checksheet', 'item_checksheet.id_kategori_checksheet', '=', 'kategori_checksheet.id')
             ->join('master_kereta', 'kategori_checksheet.id_kereta', '=', 'master_kereta.id')
             ->get();
+            
         $active = 'master_checksheet';
         return view('master_checksheet.itemchecksheet.show', compact('active', 'items'));
     }
