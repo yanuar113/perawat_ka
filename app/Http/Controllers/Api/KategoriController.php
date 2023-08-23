@@ -43,7 +43,7 @@ class KategoriController extends Controller
                 'data' => $data->first()
             ];
         }
-        return ResponseController::customResponse(true, 'Berhasil mendapakan Kategori!', $result);
+        return ResponseController::customResponse(true, 'Berhasil mendapakan checksheet!', $result);
     }
 
     public function createChecksheet(Request $request)
