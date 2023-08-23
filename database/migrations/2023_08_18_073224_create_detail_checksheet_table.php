@@ -15,9 +15,9 @@ return new class extends Migration
             $table->id();
             $table->integer('id_checksheet');
             $table->integer('id_item_checksheet');
-            $table->boolean('dilakukan');
-            $table->boolean('hasil');
-            $table->string('keterangan');
+            $table->boolean('dilakukan')->nullable()->default(null);
+            $table->boolean('hasil')->nullable()->default(null);
+            $table->string('keterangan')->nullable()->default(null);
             $table->timestamps();
         });
     }
