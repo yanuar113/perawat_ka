@@ -19,7 +19,7 @@ class ItemChecksheetController extends Controller
             ->join('kategori_checksheet', 'item_checksheet.id_kategori_checksheet', '=', 'kategori_checksheet.id')
             ->join('master_kereta', 'kategori_checksheet.id_kereta', '=', 'master_kereta.id')
             ->get();
-            
+
         $active = 'master_checksheet';
         return view('master_checksheet.itemchecksheet.show', compact('active', 'items'));
     }
@@ -52,7 +52,7 @@ class ItemChecksheetController extends Controller
             'id_kategori_checksheet.required' => 'Nama kategori tidak boleh kosong'
         ]);
         Item_checksheet::create($request->all());
-        return redirect()->route('item_checksheet.index')->with('status', 'Data Item Checksheet berhasil ditambahkan!');
+        return redirect()->route('item_checksheet.index')->with('success', 'Data Item Checksheet berhasil ditambahkan!');
     }
 
     /**
@@ -97,7 +97,7 @@ class ItemChecksheetController extends Controller
                 'id_kereta' => $request->id_kereta,
                 'id_kategori_checksheet' => $request->id_kategori_checksheet
             ]);
-        return redirect()->route('item_checksheet.index')->with('status', 'Data Item Checksheet berhasil diubah!');
+        return redirect()->route('item_checksheet.index')->with('success', 'Data Item Checksheet berhasil diubah!');
     }
 
     /**

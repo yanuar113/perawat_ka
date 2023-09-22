@@ -63,8 +63,8 @@
                                             <label for="tipe">Tipe Laporan</label>
                                             <select name="tipe" id="tipe" class="form-select">
                                                 <option value="">Pilih Tipe Laporan</option>
-                                                    <option value="0">Harian</option>
-                                                    <option value="1">Bulanan</option>
+                                                <option value="0">Harian</option>
+                                                <option value="1">Bulanan</option>
                                             </select>
                                             @error('tipe')
                                                 <span class="text-danger">{{ $message }}</span>
@@ -77,7 +77,7 @@
                                 <button type="submit" class="btn btn-primary" form="form-tambah-checksheet"><i
                                         class="bi bi-save me-2"></i>
                                     Simpan</button>
-                                <a href="{{route('checksheet.index')}}" class="btn btn-danger ms-2"><i
+                                <a href="{{ route('checksheet.index') }}" class="btn btn-danger ms-2"><i
                                         class="bi bi-x-circle me-2"></i>
                                     Batal</a>
                             </div>

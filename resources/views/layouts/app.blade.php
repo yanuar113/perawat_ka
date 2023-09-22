@@ -110,7 +110,7 @@
                     </li>
                     <li>
                         <a href="#" class="{{ $active == 'laporan' ? 'active' : '' }}">
-                            <i class="material-icons-two-tone">receipt_long</i>Laporan</a>
+                            <i class="material-icons-two-tone">receipt_long</i>Berita Acara</a>
                     </li>
                 </ul>
             </div>

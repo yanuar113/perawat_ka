@@ -84,6 +84,7 @@ class KategoriChecksheetController extends Controller
             ->update([
                 'nama' => $request->nama,
             ]);
+
         return redirect()->route('kategori_checksheet.index')->with('status', 'Data Kategori Checksheet berhasil diubah!');
     }
 

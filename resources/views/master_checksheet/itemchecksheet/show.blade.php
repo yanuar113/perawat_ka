@@ -58,10 +58,10 @@
                                             <td>{{ $item->nama_item }}</td>
                                             <td>
                                                 <a href="{{ route('item_checksheet.edit', $item) }}"
-                                                    class="btn btn-sm btn-warning">
+                                                    class="btn btn-sm btn-warning mb-1">
                                                     <i class="material-icons">edit</i>Edit
                                                 </a>
-                                                <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                <button type="submit" class="btn btn-sm btn-danger mb-1" data-bs-toggle="modal"
                                                     data-bs-target="#exampleModal"><i
                                                         class="material-icons">delete</i>Hapus</button>
                                             </td>

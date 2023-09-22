@@ -22,6 +22,7 @@ class ChecksheetController extends Controller
         $checksheets = Checksheet::select('checksheet.*', 'master_kereta.nama_kereta')
             ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
             ->get();
+
         return view('master_checksheet.checksheet.show', compact('active', 'checksheets'));
     }
 
@@ -134,7 +135,7 @@ class ChecksheetController extends Controller
                 'tipe' => $request->tipe,
                 'jam_engine' => $request->jam_engine
             ]);
-        return redirect()->route('checksheet.index')->with('status', 'Data Checksheet berhasil diubah!');
+        return redirect()->route('checksheet.index')->with('success', 'Data Checksheet berhasil diubah!');
     }
 
     /**

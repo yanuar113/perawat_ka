@@ -19,6 +19,11 @@
                             <h5 class="card-title">Daftar Kelompok Pekerjaan</h5> 
                         </div>
                         <div class="card-body">
+                            @if (session()->has('status'))
+                                <div class="alert alert-success alert-style-light" role="alert">
+                                    {{ session()->get('status') }}
+                                </div>
+                            @endif
                             {{-- <div class="btn-group">
                                 <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                     Pilih Kereta
