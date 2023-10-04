@@ -18,8 +18,8 @@
                             <h5 class="card-title">Daftar Sparepart Perawatan</h5>
                         </div>
                         <div class="card-body">
-                            <a href="{{route('sparepart.create')}}" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
-                            <table id="datatable1" class="display" style="width:100%">
+                            <a href="{{route('sparepart.create')}}" class="btn btn-primary mb-3"><i class="material-icons">add</i>Tambah</a>
+                            <table id="datatable3" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>No</th>

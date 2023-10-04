@@ -24,19 +24,20 @@
                                     {{ session()->get('status') }}
                                 </div>
                             @endif
-                            {{-- <div class="btn-group">
+                            <div class="btn-group mb-3">
                                 <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                     Pilih Kereta
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <li><a class="dropdown-item" href="{{ route('kategori_checksheet.index') }}">Semua Kereta</a></li>
-                                    @foreach ($kategories as $kategori)
-                                    <li><a class="dropdown-item" href="{{ route('kategori_checksheet.show', $kategori->id) }}">{{ $kategori->nama_kereta }}</a></li>
+                                    @foreach ($keretas as $item)
+                                    <li><a class="dropdown-item" href="{{ route('kategori_checksheet.filter', $item->id) }}">{{ $item->nama_kereta }}</a></li>
                                     @endforeach
                                 </ul>
-                            </div> --}}
-                            <a href="{{route('kategori_checksheet.create')}}" id="addButton" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
-                            <table id="datatable1" class="display" style="width:100%">
+                            </div>
+                            
+                            <a href="{{route('kategori_checksheet.create')}}" id="addButton" class="btn btn-primary mb-3"><i class="material-icons">add</i>Tambah</a>
+                            <table id="datatable3" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>No</th>

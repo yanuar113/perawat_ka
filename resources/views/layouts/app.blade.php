@@ -27,7 +27,6 @@
     <link href="{{ asset('templates/source/assets/plugins/pace/pace.css') }}" rel="stylesheet">
     <link href="{{ asset('templates/source/assets/plugins/datatables/datatables.min.css') }}" rel="stylesheet">
 
-
     <!-- Theme Styles -->
     <link href="{{ asset('templates/source/assets/css/main.min.css') }}" rel="stylesheet">
     <link href="{{ asset('templates/source/assets/css/custom.css') }}" rel="stylesheet">
@@ -52,7 +51,7 @@
                 <a href="#" class="logo-icon"><span class="logo-text">IMSS</span></a>
                 <div class="sidebar-user-switcher user-activity-online">
                     <a href="#">
-                        <img src="{{ asset('templates/source/assets/images/avatars/avatar1.jpeg')}}">
+                        <img src="{{ asset('templates/source/assets/images/avatars/avatar1.jpeg') }}">
                         <span class="activity-indicator"></span>
                         <span class="user-info-text">Admin<br><span class="user-state-info">online</span></span>
                     </a>
@@ -64,40 +63,42 @@
                         Master
                     </li>
                     <li>
-                        <a href="{{url('dashboard')}}" class="{{ $active == 'dashboard' ? 'active' : '' }}"><i
+                        <a href="{{ url('dashboard') }}" class="{{ $active == 'dashboard' ? 'active' : '' }}"><i
                                 class="material-icons-two-tone">dashboard</i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="{{url('kereta')}}" class="{{ $active == 'master_kereta' ? 'active' : '' }}">
+                        <a href="{{ url('kereta') }}" class="{{ $active == 'master_kereta' ? 'active' : '' }}">
                             <i class="material-icons-two-tone">train</i>Master Kereta</a>
                     </li>
                     <li>
-                        <a class="{{ $active == 'master_sparepart' ? 'active' : '' }}"><i class="material-icons-two-tone">handyman</i>Master Sparepart<i
+                        <a class="{{ $active == 'master_sparepart' ? 'active' : '' }}"><i
+                                class="material-icons-two-tone">handyman</i>Master Sparepart<i
                                 class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="{{url('kategori')}}">Kategori</a>
+                                <a href="{{ url('kategori') }}">Kategori</a>
                             </li>
                             <li>
-                                <a href="{{url('sparepart')}}">Sparepart</a>
+                                <a href="{{ url('sparepart') }}">Sparepart</a>
                             </li>
                         </ul>
                     </li>
                     <li>
-                        <a class="{{ $active == 'master_checksheet' ? 'active' : '' }}"><i class="material-icons-two-tone">edit</i>Master Checksheet<i
+                        <a class="{{ $active == 'master_checksheet' ? 'active' : '' }}"><i
+                                class="material-icons-two-tone">save_as</i>Master Checksheet<i
                                 class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
                         <ul class="sub-menu">
                             <li>
-                                <a href="{{url('kategori_checksheet')}}">Kategori Checksheet</a>
+                                <a href="{{ url('kategori_checksheet') }}">Kategori Checksheet</a>
                             </li>
                             <li>
                                 <a href="#">Sub Kategori Checksheet</a>
                             </li>
                             <li>
-                                <a href="{{url('item_checksheet')}}">Uraian Pekerjaan</a>
+                                <a href="{{ url('item_checksheet') }}">Uraian Pekerjaan</a>
                             </li>
                             <li>
-                                <a href="{{url('checksheet')}}">Checksheet</a>
+                                <a href="{{ url('checksheet') }}">Checksheet</a>
                             </li>
                         </ul>
                     </li>
@@ -129,7 +130,7 @@
                             <ul class="navbar-nav">
                                 <li class="nav-item">
                                     <a class="nav-link hide-sidebar-toggle-button" href="#"><i
-                                        class="material-icons">menu</i></a>
+                                            class="material-icons">menu</i></a>
                                 </li>
                             </ul>
 
@@ -151,18 +152,19 @@
                                 </li>
                                 <li class="nav-item hidden-on-mobile">
                                     <a class="nav-link language-dropdown-toggle" href="#" id="languageDropDown"
-                                        data-bs-toggle="dropdown"><img src="{{ asset('templates/source/assets/images/flags/us.png')}}"
+                                        data-bs-toggle="dropdown"><img
+                                            src="{{ asset('templates/source/assets/images/flags/us.png') }}"
                                             alt=""></a>
                                     <ul class="dropdown-menu dropdown-menu-end language-dropdown"
                                         aria-labelledby="languageDropDown">
                                         <li><a class="dropdown-item" href="#"><img
-                                                    src="{{ asset('templates/source/assets/images/flags/germany.png')}}"
+                                                    src="{{ asset('templates/source/assets/images/flags/germany.png') }}"
                                                     alt="">German</a></li>
                                         <li><a class="dropdown-item" href="#"><img
-                                                    src="{{ asset('templates/source/assets/images/flags/italy.png')}}"
+                                                    src="{{ asset('templates/source/assets/images/flags/italy.png') }}"
                                                     alt="">Italian</a></li>
                                         <li><a class="dropdown-item" href="#"><img
-                                                    src="{{ asset('templates/source/assets/images/flags/china.png')}}"
+                                                    src="{{ asset('templates/source/assets/images/flags/china.png') }}"
                                                     alt="">Chinese</a></li>
                                     </ul>
                                 </li>
@@ -218,7 +220,7 @@
                                                 <div class="notifications-dropdown-item">
                                                     <div class="notifications-dropdown-item-image">
                                                         <span class="notifications-badge">
-                                                            <img src="{{ asset('templates/source/assets/images/avatars/avatar1.jpeg')}}"
+                                                            <img src="{{ asset('templates/source/assets/images/avatars/avatar1.jpeg') }}"
                                                                 alt="">
                                                         </span>
                                                     </div>
@@ -232,7 +234,7 @@
                                                 <div class="notifications-dropdown-item">
                                                     <div class="notifications-dropdown-item-image">
                                                         <span class="notifications-badge">
-                                                            <img src="{{ asset('templates/source/assets/images/avatars/avatar7.jpeg')}}"
+                                                            <img src="{{ asset('templates/source/assets/images/avatars/avatar7.jpeg') }}"
                                                                 alt="">
                                                         </span>
                                                     </div>
@@ -258,23 +260,21 @@
     </div>
 
     <!-- Javascripts -->
-    <script src="{{ asset('templates/source/assets/plugins/jquery/jquery-3.5.1.min.js') }}"></script>
-    <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-    crossorigin="anonymous"
-  ></script>
-    <script src="{{ asset('templates/source/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('templates/source/assets/js/pages/popper.min.js') }}"></script>
+    <script src="{{ asset('templates/source/assets/plugins/jquery/jquery-3.5.1.min.js') }}"></script>
+    <script src="{{ asset('templates/source/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('templates/source/assets/plugins/perfectscroll/perfect-scrollbar.min.js') }}"></script>
-    <script src="{{ asset('templates/source/assets/plugins/pace/pace.min.js') }}"></script>
     <script src="{{ asset('templates/source/assets/plugins/apexcharts/apexcharts.min.js') }}"></script>
+    <script src="{{ asset('templates/source/assets/plugins/pace/pace.min.js') }}"></script>
     <script src="{{ asset('templates/source/assets/plugins/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('templates/source/assets/js/main.min.js') }}"></script>
     <script src="{{ asset('templates/source/assets/js/custom.js') }}"></script>
     <script src="{{ asset('templates/source/assets/js/pages/dashboard.js') }}"></script>
     <script src="{{ asset('templates/source/assets/js/pages/datatables.js') }}"></script>
-    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    </script>
+
 </body>
 
 </html>

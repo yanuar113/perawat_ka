@@ -21,13 +21,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //route login
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('login.login');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 //Dashboard
 Route::resource('dashboard', DashboardController::class);
@@ -48,6 +48,8 @@ Route::resource('item_checksheet',ItemChecksheetController::class);
 Route::resource('checksheet',ChecksheetController::class);
 // cetak checksheet
 Route::get('checksheet/print/{id}', [ChecksheetController::class, 'print'])->name('checksheet.print');
+Route::get('kategori_checksheet/filter/{keretaId}', 'KategoriChecksheetController@filterKategoriByKereta')->name('kategori_checksheet.filter');
+
 
 // //Foto
 // Route::resource('foto', FotoController::class);

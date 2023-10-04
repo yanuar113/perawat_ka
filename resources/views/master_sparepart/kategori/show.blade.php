@@ -18,9 +18,9 @@
                             <h5 class="card-title">Daftar Kategori Sparepart</h5>
                         </div>
                         <div class="card-body">
-                            <a href="{{ route('kategori.create') }}" class="btn btn-primary"><i
+                            <a href="{{ route('kategori.create') }}" class="btn btn-primary mb-3"><i
                                     class="material-icons">add</i>Tambah</a>
-                            <table id="datatable1" class="display" style="width:100%">
+                            <table id="datatable3" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>No</th>

@@ -19,7 +19,7 @@
                             <h5 class="card-title">Daftar Uraian Pekerjaan</h5>
                         </div>
                         <div class="card-body">
-                            <div class="btn-group">
+                            <div class="btn-group mb-3">
                                 <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton"
                                     data-bs-toggle="dropdown" aria-expanded="false">
                                     Pilih Kategori
@@ -37,9 +37,9 @@
                                     @endforeach --}}
                                 </ul>
                             </div>
-                            <a href="{{ route('item_checksheet.create') }}" id="addButton" class="btn btn-primary"><i
+                            <a href="{{ route('item_checksheet.create') }}" id="addButton" class="btn btn-primary mb-3"><i
                                     class="material-icons">add</i>Tambah</a>
-                            <table id="datatable1" class="display" style="width:100%">
+                            <table id="datatable3" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>No</th>
