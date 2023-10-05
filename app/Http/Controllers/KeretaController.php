@@ -93,5 +93,7 @@ class KeretaController extends Controller
     public function destroy(string $id)
     {
         //
+        Kereta::destroy($id);
+        return redirect()->route('kereta.index')->with('status', 'Data Kereta berhasil dihapus!');
     }
 }

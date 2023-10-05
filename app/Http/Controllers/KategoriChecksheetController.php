@@ -97,7 +97,7 @@ class KategoriChecksheetController extends Controller
     {
         //
         Kategori_checksheet::destroy($id);
-        return redirect()->route('kategori_checksheet.index')->with('status', 'Data Kategori Sparepart berhasil dihapus!');
+        return redirect()->route('kategori_checksheet.index')->with('status', 'Data Kategori Checksheet berhasil dihapus!');
     }
 
     public function filter($id)

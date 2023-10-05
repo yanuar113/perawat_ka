@@ -19,7 +19,12 @@
                             <h5 class="card-title">Daftar Kereta Perawatan</h5> 
                         </div>
                         <div class="card-body">
-                            <a href="{{route('kereta.create')}}" id="addButton" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
+                            @if (session()->has('status'))
+                            <div class="alert alert-success alert-style-light" role="alert">
+                                {{ session()->get('status') }}
+                            </div>
+                        @endif
+                            <a href="{{route('kereta.create')}}" id="addButton" class="btn btn-primary mb-3"><i class="material-icons">add</i>Tambah</a>
                             <table id="datatable1" class="display" style="width:100%">
                                 <thead>
                                     <tr>

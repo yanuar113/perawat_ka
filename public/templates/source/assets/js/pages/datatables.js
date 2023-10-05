@@ -3,9 +3,9 @@ $(document).ready(function () {
     "use strict";
 
     $('#datatable1').DataTable({
-"searching": false,
+"searching": true,
 //hide show 10 ebtries
-"lengthChange": false,
+"lengthChange": true,
     });
 
     $('#datatable2').DataTable({

@@ -8,6 +8,7 @@ use App\Http\Controllers\KategoriChecksheetController;
 use App\Http\Controllers\KategorisparepartController;
 use App\Http\Controllers\KeretaController;
 use App\Http\Controllers\SparepartController;
+use App\Models\Kategori_checksheet;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,7 +49,11 @@ Route::resource('item_checksheet',ItemChecksheetController::class);
 Route::resource('checksheet',ChecksheetController::class);
 // cetak checksheet
 Route::get('checksheet/print/{id}', [ChecksheetController::class, 'print'])->name('checksheet.print');
-Route::get('kategori_checksheet/filter/{keretaId}', 'KategoriChecksheetController@filterKategoriByKereta')->name('kategori_checksheet.filter');
+
+//filter
+Route::get('kategori_checksheet/filter/{id}', [KategoriChecksheetController::class,'filter'])->name('kategori_checksheet.filter');
+Route::get('item_checksheet/filter/{id}', [ItemChecksheetController::class,'filter'])->name('item_checksheet.filter');
+Route::get('checksheet/filter/{id}', [ChecksheetController::class,'filter'])->name('checksheet.filter');
 
 
 // //Foto

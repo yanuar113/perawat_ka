@@ -19,9 +19,9 @@ class ItemChecksheetController extends Controller
             ->join('kategori_checksheet', 'item_checksheet.id_kategori_checksheet', '=', 'kategori_checksheet.id')
             ->join('master_kereta', 'kategori_checksheet.id_kereta', '=', 'master_kereta.id')
             ->get();
-
+        $keretas = Kereta::all();
         $active = 'master_checksheet';
-        return view('master_checksheet.itemchecksheet.show', compact('active', 'items'));
+        return view('master_checksheet.itemchecksheet.show', compact('active', 'items', 'keretas'));
     }
 
     /**
@@ -108,5 +108,17 @@ class ItemChecksheetController extends Controller
         //
         Item_checksheet::destroy($id);
         return redirect()->route('item_checksheet.index')->with('status', 'Data Item Checksheet berhasil dihapus!');
+    }
+
+    public function filter($id)
+    {
+        // $kategories = Kategori_checksheet::where('id_kereta', $keretaId)->get();
+        $items = Item_checksheet::select('item_checksheet.*', 'master_kereta.nama_kereta', 'kategori_checksheet.nama')
+        ->join('kategori_checksheet', 'item_checksheet.id_kategori_checksheet', '=', 'kategori_checksheet.id')
+        ->join('master_kereta', 'kategori_checksheet.id_kereta', '=', 'master_kereta.id')->where('kategori_checksheet.id_kereta', $id)
+        ->get();
+        $keretas = Kereta::all();
+        $active = 'master_checksheet';
+        return view('master_checksheet.itemchecksheet.show', compact('items', 'keretas', 'active'));
     }
 }

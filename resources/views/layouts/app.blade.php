@@ -132,25 +132,33 @@
                                     <a class="nav-link hide-sidebar-toggle-button" href="#"><i
                                             class="material-icons">menu</i></a>
                                 </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#"> @yield('title')</a>
+                                </li>
                             </ul>
 
                         </div>
                         <div class="d-flex">
                             <ul class="navbar-nav">
-                                <li class="nav-item hidden-on-mobile">
+                                {{-- <li class="nav-item hidden-on-mobile">
                                     <a class="nav-link active" href="#">Applications</a>
-                                </li>
-                                <li class="nav-item hidden-on-mobile">
-                                    <a class="nav-link" href="#">Reports</a>
-                                </li>
-                                <li class="nav-item hidden-on-mobile">
-                                    <a class="nav-link" href="#">Projects</a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item">
                                     <a class="nav-link toggle-search" href="#"><i
                                             class="material-icons">search</i></a>
                                 </li>
-                                <li class="nav-item hidden-on-mobile">
+                                <li class="nav-item-dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                        data-bs-toggle="dropdown">
+                                        <i class="material-icons">account_circle</i>
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end"
+                                        aria-labelledby="navbarDropdownMenuLink">
+                                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                                    </ul>
+                                </li>
+                                {{-- <li class="nav-item hidden-on-mobile">
                                     <a class="nav-link language-dropdown-toggle" href="#" id="languageDropDown"
                                         data-bs-toggle="dropdown"><img
                                             src="{{ asset('templates/source/assets/images/flags/us.png') }}"
@@ -167,8 +175,8 @@
                                                     src="{{ asset('templates/source/assets/images/flags/china.png') }}"
                                                     alt="">Chinese</a></li>
                                     </ul>
-                                </li>
-                                <li class="nav-item hidden-on-mobile">
+                                </li> --}}
+                                {{-- <li class="nav-item hidden-on-mobile">
                                     <a class="nav-link nav-notifications-toggle" id="notificationsDropDown"
                                         href="#" data-bs-toggle="dropdown">4</a>
                                     <div class="dropdown-menu dropdown-menu-end notifications-dropdown"
@@ -247,7 +255,7 @@
                                             </a>
                                         </div>
                                     </div>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>
@@ -261,8 +269,11 @@
 
     <!-- Javascripts -->
     <script src="{{ asset('templates/source/assets/js/pages/popper.min.js') }}"></script>
-    <script src="{{ asset('templates/source/assets/plugins/jquery/jquery-3.5.1.min.js') }}"></script>
     <script src="{{ asset('templates/source/assets/plugins/bootstrap/js/bootstrap.min.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery/dist/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script src="{{ asset('templates/source/assets/plugins/jquery/jquery-3.5.1.min.js') }}"></script>
     <script src="{{ asset('templates/source/assets/plugins/perfectscroll/perfect-scrollbar.min.js') }}"></script>
     <script src="{{ asset('templates/source/assets/plugins/apexcharts/apexcharts.min.js') }}"></script>
     <script src="{{ asset('templates/source/assets/plugins/pace/pace.min.js') }}"></script>

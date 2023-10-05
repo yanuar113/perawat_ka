@@ -37,7 +37,7 @@
                             </div>
                             
                             <a href="{{route('kategori_checksheet.create')}}" id="addButton" class="btn btn-primary mb-3"><i class="material-icons">add</i>Tambah</a>
-                            <table id="datatable3" class="display" style="width:100%">
+                            <table id="datatable1" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>No</th>

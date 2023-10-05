@@ -18,8 +18,24 @@
                             <h5 class="card-title">Daftar Checksheet Perawatan</h5>
                         </div>
                         <div class="card-body">
+                            
+                            <div class="btn-group mb-3">
+                                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Pilih Kereta
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item" href="{{ route('checksheet.index') }}">Semua
+                                            Kereta</a></li>
+                                    @foreach ($keretas as $item)
+                                        <li><a class="dropdown-item"
+                                                href="{{ route('checksheet.filter', $item->id) }}">{{ $item->nama_kereta }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                             {{-- <a href="{{route('checksheet.create')}}" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a> --}}
-                            <table id="datatable3" class="display" style="width:100%">
+                            <table id="datatable1" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -55,7 +71,7 @@
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="4" class="text-center">Tidak ada data</td>
+                                            <td colspan="7" class="text-center">Tidak ada data</td>
                                         </tr>
                                     @endforelse
 

@@ -19,27 +19,29 @@
                             <h5 class="card-title">Daftar Uraian Pekerjaan</h5>
                         </div>
                         <div class="card-body">
+                            @if (session()->has('status'))
+                                <div class="alert alert-success alert-style-light" role="alert">
+                                    {{ session()->get('status') }}
+                                </div>
+                            @endif
                             <div class="btn-group mb-3">
-                                <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenuButton"
+                                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
                                     data-bs-toggle="dropdown" aria-expanded="false">
-                                    Pilih Kategori
+                                    Pilih Kereta
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <li><a class="dropdown-item" href="{{ route('item_checksheet.index') }}">Semua
-                                            Kategori</a></li>
-                                    <li><a class="dropdown-item"
-                                            href="#">Kelompok Bogie</a>
-                                    </li>
-                                    {{-- @foreach ($kategories as $kategori)
+                                            Kereta</a></li>
+                                    @foreach ($keretas as $item)
                                         <li><a class="dropdown-item"
-                                                href="{{ route('item_checksheet.show', $kategori->id) }}">{{ $kategori->nama }}</a>
+                                                href="{{ route('item_checksheet.filter', $item->id) }}">{{ $item->nama_kereta }}</a>
                                         </li>
-                                    @endforeach --}}
+                                    @endforeach
                                 </ul>
                             </div>
                             <a href="{{ route('item_checksheet.create') }}" id="addButton" class="btn btn-primary mb-3"><i
                                     class="material-icons">add</i>Tambah</a>
-                            <table id="datatable3" class="display" style="width:100%">
+                            <table id="datatable1" class="display" style="width:100%">
                                 <thead>
                                     <tr>
                                         <th>No</th>
@@ -61,8 +63,8 @@
                                                     class="btn btn-sm btn-warning mb-1">
                                                     <i class="material-icons">edit</i>Edit
                                                 </a>
-                                                <button type="submit" class="btn btn-sm btn-danger mb-1" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal"><i
+                                                <button type="submit" class="btn btn-sm btn-danger mb-1"
+                                                    data-bs-toggle="modal" data-bs-target="#exampleModal"><i
                                                         class="material-icons">delete</i>Hapus</button>
                                             </td>
                                         </tr>
