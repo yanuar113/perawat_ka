@@ -29,5 +29,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('checksheet', [App\Http\Controllers\Api\KategoriController::class, 'createChecksheet']);
     Route::get('list-checksheet', [App\Http\Controllers\Api\KategoriController::class, 'getAllList']);
     Route::get('list-checksheet/{id}/{id_checksheet}', [App\Http\Controllers\Api\KategoriController::class, 'getAllListById']);
+    Route::post('detail-checksheet', [App\Http\Controllers\Api\ChecksheetController::class, 'createDetailChecksheet']);
 });
 // Route::resource('spareparts', SparepartController::class);
