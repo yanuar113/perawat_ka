@@ -21,7 +21,6 @@
                                 <div class="card-content">
                                     <form method="POST" action="{{ route('kategori_checksheet.store') }}" autocomplete="off"
                                         id="form-tambah-kereta">
-                                        {{-- create input with csrf token and bootstrap class --}}
                                         @csrf
                                         <div class="form-group">
                                             <label for="id_kereta">Nama Kereta</label>
@@ -58,6 +57,12 @@
                     </div>
                 </div>
             </div>
+            
+            @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @endif
         </div>
     </div>
     </div>

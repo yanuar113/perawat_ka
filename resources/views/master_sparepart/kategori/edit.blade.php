@@ -21,15 +21,14 @@
                                 <div class="card-content">
                                     <form method="POST" action="{{ route('kategori.update', $kategoris->id) }}" autocomplete="off"
                                         id="form-tambah-kereta">
-                                        {{-- create input with csrf token and bootstrap class --}}
                                         @csrf
                                         @method('put')
-                                        <div class="form-group">
+                                        <div class="form-group w-25">
                                             <label for="nama_kategori">Nama Kategori</label>
                                             <input type="text" id="nama_kategori" class="form-control"
                                                 placeholder="Masukkan nama kategori" name="nama_kategori" value="{{ old('nama_kategori', $kategoris->nama_kategori) }}">
                                             @error('nama_kategori')
-                                                {{-- <span class="text-danger">{{ $message }}</span> --}}
+                                                <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                     </form>

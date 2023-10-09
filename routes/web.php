@@ -3,11 +3,13 @@
 use App\Http\Controllers\ChecksheetController;
 use App\Http\Controllers\ChecksheetDetailController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FotoController;
 use App\Http\Controllers\ItemChecksheetController;
 use App\Http\Controllers\KategoriChecksheetController;
 use App\Http\Controllers\KategorisparepartController;
 use App\Http\Controllers\KeretaController;
 use App\Http\Controllers\SparepartController;
+use App\Models\Kategori_checksheet;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,13 +23,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //route login
-Route::get('/login', function () {
+Route::get('/', function () {
     return view('login.login');
 });
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
 //Dashboard
 Route::resource('dashboard', DashboardController::class);
@@ -46,11 +48,20 @@ Route::resource('kategori_checksheet',KategoriChecksheetController::class);
 //Route::resource('sub_checksheet',SubChecksheetController::class);
 Route::resource('item_checksheet',ItemChecksheetController::class);
 Route::resource('checksheet',ChecksheetController::class);
+
 // cetak checksheet
 Route::get('checksheet/print/{id}', [ChecksheetController::class, 'print'])->name('checksheet.print');
 
+//filter
+Route::get('kategori_checksheet/filter/{id}', [KategoriChecksheetController::class,'filter'])->name('kategori_checksheet.filter');
+Route::get('item_checksheet/filter/{id}', [ItemChecksheetController::class,'filter'])->name('item_checksheet.filter');
+Route::get('checksheet/filter/{id}', [ChecksheetController::class,'filter'])->name('checksheet.filter');
+
+
 // //Foto
-// Route::resource('foto', FotoController::class);
+Route::resource('foto', FotoController::class);
+Route::get('print', [FotoController::class, 'print'])->name('foto.print');
+// Route::get('print/{id}', [FotoController::class, 'print'])->name('foto.print');
 
 // //Laporan
 // Route::resource('laporan', LaporanController::class);

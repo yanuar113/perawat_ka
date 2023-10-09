@@ -23,7 +23,7 @@
                                         id="form-tambah-kereta">
                                         {{-- create input with csrf token and bootstrap class --}}
                                         @csrf
-                                        <div class="form-group">
+                                        <div class="form-group w-25">
                                             <label for="nama_kategori">Nama Kategori</label>
                                             <input type="text" id="nama_kategori" class="form-control"
                                                 placeholder="Masukkan nama kategori" name="nama_kategori">

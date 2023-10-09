@@ -19,51 +19,60 @@
                             <h5 class="card-title">Daftar Kelompok Pekerjaan</h5> 
                         </div>
                         <div class="card-body">
-                            {{-- <div class="btn-group">
+                            @if (session()->has('status'))
+                                <div class="alert alert-success alert-style-light" role="alert">
+                                    {{ session()->get('status') }}
+                                </div>
+                            @endif
+                            <div class="btn-group mb-3">
                                 <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                     Pilih Kereta
                                 </button>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                                     <li><a class="dropdown-item" href="{{ route('kategori_checksheet.index') }}">Semua Kereta</a></li>
-                                    @foreach ($kategories as $kategori)
-                                    <li><a class="dropdown-item" href="{{ route('kategori_checksheet.show', $kategori->id) }}">{{ $kategori->nama_kereta }}</a></li>
+                                    @foreach ($keretas as $item)
+                                    <li><a class="dropdown-item" href="{{ route('kategori_checksheet.filter', $item->id) }}">{{ $item->nama_kereta }}</a></li>
                                     @endforeach
                                 </ul>
-                            </div> --}}
-                            <a href="{{route('kategori_checksheet.create')}}" id="addButton" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
-                            <table id="datatable1" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama Kereta</th>
-                                        <th>Kelompok Pekerjaan</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($kategories as $item)
-                                        <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            <td>{{$item->nama_kereta}}</td>
-                                            <td>{{$item->nama}}</td>
-                                            <td>
-                                                <a href="{{route('kategori_checksheet.edit', $item)}}" class="btn btn-sm btn-warning">
-                                                    <i class="material-icons">edit</i>Edit
-                                                </a>
-                                                <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal"><i
-                                                class="material-icons">delete</i>Hapus</button>
-                                            </td>
-                                        </tr>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="4" class="text-center">Tidak ada data</td>
-                                        </tr>
-                                    @endforelse
+                            </div>
+                            
+                            <a href="{{route('kategori_checksheet.create')}}" id="addButton" class="btn btn-primary mb-3"><i class="material-icons">add</i>Tambah</a>
+                            <div class="table table-responsive">
 
-                                </tbody>
-                            </table>
+                                <table id="datatable1" class="display" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Kereta</th>
+                                            <th>Kelompok Pekerjaan</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($kategories as $item)
+                                            <tr>
+                                                <td>{{$loop->iteration}}</td>
+                                                <td>{{$item->nama_kereta}}</td>
+                                                <td>{{$item->nama}}</td>
+                                                <td>
+                                                    <a href="{{route('kategori_checksheet.edit', $item)}}" class="btn btn-sm btn-warning">
+                                                        <i class="material-icons">edit</i>Edit
+                                                    </a>
+                                                    <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal"><i
+                                                    class="material-icons">delete</i>Hapus</button>
+                                                </td>
+                                            </tr>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">Tidak ada data</td>
+                                            </tr>
+                                        @endforelse
+    
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

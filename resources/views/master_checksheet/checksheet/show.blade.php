@@ -18,7 +18,23 @@
                             <h5 class="card-title">Daftar Checksheet Perawatan</h5>
                         </div>
                         <div class="card-body">
+                            <div class="btn-group mb-3">
+                                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Pilih Kereta
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <li><a class="dropdown-item" href="{{ route('checksheet.index') }}">Semua
+                                            Kereta</a></li>
+                                    @foreach ($keretas as $item)
+                                        <li><a class="dropdown-item"
+                                                href="{{ route('checksheet.filter', $item->id) }}">{{ $item->nama_kereta }}</a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
                             {{-- <a href="{{route('checksheet.create')}}" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a> --}}
+                            <div class="table table-responsive">
                             <table id="datatable1" class="display" style="width:100%">
                                 <thead>
                                     <tr>
@@ -42,25 +58,26 @@
                                             <td>{{$item->jam_engine}}</td>
                                             <td>
                                                 <a href="{{route('checksheet.show', $item->id)}}"
-                                                    class="btn btn-sm btn-primary">
+                                                    class="btn btn-sm btn-primary mb-1">
                                                     <i class="material-icons">visibility</i>Lihat   
                                                 </a>
-                                                <a href="{{route('checksheet.print', $item->id)}}"  class="btn btn-sm btn-success">
+                                                <a href="{{route('checksheet.print', $item->id)}}"  class="btn btn-sm btn-success mb-1">
                                                     <i class="material-icons">print</i>Cetak
                                                 </a>
-                                                <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal"
+                                                <button type="submit" class="btn btn-sm btn-danger mb-1" data-bs-toggle="modal"
                                                 data-bs-target="#exampleModal"><i
                                             class="material-icons">delete</i>Hapus</button>
                                             </td>
                                         </tr>
                                     @empty
                                         <tr>
-                                            <td colspan="4" class="text-center">Tidak ada data</td>
+                                            <td colspan="7" class="text-center">Tidak ada data</td>
                                         </tr>
                                     @endforelse
 
                                 </tbody>
                             </table>
+                        </div>
                         </div>
                     </div>
                 </div>

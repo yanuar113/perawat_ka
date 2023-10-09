@@ -18,37 +18,45 @@
                             <h5 class="card-title">Daftar Kategori Sparepart</h5>
                         </div>
                         <div class="card-body">
-                            <a href="{{ route('kategori.create') }}" class="btn btn-primary"><i
+                            @if (session()->has('status'))
+                                <div class="alert alert-success alert-style-light" role="alert">
+                                    {{ session()->get('status') }}
+                                </div>
+                            @endif
+                            <a href="{{ route('kategori.create') }}" class="btn btn-primary mb-3"><i
                                     class="material-icons">add</i>Tambah</a>
-                            <table id="datatable1" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama Kategori</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($kategoris as $item)
+                            <div class="table table-responsive">
+                                <table id="datatable1" class="display" style="width:100%">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->nama_kategori }}</td>
-                                            <td>
-                                                <a href="{{route('kategori.edit', $item)}}" class="btn btn-sm btn-warning">
-                                                    <i class="material-icons">edit</i>Edit
-                                                </a>
-                                                <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal"><i
-                                                class="material-icons">delete</i>Hapus</button>
-                                            </td>
+                                            <th>No</th>
+                                            <th>Nama Kategori</th>
+                                            <th>Aksi</th>
                                         </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="4" class="text-center">Tidak ada data</td>
-                                        </tr>
-                                    @endforelse
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($kategoris as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->nama_kategori }}</td>
+                                                <td>
+                                                    <a href="{{ route('kategori.edit', $item) }}"
+                                                        class="btn btn-sm btn-warning">
+                                                        <i class="material-icons">edit</i>Edit
+                                                    </a>
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                            class="material-icons">delete</i>Hapus</button>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">Tidak ada data</td>
+                                            </tr>
+                                        @endforelse
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -69,11 +77,11 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
-                        {{-- <form action="{{ route('kategori.destroy', $item->id) }}" method="POST" class="d-inline">
+                        <form action="{{ route('kategori.destroy', $item->id) }}" method="POST" class="d-inline">
                             @csrf
                             @method('delete')
                             <button type="submit" class="btn btn-danger">Hapus</button>
-                        </form> --}}
+                        </form>
                     </div>
                 </div>
             </div>

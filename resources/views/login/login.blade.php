@@ -11,7 +11,7 @@
     <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     
     <!-- Title -->
-    <title>Neptune - Responsive Admin Dashboard Template</title>
+    <title>Perawatan KA | Login</title>
 
     <!-- Styles -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -27,9 +27,10 @@
     <link href="{{ asset('templates/source/assets/css/main.min.css')}}" rel="stylesheet">
     <link href="{{ asset('templates/source/assets/css/custom.css')}}" rel="stylesheet">
 
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('templates/source/assets/images/neptune.png')}}" />
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('templates/source/assets/images/neptune.png')}}" />
-
+    <link rel="icon" type="image/png" sizes="32x32"
+    href="{{ asset('templates/source/assets/images/inka-border.png') }}" />
+<link rel="icon" type="image/png" sizes="16x16"
+    href="{{ asset('templates/source/assets/images/inka-border.png') }}" />
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -40,25 +41,26 @@
 <body>
     <div class="app app-auth-sign-in align-content-stretch d-flex flex-wrap justify-content-end">
         <div class="app-auth-background">
-
+            <h4 style="margin-top: 15rem" class="text-center justify-content-center">Perawatan Kereta Api</h4>
+            <h4 class="text-center justify-content-center">By PT INKA MULTI SOLUSI SERVICE</h4>
         </div>
         <div class="app-auth-container">
             <div class="logo">
-                <a href="index.html">INKA MULTI SOLUSI SERVICE</a>
+                <a href="#" class="text-center">INKA MULTI SOLUSI SERVICE</a>
+                <p class="auth-description">Silahkan Login menggunakan username dan password yang diberikan</p>
             </div>
-            <p class="auth-description">Silahkan Login menggunakan username dan password yang diberikan</p>
 
             <div class="auth-credentials m-b-xxl">
                 <label for="signInEmail" class="form-label">Username</label>
-                <input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="example@neptune.com">
+                <input type="email" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail" placeholder="email@gmail.com">
 
                 <label for="signInPassword" class="form-label">Password</label>
-                <input type="password" class="form-control" id="signInPassword" aria-describedby="signInPassword" placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;">
+                <input type="password" class="form-control" id="signInPassword" aria-describedby="signInPassword" placeholder="Masukan password">
             </div>
 
             <div class="auth-submit">
                 <a href="#" class="btn btn-primary">Sign In</a>
-                <a href="#" class="auth-forgot-password float-end">Forgot password?</a>
+                {{-- <a href="#" class="auth-forgot-password float-end">Forgot password?</a> --}}
             </div>
             <div class="divider"></div>
         </div>

@@ -16,35 +16,44 @@
                 <div class="col">
                     <div class="card">
                         <div class="card-header">
-                            <h5 class="card-title">Daftar Kereta Perawatan</h5> 
+                            <h5 class="card-title">Daftar Kereta Perawatan</h5>
                         </div>
                         <div class="card-body">
-                            <a href="{{route('kereta.create')}}" id="addButton" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a>
-                            <table id="datatable1" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama Kereta</th>
-                                        <th>Username</th>
-                                        <th>Foto</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($trains as $item)
+                            @if (session()->has('status'))
+                                <div class="alert alert-success alert-style-light" role="alert">
+                                    {{ session()->get('status') }}
+                                </div>
+                            @endif
+                            <a href="{{ route('kereta.create') }}" id="addButton" class="btn btn-primary mb-3"><i
+                                    class="material-icons">add</i>Tambah</a>
+                            <div class="table table-responsive">
+                                <table id="datatable1" class="display" style="width:100%">
+                                    <thead>
                                         <tr>
-                                            <td>{{$loop->iteration}}</td>
-                                            <td>{{$item->nama_kereta}}</td>
-                                            <td>{{$item->username}}</td>
-                                            <td><img src="{{asset('img/'.$item->foto)}}" alt="" width="100px"></td>
+                                            <th>No</th>
+                                            <th>Nama Kereta</th>
+                                            <th>Username</th>
+                                            <th>Foto</th>
                                         </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="4" class="text-center">Tidak ada data</td>
-                                        </tr>
-                                    @endforelse
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($trains as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->nama_kereta }}</td>
+                                                <td>{{ $item->username }}</td>
+                                                <td><img src="{{ asset('img/' . $item->foto) }}" alt=""
+                                                        width="100px"></td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">Tidak ada data</td>
+                                            </tr>
+                                        @endforelse
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -16,8 +16,10 @@ class KategoriChecksheetController extends Controller
         $kategories = Kategori_checksheet::select('kategori_checksheet.*',  'master_kereta.nama_kereta')
             ->join('master_kereta', 'kategori_checksheet.id_kereta', '=', 'master_kereta.id')
             ->get();
+        $keretas = Kereta::all();
+        // dd($keretas);
         $active = 'master_checksheet';
-        return view('master_checksheet.kategori.show', compact('kategories', 'active'));
+        return view('master_checksheet.kategori.show', compact('kategories', 'active', 'keretas'));
     }
 
     /**
@@ -26,9 +28,9 @@ class KategoriChecksheetController extends Controller
     public function create()
     {
         //
-        $active='master_checksheet';
+        $active = 'master_checksheet';
         $keretas = Kereta::all();
-        return view('master_checksheet.kategori.add',compact('active','keretas'));
+        return view('master_checksheet.kategori.add', compact('active', 'keretas'));
     }
 
     /**
@@ -44,7 +46,7 @@ class KategoriChecksheetController extends Controller
             'nama.required' => 'Nama kategori tidak boleh kosong',
             'id_kereta.required' => 'Nama kereta tidak boleh kosong'
         ]);
-        
+
         Kategori_checksheet::create($request->all());
         return redirect()->route('kategori_checksheet.index')->with('status', 'Data Kategori Checksheet berhasil ditambahkan!');
     }
@@ -84,6 +86,7 @@ class KategoriChecksheetController extends Controller
             ->update([
                 'nama' => $request->nama,
             ]);
+
         return redirect()->route('kategori_checksheet.index')->with('status', 'Data Kategori Checksheet berhasil diubah!');
     }
 
@@ -94,6 +97,17 @@ class KategoriChecksheetController extends Controller
     {
         //
         Kategori_checksheet::destroy($id);
-        return redirect()->route('kategori_checksheet.index')->with('status', 'Data Kategori Sparepart berhasil dihapus!');
+        return redirect()->route('kategori_checksheet.index')->with('status', 'Data Kategori Checksheet berhasil dihapus!');
+    }
+
+    public function filter($id)
+    {
+        // $kategories = Kategori_checksheet::where('id_kereta', $keretaId)->get();
+        $kategories = Kategori_checksheet::select('kategori_checksheet.*',  'master_kereta.nama_kereta')
+        ->join('master_kereta', 'kategori_checksheet.id_kereta', '=', 'master_kereta.id')->where('kategori_checksheet.id_kereta', $id)
+        ->get();
+        $keretas = Kereta::all();
+        $active = 'master_checksheet';
+        return view('master_checksheet.kategori.show', compact('kategories', 'keretas', 'active'));
     }
 }

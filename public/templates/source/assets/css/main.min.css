@@ -6554,6 +6554,20 @@ span.flatpickr-weekday {
         padding-left: 50px;
         padding-right: 50px
     }
+    .navbar-nav li.nav-item:nth-child(2) {
+        display: none;
+    }
+    .navbar-nav li.nav-item:nth-child(1),
+    .navbar-nav li.nav-item:nth-child(2),
+    .navbar-nav li.nav-item:nth-child(3) {
+        margin-right: 10px; 
+    }
+    .navbar-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
 }
 
 .app-auth-lock-screen .app-auth-background,
@@ -6566,8 +6580,8 @@ span.flatpickr-weekday {
 }
 
 .app-auth-sign-in .app-auth-background {
-    background: url(../images/backgrounds/sign-in.svg) no-repeat;
-    background-size: 60%;
+    background: url(../images/inka-border.png) no-repeat;
+    background-size: 50%;
     background-position: center
 }
 
@@ -6580,16 +6594,17 @@ span.flatpickr-weekday {
 .app-auth-lock-screen .app-auth-background {
     background: url(../images/backgrounds/lock-screen.svg) no-repeat;
     background-size: 60%;
-    background-position: center
+    background-position: center;
 }
 
 .app-auth-container .logo a {
     display: flex;
-    padding-left: 70px;
-    background: url(../images/inka-border.png) no-repeat;
+    /* padding-left: 70px; */
+    /* background: url(../images/inka-border.png) no-repeat; */
     height: 50px;
     background-size: 50px;
     align-items: center;
+    justify-content: center;
     text-decoration: none;
     color: #40475c;
     font-size: 21px;
