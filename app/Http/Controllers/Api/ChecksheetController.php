@@ -54,4 +54,18 @@ class ChecksheetController extends Controller
 
         return ResponseController::customResponse(true, 'Berhasil upload foto!', $filename);
     }
+
+    public function removeFoto(Request $request)
+    {
+        $id_foto = $request->id_foto;
+        $foto = Foto::find($id_foto);
+
+        $path = public_path('foto/' . $foto->foto);
+        if (file_exists($path)) {
+            unlink($path);
+        }
+
+        $foto->delete();
+        return ResponseController::customResponse(true, 'Berhasil menghapus foto!', $foto);
+    }
 }

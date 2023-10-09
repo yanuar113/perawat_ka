@@ -32,4 +32,5 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('detail-checksheet', [App\Http\Controllers\Api\ChecksheetController::class, 'createDetailChecksheet']);
 });
 Route::post('upload-foto', [App\Http\Controllers\Api\ChecksheetController::class, 'uploadFoto']);
+Route::post('remove-foto', [App\Http\Controllers\Api\ChecksheetController::class, 'removeFoto']);
 // Route::resource('spareparts', SparepartController::class);
