@@ -6554,6 +6554,20 @@ span.flatpickr-weekday {
         padding-left: 50px;
         padding-right: 50px
     }
+    .navbar-nav li.nav-item:nth-child(2) {
+        display: none;
+    }
+    .navbar-nav li.nav-item:nth-child(1),
+    .navbar-nav li.nav-item:nth-child(2),
+    .navbar-nav li.nav-item:nth-child(3) {
+        margin-right: 10px; 
+    }
+    .navbar-nav {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+      }
 }
 
 .app-auth-lock-screen .app-auth-background,

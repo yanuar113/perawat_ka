@@ -18,7 +18,6 @@
                             <h5 class="card-title">Daftar Checksheet Perawatan</h5>
                         </div>
                         <div class="card-body">
-                            
                             <div class="btn-group mb-3">
                                 <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
                                     data-bs-toggle="dropdown" aria-expanded="false">
@@ -35,6 +34,7 @@
                                 </ul>
                             </div>
                             {{-- <a href="{{route('checksheet.create')}}" class="btn btn-primary"><i class="material-icons">add</i>Tambah</a> --}}
+                            <div class="table table-responsive">
                             <table id="datatable1" class="display" style="width:100%">
                                 <thead>
                                     <tr>
@@ -77,6 +77,7 @@
 
                                 </tbody>
                             </table>
+                        </div>
                         </div>
                     </div>
                 </div>
