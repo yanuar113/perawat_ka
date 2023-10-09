@@ -106,7 +106,7 @@
                         Reports
                     </li>
                     <li>
-                        <a href="#" class="{{ $active == 'foto' ? 'active' : '' }}">
+                        <a href="{{ url('foto') }}" class="{{ $active == 'foto' ? 'active' : '' }}">
                             <i class="material-icons-two-tone">perm_media</i>Foto</a>
                     </li>
                     <li>

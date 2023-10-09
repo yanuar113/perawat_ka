@@ -3,6 +3,7 @@
 use App\Http\Controllers\ChecksheetController;
 use App\Http\Controllers\ChecksheetDetailController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FotoController;
 use App\Http\Controllers\ItemChecksheetController;
 use App\Http\Controllers\KategoriChecksheetController;
 use App\Http\Controllers\KategorisparepartController;
@@ -47,6 +48,7 @@ Route::resource('kategori_checksheet',KategoriChecksheetController::class);
 //Route::resource('sub_checksheet',SubChecksheetController::class);
 Route::resource('item_checksheet',ItemChecksheetController::class);
 Route::resource('checksheet',ChecksheetController::class);
+
 // cetak checksheet
 Route::get('checksheet/print/{id}', [ChecksheetController::class, 'print'])->name('checksheet.print');
 
@@ -57,7 +59,9 @@ Route::get('checksheet/filter/{id}', [ChecksheetController::class,'filter'])->na
 
 
 // //Foto
-// Route::resource('foto', FotoController::class);
+Route::resource('foto', FotoController::class);
+Route::get('print', [FotoController::class, 'print'])->name('foto.print');
+// Route::get('print/{id}', [FotoController::class, 'print'])->name('foto.print');
 
 // //Laporan
 // Route::resource('laporan', LaporanController::class);

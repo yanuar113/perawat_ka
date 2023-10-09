@@ -143,7 +143,6 @@ class ChecksheetController extends Controller
      */
     public function destroy(string $id)
     {
-        //
         Checksheet::destroy($id);
         return redirect()->route('checksheet.index')->with('status', 'Data Checksheet berhasil dihapus!');
     }

@@ -45,7 +45,7 @@
                                             <td>{{ $item->jumlah }}</td>
                                             <td>{{ $item->satuan }}</td>
                                             <td>
-                                                <a href="#" class="btn btn-sm btn-warning">
+                                                <a href="{{route('sparepart.edit', $item)}}" class="btn btn-sm btn-warning">
                                                     <i class="material-icons">edit</i>Edit
                                                 </a>
                                                 <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal"

@@ -69,7 +69,10 @@ class SparepartController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $active = 'master_sparepart';
+        $spareparts = Sparepart::findOrFail($id);
+        $kategori_spareparts = Kategori_sparepart::all();
+        return view('master_sparepart.sparepart.edit', compact('spareparts', 'kategori_spareparts', 'active'));
     }
 
     /**
@@ -78,6 +81,26 @@ class SparepartController extends Controller
     public function update(Request $request, string $id)
     {
         //
+        $request->validate([
+            'id_kategori_sparepart' => 'required',
+            'nama_sparepart' => 'required',
+            'jumlah' => 'required',
+            'satuan' => 'required'
+        ], [
+            'id_kategori_sparepart.required' => 'Nama kategori tidak boleh kosong',
+            'nama_sparepart.required' => 'Nama sparepart tidak boleh kosong',
+            'jumlah.required' => 'jumlah tidak boleh kosong',
+            'satuan.required' => 'satuan tidak boleh kosong'
+        ]);
+
+        Sparepart::where('id', $id)
+            ->update([
+                'id_kategori_sparepart' => $request->id_kategori_sparepart,
+                'nama_sparepart' => $request->nama_sparepart,
+                'jumlah' => $request->jumlah,
+                'satuan' => $request->satuan
+            ]);
+        return redirect()->route('sparepart.index')->with('status', 'Data Sparepart berhasil diubah!');
     }
 
     /**

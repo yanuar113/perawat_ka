@@ -22,7 +22,7 @@
                                     <form method="POST" action="{{ route('sparepart.store') }}" autocomplete="off" id="form-tambah-sparepart">
                                         {{-- create input with csrf token and bootstrap class --}}
                                         @csrf
-                                        <div class="form-group">
+                                        <div class="form-group w-25">
                                             <label for="id_kategori_sparepart">Kategori Sparepart</label>
                                             <select name="id_kategori_sparepart" id="id_kategori_sparepart" class="form-select">
                                                 <option value="0">Pilih Kategori</option>
