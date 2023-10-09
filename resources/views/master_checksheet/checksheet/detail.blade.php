@@ -53,56 +53,59 @@
 
                             @foreach ($categories as $category)
                                 <div class="alert alert-primary mt-4">{{ $category->nama }}</div>
-                                <table class="table table-bordered display" style="width:100%">
-                                    <thead>
-                                        <tr style="vertical-align : middle;text-align:center;">
-                                            <th rowspan="2" class="text-center">No</th>
-                                            <th rowspan="2">Uraian Pekerjaan</th>
-                                            <th colspan="2">Dilakukan</th>
-                                            <th colspan="2">Hasil</th>
-                                            <th rowspan="2">Keterangan</th>
-                                        </tr>
-                                        <tr class="text-center">
-                                            <th>Ya</th>
-                                            <th>Tidak</th>
-                                            <th>Baik</th>
-                                            <th>Tidak</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @forelse ($category->lists as $list)
-                                            <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $list->nama_item }}</td>
-                                                <td class="text-center">
-                                                    @if ($list->dilakukan == '1')
-                                                        <i class="material-icons text-dark">check</i>
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">
-                                                    @if ($list->dilakukan == '0')
-                                                        <i class="material-icons text-dark">check</i>
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">
-                                                    @if ($list->hasil == '1')
-                                                        <i class="material-icons text-dark">check</i>
-                                                    @endif
-                                                </td>
-                                                <td class="text-center">
-                                                    @if ($list->hasil == '0')
-                                                        <i class="material-icons text-dark">check</i>
-                                                    @endif
-                                                </td>
-                                                <td>{{ $list->keterangan }}</td>
+                                <div class="table table-responsive">
+
+                                    <table class="table table-bordered display" style="width:100%">
+                                        <thead>
+                                            <tr style="vertical-align : middle;text-align:center;">
+                                                <th rowspan="2" class="text-center">No</th>
+                                                <th rowspan="2">Uraian Pekerjaan</th>
+                                                <th colspan="2">Dilakukan</th>
+                                                <th colspan="2">Hasil</th>
+                                                <th rowspan="2">Keterangan</th>
                                             </tr>
-                                        @empty
-                                            <tr>
-                                                <td colspan="7" class="text-center">Tidak ada data</td>
+                                            <tr class="text-center">
+                                                <th>Ya</th>
+                                                <th>Tidak</th>
+                                                <th>Baik</th>
+                                                <th>Tidak</th>
                                             </tr>
-                                        @endforelse
-                                    </tbody>
-                                </table>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($category->lists as $list)
+                                                <tr>
+                                                    <td>{{ $loop->iteration }}</td>
+                                                    <td>{{ $list->nama_item }}</td>
+                                                    <td class="text-center">
+                                                        @if ($list->dilakukan == '1')
+                                                            <i class="material-icons text-dark">check</i>
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($list->dilakukan == '0')
+                                                            <i class="material-icons text-dark">check</i>
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($list->hasil == '1')
+                                                            <i class="material-icons text-dark">check</i>
+                                                        @endif
+                                                    </td>
+                                                    <td class="text-center">
+                                                        @if ($list->hasil == '0')
+                                                            <i class="material-icons text-dark">check</i>
+                                                        @endif
+                                                    </td>
+                                                    <td>{{ $list->keterangan }}</td>
+                                                </tr>
+                                            @empty
+                                                <tr>
+                                                    <td colspan="7" class="text-center">Tidak ada data</td>
+                                                </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
                             @endforeach
                         </div>
                     </div>

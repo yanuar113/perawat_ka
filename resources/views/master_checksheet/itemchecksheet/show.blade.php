@@ -41,42 +41,45 @@
                             </div>
                             <a href="{{ route('item_checksheet.create') }}" id="addButton" class="btn btn-primary mb-3"><i
                                     class="material-icons">add</i>Tambah</a>
-                            <table id="datatable1" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Nama Kereta</th>
-                                        <th>Kategori Checksheet</th>
-                                        <th>Uraian Pekerjaan</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($items as $item)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->nama_kereta }}</td>
-                                            <td>{{ $item->nama }}</td>
-                                            <td>{{ $item->nama_item }}</td>
-                                            <td>
-                                                <a href="{{ route('item_checksheet.edit', $item) }}"
-                                                    class="btn btn-sm btn-warning mb-1">
-                                                    <i class="material-icons">edit</i>Edit
-                                                </a>
-                                                <button type="submit" class="btn btn-sm btn-danger mb-1"
-                                                    data-bs-toggle="modal" data-bs-target="#exampleModal"><i
-                                                        class="material-icons">delete</i>Hapus</button>
-                                            </td>
-                                        </tr>
-                                        </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="4" class="text-center">Tidak ada data</td>
-                                        </tr>
-                                    @endforelse
+                            <div class="table table-responsive">
 
-                                </tbody>
-                            </table>
+                                <table id="datatable1" class="display" style="width:100%">
+                                    <thead>
+                                        <tr>
+                                            <th>No</th>
+                                            <th>Nama Kereta</th>
+                                            <th>Kategori Checksheet</th>
+                                            <th>Uraian Pekerjaan</th>
+                                            <th>Aksi</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($items as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->nama_kereta }}</td>
+                                                <td>{{ $item->nama }}</td>
+                                                <td>{{ $item->nama_item }}</td>
+                                                <td>
+                                                    <a href="{{ route('item_checksheet.edit', $item) }}"
+                                                        class="btn btn-sm btn-warning mb-1">
+                                                        <i class="material-icons">edit</i>Edit
+                                                    </a>
+                                                    <button type="submit" class="btn btn-sm btn-danger mb-1"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                            class="material-icons">delete</i>Hapus</button>
+                                                </td>
+                                            </tr>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">Tidak ada data</td>
+                                            </tr>
+                                        @endforelse
+
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>

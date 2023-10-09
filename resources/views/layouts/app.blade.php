@@ -49,13 +49,13 @@
         <div class="app-sidebar">
             <div class="logo">
                 <a href="#" class="logo-icon"><span class="logo-text">IMSS</span></a>
-                <div class="sidebar-user-switcher user-activity-online">
+                {{-- <div class="sidebar-user-switcher user-activity-online">
                     <a href="#">
                         <img src="{{ asset('templates/source/assets/images/avatars/avatar1.jpeg') }}">
                         <span class="activity-indicator"></span>
                         <span class="user-info-text">Admin<br><span class="user-state-info">online</span></span>
                     </a>
-                </div>
+                </div> --}}
             </div>
             <div class="app-menu">
                 <ul class="accordion-menu">
@@ -140,14 +140,14 @@
                         </div>
                         <div class="d-flex">
                             <ul class="navbar-nav">
-                                <li class="nav-item">
+                                {{-- <li class="nav-item">
                                     <a class="nav-link toggle-search" href="#"><i
                                             class="material-icons">search</i></a>
-                                </li>
+                                </li> --}}
                                 <li class="nav-item-dropdown">
                                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
                                         data-bs-toggle="dropdown">
-                                        <i class="material-icons">account_circle</i>
+                                        <i class="material-icons">account_circle</i> Admin
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end"
                                         aria-labelledby="navbarDropdownMenuLink">

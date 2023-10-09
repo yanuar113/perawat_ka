@@ -47,7 +47,7 @@ class ItemChecksheetController extends Controller
             'id_kereta' => 'required',
             'id_kategori_checksheet' => 'required'
         ], [
-            'nama_item.required' => 'Nama item tidak boleh kosong',
+            'nama_item.required' => 'Uraian Pekerjaan tidak boleh kosong',
             'id_kereta.required' => 'Nama kereta tidak boleh kosong',
             'id_kategori_checksheet.required' => 'Nama kategori tidak boleh kosong'
         ]);

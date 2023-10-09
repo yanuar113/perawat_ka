@@ -25,42 +25,45 @@
                             @endif
                             <a href="{{ route('sparepart.create') }}" class="btn btn-primary mb-3"><i
                                     class="material-icons">add</i>Tambah</a>
-                            <table id="datatable1" class="display" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th>No</th>
-                                        <th>Kategori Sparepart</th>
-                                        <th>Nama Sparepart</th>
-                                        <th>Jumlah</th>
-                                        <th>Satuan</th>
-                                        <th>Aksi</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @forelse ($spareparts as $item)
+                            <div class="table table-responsive">
+                                <table id="datatable1" class="display" style="width:100%">
+                                    <thead>
                                         <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $item->nama_kategori }}</td>
-                                            <td>{{ $item->nama_sparepart }}</td>
-                                            <td>{{ $item->jumlah }}</td>
-                                            <td>{{ $item->satuan }}</td>
-                                            <td>
-                                                <a href="{{route('sparepart.edit', $item)}}" class="btn btn-sm btn-warning">
-                                                    <i class="material-icons">edit</i>Edit
-                                                </a>
-                                                <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal"><i
-                                                        class="material-icons">delete</i>Hapus</button>
-                                            </td>
+                                            <th>No</th>
+                                            <th>Kategori Sparepart</th>
+                                            <th>Nama Sparepart</th>
+                                            <th>Jumlah</th>
+                                            <th>Satuan</th>
+                                            <th>Aksi</th>
                                         </tr>
-                                    @empty
-                                        <tr>
-                                            <td colspan="4" class="text-center">Tidak ada data</td>
-                                        </tr>
-                                    @endforelse
+                                    </thead>
+                                    <tbody>
+                                        @forelse ($spareparts as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item->nama_kategori }}</td>
+                                                <td>{{ $item->nama_sparepart }}</td>
+                                                <td>{{ $item->jumlah }}</td>
+                                                <td>{{ $item->satuan }}</td>
+                                                <td>
+                                                    <a href="{{ route('sparepart.edit', $item) }}"
+                                                        class="btn btn-sm btn-warning">
+                                                        <i class="material-icons">edit</i>Edit
+                                                    </a>
+                                                    <button type="submit" class="btn btn-sm btn-danger"
+                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                            class="material-icons">delete</i>Hapus</button>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">Tidak ada data</td>
+                                            </tr>
+                                        @endforelse
 
-                                </tbody>
-                            </table>
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
