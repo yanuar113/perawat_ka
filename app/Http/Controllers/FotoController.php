@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Foto;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
@@ -67,14 +68,17 @@ class FotoController extends Controller
     /**
      * Export a PDF and return the print view.
      */
-    public function print()
+    public function print($id)
     {
+        //
+        $detail = Foto::select('foto.*', 'master_kereta.nama_kereta')
+            ->join('master_kereta', 'foto.id_kereta', '=', 'master_kereta.id')
+            ->where('foto.id', $id)
+            ->first();
         $active = 'Foto';
-        $pdf = Pdf::loadView('foto.print', compact('active'));
+        $pdf = Pdf::loadView('foto.print', compact('active', 'detail'));
         $pdf->setPaper('A4', 'potrait');
         return $pdf->stream();
     }
-
-    
 }
 
