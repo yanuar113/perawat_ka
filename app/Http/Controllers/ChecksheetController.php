@@ -9,6 +9,7 @@ use App\Models\Kategori_checksheet;
 use App\Models\Kereta;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ChecksheetController extends Controller
 {
@@ -59,11 +60,6 @@ class ChecksheetController extends Controller
 
         Checksheet::create($request->all());
         return redirect()->route('checksheet.index')->with('status', 'Data Checksheet berhasil ditambahkan!');
-    }
-
-    public function print($id){
-        $item = Item_checksheet::findOrFail($id);
-        return view('master_checksheet.checksheet.print', compact('item'));
     }
 
     /**
@@ -145,6 +141,12 @@ class ChecksheetController extends Controller
     {
         Checksheet::destroy($id);
         return redirect()->route('checksheet.index')->with('status', 'Data Checksheet berhasil dihapus!');
+    }
+    public function print($id){
+        $item = Item_checksheet::findOrFail($id);
+        $pdf = Pdf::loadview('master_checksheet.checksheet.print', compact('item'));
+        $pdf->setPaper('A4', 'potrait');
+        return $pdf->stream();
     }
 
     public function filter($id)
