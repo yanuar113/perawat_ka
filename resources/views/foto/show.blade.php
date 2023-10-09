@@ -67,7 +67,7 @@
                                                 <a href="" class="btn btn-sm btn-primary mb-1">
                                                     <i class="material-icons">visibility</i>Lihat
                                                 </a>
-                                                <a href="{{ route('foto.print') }}" class="btn btn-sm btn-success mb-1">
+                                                <a href="{{ route('photo.print') }}" class="btn btn-sm btn-success mb-1">
                                                     {{-- <a href="" class="btn btn-sm btn-success mb-1"> --}}
                                                     <i class="material-icons">print</i>Cetak
                                                 </a>

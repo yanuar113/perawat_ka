@@ -59,8 +59,8 @@ Route::get('checksheet/filter/{id}', [ChecksheetController::class,'filter'])->na
 
 
 // //Foto
-Route::resource('foto', FotoController::class);
-Route::get('print', [FotoController::class, 'print'])->name('foto.print');
+Route::resource('photo', FotoController::class);
+Route::get('print', [FotoController::class, 'print'])->name('photo.print');
 // Route::get('print/{id}', [FotoController::class, 'print'])->name('foto.print');
 
 // //Laporan
