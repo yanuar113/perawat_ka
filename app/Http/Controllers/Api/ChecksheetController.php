@@ -32,4 +32,18 @@ class ChecksheetController extends Controller
             return ResponseController::customResponse(true, 'Berhasil menambah detail checksheet!', $detail);
         }
     }
+
+    public function uploadFoto(Request $request)
+    {
+        $id_detail_checksheet = $request->id_detail_checksheet;
+        $file = $request->file('file');
+        $extension = $file->getClientOriginalExtension();
+
+        $timestamp = now()->timestamp;
+        $filename = $timestamp . '.' . $extension;
+
+        $file->move(public_path('foto'), $filename);
+
+        return ResponseController::customResponse(true, 'Berhasil upload foto!', $filename);
+    }
 }

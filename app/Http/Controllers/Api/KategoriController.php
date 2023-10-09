@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Checksheet;
 use App\Models\Detail_checksheet;
+use App\Models\Foto;
 use App\Models\Item_checksheet;
 use App\Models\Kategori_checksheet;
 use Carbon\Carbon;
@@ -97,6 +98,7 @@ class KategoriController extends Controller
             $item->dilakukan = $detail->dilakukan ?? null;
             $item->hasil = $detail->hasil ?? null;
             $item->keterangan = $detail->keterangan ?? null;
+            $item->foto = Foto::where('id_detail', $detail->id)->get();
             return $item;
         });
         return ResponseController::customResponse(true, 'Berhasil mendapakan item checklist!', $categories);
@@ -111,6 +113,8 @@ class KategoriController extends Controller
             $item->dilakukan = $detail->dilakukan ?? null;
             $item->hasil = $detail->hasil ?? null;
             $item->keterangan = $detail->keterangan ?? null;
+            $item->foto = Foto::where('id_detail', $detail->id)->get();
+            $item->id_detail_checksheet = $detail->id ?? null;
             return $item;
         });
         return ResponseController::customResponse(true, 'Berhasil mendapakan item checklist!', $categories);
