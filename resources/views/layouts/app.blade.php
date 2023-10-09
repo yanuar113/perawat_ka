@@ -48,14 +48,17 @@
     <div class="app align-content-stretch d-flex flex-wrap">
         <div class="app-sidebar">
             <div class="logo">
-                <a href="#" class="logo-icon"><span class="logo-text">IMSS</span></a>
-                {{-- <div class="sidebar-user-switcher user-activity-online">
-                    <a href="#">
+                <a href="#" class="logo-icon">
+                    {{-- <span class="logo-text">IMSS</span> --}}
+                </a>
+                <div class="sidebar-user-switcher user-activity-online">
+                    {{-- <a href="#">
                         <img src="{{ asset('templates/source/assets/images/avatars/avatar1.jpeg') }}">
                         <span class="activity-indicator"></span>
-                        <span class="user-info-text">Admin<br><span class="user-state-info">online</span></span>
-                    </a>
-                </div> --}}
+                    </a> --}}
+                    <span class="user-info-text">Admin<br></span>
+                    <p class="fw-bold">PT IMSS</p>
+                </div>
             </div>
             <div class="app-menu">
                 <ul class="accordion-menu">
@@ -106,7 +109,7 @@
                         Reports
                     </li>
                     <li>
-                        <a href="{{ url('foto') }}" class="{{ $active == 'foto' ? 'active' : '' }}">
+                        <a href="{{ url('photo') }}" class="{{ $active == 'foto' ? 'active' : '' }}">
                             <i class="material-icons-two-tone">perm_media</i>Foto</a>
                     </li>
                     <li>

@@ -74,8 +74,8 @@ class ChecksheetController extends Controller
             ->first();
 
         $categories = Kategori_checksheet::where('id_kereta', $detail->id_kereta)->get();
-        $categories = $categories->map(function ($item) use ($id) {
-            $items = Item_checksheet::where('id_kategori_checksheet', $item->id)->get();
+        $categories = $categories->map(function ($item) use ($id, $detail) {
+            $items = Item_checksheet::where('id_kategori_checksheet', $item->id)->where('id_kereta', $detail->id_kereta)->get();
             $item->lists = $items->map(function ($item) use ($id) {
                 $detail = Detail_checksheet::where('id_item_checksheet', $item->id)->where('id_checksheet', $id)->first();
                 $item->dilakukan = $detail->dilakukan ?? null;
@@ -146,12 +146,12 @@ class ChecksheetController extends Controller
         $item = Item_checksheet::findOrFail($id);
         $pdf = Pdf::loadview('master_checksheet.checksheet.print', compact('item'));
         $pdf->setPaper('A4', 'potrait');
-        return $pdf->stream();
+        $title = $item->nama_item;
+        return $pdf->stream('checksheet-'.$title.'.pdf');
     }
 
     public function filter($id)
     {
-        // $kategories = Kategori_checksheet::where('id_kereta', $keretaId)->get();
         $checksheets = Checksheet::select('checksheet.*', 'master_kereta.nama_kereta')
             ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')->where('checksheet.id_kereta', $id)
             ->get();
