@@ -30,6 +30,6 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::get('list-checksheet', [App\Http\Controllers\Api\KategoriController::class, 'getAllList']);
     Route::get('list-checksheet/{id}/{id_checksheet}', [App\Http\Controllers\Api\KategoriController::class, 'getAllListById']);
     Route::post('detail-checksheet', [App\Http\Controllers\Api\ChecksheetController::class, 'createDetailChecksheet']);
-    Route::post('upload-foto', [App\Http\Controllers\Api\ChecksheetController::class, 'uploadFoto']);
 });
+Route::post('upload-foto', [App\Http\Controllers\Api\ChecksheetController::class, 'uploadFoto']);
 // Route::resource('spareparts', SparepartController::class);

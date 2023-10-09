@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Detail_checksheet;
+use App\Models\Foto;
 use Illuminate\Http\Request;
 
 class ChecksheetController extends Controller
@@ -14,12 +15,14 @@ class ChecksheetController extends Controller
         $hasil = $request->hasil;
         $id_checksheet = $request->id_checksheet;
         $id_item = $request->id_item_checksheet;
+        $keterangan = $request->keterangan;
 
         $existing = Detail_checksheet::where('id_checksheet', $id_checksheet)->where('id_item_checksheet', $id_item)->first();
 
         if ($existing) {
-            $existing->dilakukan = $dilakukan ?? $existing->dilakukan;
-            $existing->hasil = $hasil ?? $existing->hasil;
+            $existing->dilakukan = $dilakukan;
+            $existing->hasil = $hasil;
+            $existing->keterangan = $keterangan;
             $existing->save();
             return ResponseController::customResponse(true, 'Berhasil mengubah detail checksheet!', $existing);
         } else {
@@ -43,6 +46,11 @@ class ChecksheetController extends Controller
         $filename = $timestamp . '.' . $extension;
 
         $file->move(public_path('foto'), $filename);
+
+        Foto::create([
+            'id_detail' => $id_detail_checksheet,
+            'foto' => $filename
+        ]);
 
         return ResponseController::customResponse(true, 'Berhasil upload foto!', $filename);
     }
