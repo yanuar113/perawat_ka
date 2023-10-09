@@ -18,8 +18,8 @@ class ChecksheetController extends Controller
         $existing = Detail_checksheet::where('id_checksheet', $id_checksheet)->where('id_item_checksheet', $id_item)->first();
 
         if ($existing) {
-            $existing->dilakukan = $dilakukan;
-            $existing->hasil = $hasil;
+            $existing->dilakukan = $dilakukan ?? $existing->dilakukan;
+            $existing->hasil = $hasil ?? $existing->hasil;
             $existing->save();
             return ResponseController::customResponse(true, 'Berhasil mengubah detail checksheet!', $existing);
         } else {
