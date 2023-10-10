@@ -67,6 +67,7 @@ Route::get('print', [FotoController::class, 'print'])->name('photo.print');
 // Route::resource('laporan', LaporanController::class);
 
 Route::post('login', [App\Http\Controllers\AuthController::class, 'login'])->name('login.action');
+Route::get('logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
 
 
 
