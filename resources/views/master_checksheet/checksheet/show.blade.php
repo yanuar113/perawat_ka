@@ -54,7 +54,14 @@
                                             <td>{{$item->date_time}}</td>
                                             <td>{{$item->nama_kereta}}</td>
                                             <td>{{$item->no_kereta}}</td>
-                                            <td>{{$item->tipe == 0 ? "Harian":"P1"}}</td>
+                                            <td style="text-align: center">
+                                                {{-- {{$item->tipe == 0 ? "Harian":"P1"}} --}}
+                                                @if ($item->tipe == '0')
+                                                <span class="badge bg-success">Harian</span>
+                                            @else
+                                                <span class="badge bg-warning">P1</span>
+                                        @endif 
+                                            </td>
                                             <td>{{$item->jam_engine}}</td>
                                             <td>
                                                 <a href="{{route('checksheet.show', $item->id)}}"

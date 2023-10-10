@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Print Foto</title>
+    <title>Print Foto - nama kereta</title>
     <style>
         @page {
             margin: 0px;
@@ -12,7 +12,7 @@
             margin-top: 5cm;
             margin-left: 1cm;
             margin-right: 1cm;
-            margin-bottom: 1cm; 
+            margin-bottom: 1cm;
             /* border: 1px solid black; */
         }
 
@@ -20,6 +20,7 @@
             font-family: Verdana, Arial, sans-serif;
             /* font-size: 0.9rem; */
         }
+
         header {
             font-size: 24px;
             font-weight: bold;
@@ -30,7 +31,8 @@
             right: 1cm;
             height: 5.5cm;
         }
-        p{
+
+        p {
             text-align: center;
             margin: 5px;
         }
@@ -60,38 +62,18 @@
         <h4>Foto Checksheet Perawatan Harian Kereta KRL/KFW Solo Bulan Juni 2023</h4>
     </header>
     <div class="container">
-        <div class="photo">
-            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
-        </div>
-        <p>Pengecekan Bearing</p>
-        <div class="photo">
-            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
-        </div>
-        <p>Pengecekan Bearing</p>
-        <div class="photo">
-            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
-        </div>
-        <p>Pengecekan Bearing</p>
-        <div class="photo">
-            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
-        </div>
-        <p>Pengecekan Bearing</p>
-        <div class="photo">
-            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
-        </div>
-        <p>Pengecekan Bearing</p>
-        <div class="photo">
-            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
-        </div>
-        <p>Pengecekan Bearing</p>
-        <div class="photo">
-            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
-        </div>
-        <p>Pengecekan Bearing</p>
-        <div class="photo">
-            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
-        </div>
-        <p>Pengecekan Bearing</p>
+        @forelse ($detail as $item)
+            <div class="photo">
+                @php
+                    $imagePath = public_path('foto/' . $item->foto);
+                @endphp
+                <img src="{{ $imagePath }}" alt="{{ $item->nama_item }}">
+            </div>
+            <p>{{ $item->datetime }}</p>
+            <p>{{ $item->nama_item }}</p>
+        @empty
+            <p>Tidak ada foto</p>
+        @endforelse
     </div>
 </body>
 
