@@ -2,52 +2,50 @@
 <html>
 
 <head>
-    <title>Print Photos</title>
+    <title>Print Foto</title>
     <style>
         @page {
             margin: 0px;
         }
 
         body {
-            margin-top: 1.5cm;
+            margin-top: 5cm;
             margin-left: 1cm;
             margin-right: 1cm;
-            margin-bottom: 1.5cm;
+            margin-bottom: 1cm; 
+            /* border: 1px solid black; */
         }
 
         * {
             font-family: Verdana, Arial, sans-serif;
             /* font-size: 0.9rem; */
         }
-
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        td {
-            text-align: center;
-            padding: 8px;
-            border: 1px solid black;
-        }
-
-        .header {
+        header {
             font-size: 24px;
             font-weight: bold;
-            margin-bottom: 20px;
             text-align: center;
+            position: fixed;
+            top: 1cm;
+            left: 1cm;
+            right: 1cm;
+            height: 5.5cm;
+        }
+        p{
+            text-align: center;
+            margin: 5px;
+        }
+
+        img {
+            width: 40%;
         }
 
         .photo {
             border: 1px solid black;
-            padding: 10px;
-            margin: 10px;
+            padding: 8px;
+            margin-top: 1em;
+            margin-left: 8rem;
+            margin-right: 8rem;
             text-align: center;
-            width: 80px;
-            display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
         }
 
         .date {
@@ -58,56 +56,43 @@
 </head>
 
 <body>
-    <div class="header">
+    <header>
         <h4>Foto Checksheet Perawatan Harian Kereta KRL/KFW Solo Bulan Juni 2023</h4>
+    </header>
+    <div class="container">
+        <div class="photo">
+            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
+        </div>
+        <p>Pengecekan Bearing</p>
+        <div class="photo">
+            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
+        </div>
+        <p>Pengecekan Bearing</p>
+        <div class="photo">
+            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
+        </div>
+        <p>Pengecekan Bearing</p>
+        <div class="photo">
+            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
+        </div>
+        <p>Pengecekan Bearing</p>
+        <div class="photo">
+            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
+        </div>
+        <p>Pengecekan Bearing</p>
+        <div class="photo">
+            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
+        </div>
+        <p>Pengecekan Bearing</p>
+        <div class="photo">
+            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
+        </div>
+        <p>Pengecekan Bearing</p>
+        <div class="photo">
+            <img src="templates/source/assets/images/inka-border.png" alt="contoh gambar">
+        </div>
+        <p>Pengecekan Bearing</p>
     </div>
-    <table>
-        {{-- @foreach ($photos->chunk(3) as $chunk)
-            <tr>
-                @foreach ($chunk as $photo)
-                    <td>
-                        <div class="photo">
-                            <img src="{{ $photo->url }}" width="200" height="200">
-                            <div class="date">{{ $photo->date }}</div>
-                        </div>
-                    </td>
-                @endforeach
-            </tr>
-        @endforeach --}}
-        {{-- <thead>
-                <tr>
-                    <th colspan="3" style="text-align: center;">Foto</th>
-                </tr>
-            </thead> --}}
-        <tbody>
-            <tr>
-                <td> 
-                    <div class="photo">
-                        {{-- <img src="{{ $photo->url }}" width="200" height="200">
-                            <div class="date">{{ $photo->date }}</div> --}}
-                        <img src="" alt="contoh gambar">
-                        <div class="date">tanggal</div>
-                        <div class="date">alamat foto</div>
-                    </div>
-                    <div class="photo">
-                        <img src="" alt="contoh gambar">
-                        <div class="date">tanggal</div>
-                        <div class="date">alamat foto</div>
-                    </div>
-                    <div class="photo">
-                        <img src="" alt="contoh gambar">
-                        <div class="date">tanggal</div>
-                        <div class="date">alamat foto</div>
-                    </div>
-                    <div class="photo">
-                        <img src="" alt="contoh gambar">
-                        <div class="date">tanggal</div>
-                        <div class="date">alamat foto</div>
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </body>
 
 </html>

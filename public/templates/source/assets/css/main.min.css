@@ -861,12 +861,12 @@ h6 {
 }
 
 .app-sidebar .logo .logo-icon {
-    width: 40px;
+    width: 80px;
     height: 40px;
     font-size: 18px;
     background: url(../images/inka-border.png) no-repeat;
     background-position: center left;
-    background-size: 40px;
+    background-size: 70px;
     display: block;
     text-decoration: none;
     font-weight: 700;
@@ -880,20 +880,20 @@ h6 {
     transition: all .2s ease-in-out
 }
 
-.app-sidebar .logo .logo-icon:hover {
+/* .app-sidebar .logo .logo-icon:hover {
     padding-left: 55px
-}
+} */
 
-.app-sidebar .logo .logo-icon:hover .logo-text {
+/* .app-sidebar .logo .logo-icon:hover .logo-text {
     visibility: visible;
     opacity: 1
-}
+} */
 
-.app-sidebar .logo .logo-icon:hover+.sidebar-user-switcher {
+/* .app-sidebar .logo .logo-icon:hover+.sidebar-user-switcher {
     margin-right: -10px;
     visibility: hidden;
     opacity: 0
-}
+} */
 
 .app-sidebar .logo .sidebar-user-switcher {
     float: right;
