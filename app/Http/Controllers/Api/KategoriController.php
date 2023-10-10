@@ -11,14 +11,20 @@ use App\Models\Kategori_checksheet;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use stdClass;
 
 class KategoriController extends Controller
 {
-    public function getAll()
+    public function getAll($id)
     {
         $authuser = auth()->user();
         $categories = Kategori_checksheet::where('id_kereta', $authuser->id)->get();
-        return ResponseController::customResponse(true, 'Berhasil mendapakan Kategori!', $categories);
+        $oldChecksheet = Checksheet::where('id_kereta', $authuser->id)->where('id', $id)->first();
+        $checksheet = new stdClass();
+        $checksheet->id = $oldChecksheet->id ?? null;
+        $checksheet->is_so = $oldChecksheet->is_so ?? null;
+        $checksheet->categories = $categories;
+        return ResponseController::customResponse(true, 'Berhasil mendapakan Kategori!', $checksheet);
     }
 
     //cehecksheet
