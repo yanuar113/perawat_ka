@@ -113,11 +113,15 @@ class KategoriController extends Controller
             $item->dilakukan = $detail->dilakukan ?? null;
             $item->hasil = $detail->hasil ?? null;
             $item->keterangan = $detail->keterangan ?? null;
-            $item->foto = Foto::where('id_detail', $detail->id)->get();
-            $item->foto = $item->foto->map(function ($item) {
-                $item->foto = asset('foto/' . $item->foto);
-                return $item;
-            });
+            if ($detail) {
+                $item->foto = Foto::where('id_detail', $detail->id)->get();
+                $item->foto = $item->foto->map(function ($item) {
+                    $item->foto = asset('foto/' . $item->foto);
+                    return $item;
+                });
+            } else {
+                $item->foto = [];
+            }
             $item->id_detail_checksheet = $detail->id ?? null;
             return $item;
         });
