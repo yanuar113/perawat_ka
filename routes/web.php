@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 //route login
 Route::get('/', function () {
     return view('login.login');
-});
+})->name('login');
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -65,5 +65,8 @@ Route::get('print', [FotoController::class, 'print'])->name('photo.print');
 
 // //Laporan
 // Route::resource('laporan', LaporanController::class);
+
+Route::post('login', [App\Http\Controllers\AuthController::class, 'login'])->name('login.action');
+
 
 
