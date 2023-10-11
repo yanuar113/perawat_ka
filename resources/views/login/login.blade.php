@@ -55,17 +55,17 @@
                 <p class="auth-description">Silahkan Login menggunakan username dan password yang diberikan</p>
             </div>
             @if (session()->has('error'))
-            <div class="alert alert-danger alert-style-light" role="alert">
-                {{ session()->get('error') }}
-            </div>
+                <div class="alert alert-danger alert-style-light" role="alert">
+                    {{ session()->get('error') }}
+                </div>
             @endif
-            <form method="POST" action="{{route('login.action')}}">
+            <form method="POST" action="{{ route('login.action') }}" autocomplete="off">
                 @csrf
                 <div class="auth-credentials m-b-xxl">
                     <label for="signInEmail" class="form-label">Username</label>
                     <input type="text" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail"
                         placeholder="email@gmail.com" name="email">
-                    
+
                     <label for="signInPassword" class="form-label">Password</label>
                     <input type="password" class="form-control" id="signInPassword" aria-describedby="signInPassword"
                         placeholder="Masukan password" name="password">

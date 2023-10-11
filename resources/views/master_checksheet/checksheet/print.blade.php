@@ -93,7 +93,7 @@
                 <th style="text-align: center;" rowspan="2">Uraian Pekerjaan</th>
                 <th style="text-align: center;" colspan="2">Dilakukan</th>
                 <th style="text-align: center;" colspan="2">Hasil</th>
-                <th rowspan="2">Keterangan</th>
+                <th style="text-align: center;"rowspan="2">Keterangan</th>
             </tr>
             <tr>
                 <th>YA</th>

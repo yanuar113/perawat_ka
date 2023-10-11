@@ -28,7 +28,7 @@ class AuthController extends Controller
             return redirect()->route('dashboard.index');
         } else {
             return redirect()->route('login')
-                ->with('error', 'Username And Password Are Wrong.');
+                ->with('error', 'Username atau Password salah.');
         }
     }
 
