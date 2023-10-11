@@ -9,7 +9,7 @@
         body {
             font-family: Arial, sans-serif;
             font-size: 13px;
-            margin: 0.8em;
+            margin-top: 0.3cm;
         }
 
         .text {
@@ -19,7 +19,15 @@
         table {
             border-collapse: collapse;
             width: 100%;
-            /* border: 1px solid #ccc; */
+        }
+
+        .kelas {
+            page-break-after: avoid;
+        }
+
+        .kelas tr,
+        .kelas td {
+            page-break-inside: avoid;
         }
 
         .kelas th,
@@ -33,6 +41,12 @@
             background-color: #f2f2f2;
             text-align: center;
         }
+
+        td>.underline {
+            display: inline-block;
+            border-bottom: 3px solid black;
+        }
+
         .header-table {
             margin-bottom: 20px;
         }
@@ -41,7 +55,7 @@
             display: flex;
             flex-direction: column;
             margin-bottom: 20px;
-            padding: 10px;
+            /* padding: 10px; */
         }
 
         .logo-container img {
@@ -50,6 +64,48 @@
 
         .icon {
             width: 28px;
+        }
+
+        .page-break {
+            /* page-break-after: always; */
+            page-break-before: always;
+        }
+
+        header {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            position: fixed;
+            top: 0.3cm;
+            left: 1cm;
+            right: 1cm;
+        }
+
+        h5 {
+            margin: 0px;
+            font-size: 18px;
+        }
+
+        p {
+            text-align: center;
+            margin: 5px;
+        }
+
+        .container {
+            margin-top: 1.8cm;
+        }
+
+        .photo img {
+            width: 40%;
+        }
+
+        .photo {
+            border: 1px solid black;
+            padding: 8px;
+            margin-top: 0.3cm;
+            margin-left: 8rem;
+            margin-right: 8rem;
+            text-align: center;
         }
     </style>
 </head>
@@ -84,8 +140,6 @@
             </tr>
         </table>
     </div>
-
-
     <table class="kelas">
         <thead>
             <tr>
@@ -93,7 +147,7 @@
                 <th style="text-align: center;" rowspan="2">Uraian Pekerjaan</th>
                 <th style="text-align: center;" colspan="2">Dilakukan</th>
                 <th style="text-align: center;" colspan="2">Hasil</th>
-                <th style="text-align: center;"rowspan="2">Keterangan</th>
+                <th style="text-align: center;" rowspan="2">Keterangan</th>
             </tr>
             <tr>
                 <th>YA</th>
@@ -159,23 +213,44 @@
             <td>PT Inka Multi Solusi service</td>
             <td>PT Inka Multi Solusi service</td>
         </tr>
-        <tr >
+        <tr>
             <td style="height: 75px"></td>
             <td style="height: 75px"></td>
             <td style="height: 75px"></td>
             <td style="height: 75px"></td>
         </tr>
         <tr style="text-align: center;">
-            <td>SUHANA SENJAYA <hr></td>
-            <td>TRI WIYONO <hr></td>
-            <td><br><hr></td>
-            <td><br><hr></td>
+            <td><span class="underline">SUHANA SENJAYA</span></td>
+            <td><span class="underline">TRI WIYONO</span></td>
+            <td><span class="underline"></span></td>
+            <td><span class="underline"></span></td>
         </tr>
         <tr>
             <td style="vertical-align: top;text-align: center">NIPP. 44733</td>
             <td style="vertical-align: top;text-align: center"> NIPP. 41493</td>
         </tr>
     </table>
+
+    <div class="page-break"></div>
+
+    <header>
+        <h5>DOKUMENTASI PERAWATAN HARIAN PERIODE SEPTEMBER 2023</h5>
+        <h5 class="text">{{ $detail->nama_kereta }}</h5>
+    </header>
+    <div class="container">
+        @forelse ($photo as $item)
+            <div class="photo">
+                @php
+                    $imagePath = public_path('foto/' . $item->foto);
+                @endphp
+                <img src="{{ $imagePath }}" alt="{{ $item->nama_item }}">
+            </div>
+            <p>{{ $item->datetime }}</p>
+            <p>{{ $item->nama_item }}</p>
+        @empty
+            <p>Tidak ada foto</p>
+        @endforelse
+    </div>
 
 </body>
 

@@ -9,7 +9,7 @@
         }
 
         body {
-            margin-top: 5cm;
+            margin-top: 3cm;
             margin-left: 1cm;
             margin-right: 1cm;
             margin-bottom: 1cm;
@@ -29,7 +29,9 @@
             top: 1cm;
             left: 1cm;
             right: 1cm;
-            height: 5.5cm;
+        }
+        h5{
+            margin: 0px;
         }
 
         p {
@@ -44,7 +46,7 @@
         .photo {
             border: 1px solid black;
             padding: 8px;
-            margin-top: 1em;
+            margin-top: 0.7px;
             margin-left: 8rem;
             margin-right: 8rem;
             text-align: center;
@@ -59,7 +61,8 @@
 
 <body>
     <header>
-        <h4>Foto Checksheet Perawatan Harian Kereta KRL/KFW Solo Bulan Juni 2023</h4>
+        <h5>DOKUMENTASI PERAWATAN HARIAN PERIODE SEPTEMBER 2023</h5>
+        <h5>KERETA PERINTIS KRDE MAKASAR-PARE-PARE</h5>
     </header>
     <div class="container">
         @forelse ($detail as $item)
