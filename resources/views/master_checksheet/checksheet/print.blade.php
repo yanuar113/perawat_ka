@@ -2,7 +2,6 @@
 <html>
 
 <head>
-
     <title>Checksheet - {{ $detail->nama_kereta }}</title>
     <style>
         /* CSS untuk styling lembar list */
@@ -44,7 +43,7 @@
 
         td>.underline {
             display: inline-block;
-            border-bottom: 3px solid black;
+            border-bottom: 2px solid black;
         }
 
         .header-table {
@@ -55,7 +54,6 @@
             display: flex;
             flex-direction: column;
             margin-bottom: 20px;
-            /* padding: 10px; */
         }
 
         .logo-container img {
@@ -67,7 +65,6 @@
         }
 
         .page-break {
-            /* page-break-after: always; */
             page-break-before: always;
         }
 
@@ -75,10 +72,7 @@
             font-size: 24px;
             font-weight: bold;
             text-align: center;
-            position: fixed;
-            top: 0.3cm;
-            left: 1cm;
-            right: 1cm;
+            height: 2cm;
         }
 
         h5 {
@@ -107,18 +101,54 @@
             margin-right: 8rem;
             text-align: center;
         }
+
+        @page {
+            margin-top: 0.3cm;
+            margin-bottom: 2.5cm;
+        }
+
+        @page :first {
+            margin-top: 0.3cm;
+            header: first-page-header;
+        }
+
+        @page :header {
+            content: "DOKUMENTASI PERAWATAN HARIAN PERIODE SEPTEMBER 2023\n{{ $detail->nama_kereta }}";
+            margin-top: 0.3cm;
+        }
+
+        @page :nth-child(n+4) {
+            header: third-page-header;
+            margin-top: 0.3cm;
+        }
+
+        @page :nth-child(2) {
+            header: no-header;
+        }
+
+        @page fourth-page {
+            margin-top: 5cm;
+            content: "Header on the fourth page content";
+        }
+
+        .header-on-fourth-page {
+            position: unset;;
+            top: 0;
+            left: 1cm;
+            right: 1cm;
+            height: 5cm;
+        }
     </style>
 </head>
 
 <body>
-
     <div class="logo-container">
         <img src="https://assets.kompasiana.com/items/album/2016/05/31/logo-kereta-api-baru-cdr-574d84880123bda309d001d0.png?t=o&v=770"
             alt="Logo KAI" style="height: 50px;">
         <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Logo_INKA_-_Industri_Kereta_Api_Indonesia.svg"
-            alt="Logo PT INKA" style="height: 50px; margin-top:1rem; margin-left:14rem;">
+            alt="Logo PT INKA" style="height: 50px; margin-top: 1rem; margin-left: 18rem;">
         <img src="https://imsservice.co.id/assets/logo/logo-md.png" alt="Logo PT IMSS"
-            style="height: 40px; margin-bottom:1rem;">
+            style="height: 40px; margin-bottom: 1rem;">
     </div>
 
     <h3 style="text-align: center;" class="text"> SHEET PERAWATAN {{ $detail->nama_kereta }} <BR> PEMERIKSAAN HARIAN
@@ -222,8 +252,8 @@
         <tr style="text-align: center;">
             <td><span class="underline">SUHANA SENJAYA</span></td>
             <td><span class="underline">TRI WIYONO</span></td>
-            <td><span class="underline"></span></td>
-            <td><span class="underline"></span></td>
+            <td><span class="underline">____________</span> </td>
+            <td><span class="underline">____________</span></td>
         </tr>
         <tr>
             <td style="vertical-align: top;text-align: center">NIPP. 44733</td>
@@ -231,12 +261,14 @@
         </tr>
     </table>
 
-    <div class="page-break"></div>
+    {{-- <div class="page-break"></div>
+    <div class="header-on-fourth-page">
+        <header>
+            <h5>DOKUMENTASI PERAWATAN HARIAN PERIODE SEPTEMBER 2023</h5>
+            <h5 class="text">{{ $detail->nama_kereta }}</h5>
+        </header>
+    </div>
 
-    <header>
-        <h5>DOKUMENTASI PERAWATAN HARIAN PERIODE SEPTEMBER 2023</h5>
-        <h5 class="text">{{ $detail->nama_kereta }}</h5>
-    </header>
     <div class="container">
         @forelse ($photo as $item)
             <div class="photo">
@@ -250,8 +282,7 @@
         @empty
             <p>Tidak ada foto</p>
         @endforelse
-    </div>
-
+    </div> --}}
 </body>
 
 </html>

@@ -15,12 +15,12 @@ class FotoController extends Controller
      */
     public function index()
     {
-        $detail = Foto::select('foto.*', 'detail_checksheet.*', 'item_checksheet.*', 'checksheet.*', 'master_kereta.nama_kereta', 'checksheet.date_time as datetime')
+        $detail = Foto::select('foto.id as foto_id', 'detail_checksheet.*', 'item_checksheet.*', 'checksheet.*', 'master_kereta.nama_kereta', 'checksheet.date_time as datetime')
         ->join('detail_checksheet', 'foto.id_detail', '=', 'detail_checksheet.id')
         ->join('item_checksheet', 'detail_checksheet.id_item_checksheet', '=', 'item_checksheet.id')
         ->join('checksheet', 'detail_checksheet.id_checksheet', '=', 'checksheet.id')
         ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
-        // ->where('checksheet.id', '=', 'detail_checksheet.id_checksheet')  
+        ->groupBy('master_kereta.nama_kereta')
         ->get();
         // dd($detail);
         $keretas = Kereta::all();
