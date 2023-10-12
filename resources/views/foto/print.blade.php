@@ -30,7 +30,8 @@
             left: 1cm;
             right: 1cm;
         }
-        h5{
+
+        h5 {
             margin: 0px;
         }
 
@@ -68,9 +69,11 @@
         @forelse ($detail as $item)
             <div class="photo">
                 @php
-                    $imagePath = public_path('foto/' . $item->foto);
+                    $imagePath = asset('foto/' . $item->foto);
+                    $imageData = base64_encode(file_get_contents($imagePath));
+                    $src = 'data: ' . mime_content_type($imagePath) . ';base64,' . $imageData;
                 @endphp
-                <img src="{{ $imagePath }}" alt="{{ $item->nama_item }}">
+                <img src="{{ $imagePath }}" alt="">
             </div>
             <p>{{ $item->datetime }}</p>
             <p>{{ $item->nama_item }}</p>

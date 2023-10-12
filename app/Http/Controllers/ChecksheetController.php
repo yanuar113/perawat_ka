@@ -140,7 +140,7 @@ class ChecksheetController extends Controller
                 'tipe' => $request->tipe,
                 'jam_engine' => $request->jam_engine
             ]);
-        return redirect()->route('checksheet.index')->with('success', 'Data Checksheet berhasil diubah!');
+        return redirect()->route('checksheet.index')->with('status', 'Data Checksheet berhasil diubah!');
     }
 
     /**
@@ -151,13 +151,15 @@ class ChecksheetController extends Controller
         Checksheet::destroy($id);
         return redirect()->route('checksheet.index')->with('status', 'Data Checksheet berhasil dihapus!');
     }
+    
     public function print($id)
     {
         setlocale(LC_ALL, 'IND');
         //set locale for vps
         setlocale(LC_TIME, 'id_ID.utf8');
         Carbon::setLocale('id');
-        $photo = Foto::select('foto.*', 'detail_checksheet.*', 'item_checksheet.*', 'checksheet.*', 'master_kereta.nama_kereta', 'checksheet.date_time')
+        
+        $photo = Foto::select('foto.*', 'detail_checksheet.*', 'item_checksheet.*', 'checksheet.*', 'master_kereta.nama_kereta', 'checksheet.date_time as datetime')
         ->join('detail_checksheet', 'foto.id_detail', '=', 'detail_checksheet.id')
         ->join('item_checksheet', 'detail_checksheet.id_item_checksheet', '=', 'item_checksheet.id')
         ->join('checksheet', 'detail_checksheet.id_checksheet', '=', 'checksheet.id')

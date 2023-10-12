@@ -62,7 +62,7 @@
             <form method="POST" action="{{ route('login.action') }}" autocomplete="off">
                 @csrf
                 <div class="auth-credentials m-b-xxl">
-                    <label for="signInEmail" class="form-label">Username</label>
+                    <label for="signInEmail" class="form-label">Email</label>
                     <input type="text" class="form-control m-b-md" id="signInEmail" aria-describedby="signInEmail"
                         placeholder="email@gmail.com" name="email">
 

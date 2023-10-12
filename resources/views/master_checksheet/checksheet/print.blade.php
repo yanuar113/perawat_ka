@@ -10,6 +10,7 @@
             font-family: Arial, sans-serif;
             font-size: 13px;
             margin-top: 0.3cm;
+            /* margin-bottom: 0.3cm; */
         }
 
         .text {
@@ -21,14 +22,14 @@
             width: 100%;
         }
 
-        .kelas {
+        /* .kelas {
             page-break-after: avoid;
         }
 
         .kelas tr,
         .kelas td {
             page-break-inside: avoid;
-        }
+        } */
 
         .kelas th,
         .kelas td {
@@ -75,7 +76,7 @@
             font-size: 24px;
             font-weight: bold;
             text-align: center;
-            position: fixed;
+            /* position: absolute; */
             top: 0.3cm;
             left: 1cm;
             right: 1cm;
@@ -140,6 +141,7 @@
             </tr>
         </table>
     </div>
+    
     <table class="kelas">
         <thead>
             <tr>
@@ -167,26 +169,22 @@
                         <td>{{ $list->nama_item }}</td>
                         <td style="text-align: center">
                             @if ($list->dilakukan == '1')
-                                <img class="icon" src="templates/source/assets/images/check-symbol.png"
-                                    alt="">
+                                <img class="icon" src="templates/source/assets/images/check-symbol.png" alt="">
                             @endif
                         </td>
                         <td style="text-align: center">
                             @if ($list->dilakukan == '0')
-                                <img class="icon" src="templates/source/assets/images/check-symbol.png"
-                                    alt="">
+                                <img class="icon" src="templates/source/assets/images/check-symbol.png" alt="">
                             @endif
                         </td>
                         <td style="text-align: center">
                             @if ($list->hasil == '1')
-                                <img class="icon" src="templates/source/assets/images/check-symbol.png"
-                                    alt="">
+                                <img class="icon" src="templates/source/assets/images/check-symbol.png" alt="">
                             @endif
                         </td>
                         <td style="text-align: center">
                             @if ($list->hasil == '0')
-                                <img class="icon" src="templates/source/assets/images/check-symbol.png"
-                                    alt="">
+                                <img class="icon" src="templates/source/assets/images/check-symbol.png" alt="">
                             @endif
                         </td>
                         <td>{{ $list->keterangan }}</td>
@@ -230,9 +228,7 @@
             <td style="vertical-align: top;text-align: center"> NIPP. 41493</td>
         </tr>
     </table>
-
-    <div class="page-break"></div>
-
+    {{-- <div class="page-break"></div> --}}
     <header>
         <h5>DOKUMENTASI PERAWATAN HARIAN PERIODE SEPTEMBER 2023</h5>
         <h5 class="text">{{ $detail->nama_kereta }}</h5>
@@ -250,7 +246,7 @@
         @empty
             <p>Tidak ada foto</p>
         @endforelse
-    </div>
+        </div>
 
 </body>
 
