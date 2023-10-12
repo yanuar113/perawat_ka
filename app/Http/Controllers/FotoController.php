@@ -18,34 +18,13 @@ class FotoController extends Controller
      */
     public function index()
     {
-        $detail = Foto::select('foto.*', 'detail_checksheet.*', 'item_checksheet.*', 'checksheet.*', 'master_kereta.nama_kereta', 'checksheet.date_time as datetime')
-            ->join('detail_checksheet', 'foto.id_detail', '=', 'detail_checksheet.id')
-            ->join('item_checksheet', 'detail_checksheet.id_item_checksheet', '=', 'item_checksheet.id')
-            ->join('checksheet', 'detail_checksheet.id_checksheet', '=', 'checksheet.id')
-            ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
-            ->get();
-
-        // $detail = Foto::select('foto.*', 'detail_checksheet.*')
-        //     ->join('detail_checksheet', 'foto.id_detail', '=', 'detail_checksheet.id')
-        //    ->get();
-           
-
-            // $categories = Item_checksheet::where('id_kereta')->where('id_kategori_checksheet', $id)->get();
-            // $categories = $categories->map(function ($item) use ($id_checksheet) {
-            //     $detail = Detail_checksheet::where('id_item_checksheet', $item->id)->where('id_checksheet', $id_checksheet)->first(); 
-            //     if ($detail) {
-            //         $item->foto = Foto::where('id_detail', $detail->id)->get();
-            //         $item->foto = $item->foto->map(function ($item) {
-            //             $item->foto = asset('foto/' . $item->foto);
-            //             return $item;
-            //         });
-            //     } else {
-            //         $item->foto = [];
-            //     }
-            //     $item->id_detail_checksheet = $detail->id ?? null;
-            //     return $item;
-            // });
-            // return ResponseController::customResponse(true, 'Berhasil mendapakan item checklist!', $categories);
+        $detail = Foto::select('foto.id as foto_id', 'detail_checksheet.*', 'item_checksheet.*', 'checksheet.*', 'master_kereta.nama_kereta', 'checksheet.date_time as datetime')
+        ->join('detail_checksheet', 'foto.id_detail', '=', 'detail_checksheet.id')
+        ->join('item_checksheet', 'detail_checksheet.id_item_checksheet', '=', 'item_checksheet.id')
+        ->join('checksheet', 'detail_checksheet.id_checksheet', '=', 'checksheet.id')
+        ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
+        ->groupBy('master_kereta.nama_kereta')
+        ->get();
         // dd($detail);
         $keretas = Kereta::all(); 
         $active = 'photo';
