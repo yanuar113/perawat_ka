@@ -78,7 +78,8 @@
                                                         <i class="material-icons">print</i>Cetak
                                                     </a>
                                                     <button type="submit" class="btn btn-sm btn-danger mb-1"
-                                                        data-bs-toggle="modal" data-bs-target="#exampleModal"><i
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#exampleModal-{{ $item->id }}"><i
                                                             class="material-icons">delete</i>Hapus</button>
                                                 </td>
                                             </tr>
@@ -96,29 +97,33 @@
                 </div>
             </div>
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Hapus Checksheet</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p>
-                            Apakah anda yakin akan menghapus checksheet ini?
-                        </p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
-                        <form action="{{ route('checksheet.destroy', $item->id) }}" method="POST" class="d-inline">
-                            @csrf
-                            @method('delete')
-                            <button type="submit" class="btn btn-danger">Hapus</button>
-                        </form>
+        @foreach ($checksheets as $item)
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal-{{ $item->id }}" tabindex="1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Hapus Checksheet
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Apakah anda yakin akan menghapus checksheet ini?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
+                            <form action="{{ route('checksheet.destroy', $item->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        @endforeach
     </div>
 @endsection

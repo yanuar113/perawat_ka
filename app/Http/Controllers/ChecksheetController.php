@@ -30,7 +30,7 @@ class ChecksheetController extends Controller
             ->join('item_checksheet', 'detail_checksheet.id_item_checksheet', '=', 'item_checksheet.id')
             ->join('checksheet', 'detail_checksheet.id_checksheet', '=', 'checksheet.id')
             ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
-            // ->where('checksheet.id', '=', 'detail_checksheet.id_checksheet')  
+            // ->where('checksheet.id', '=', 'detail_checksheet.id_checksheet')
             ->get();
         $keretas = Kereta::all();
         return view('master_checksheet.checksheet.show', compact('active', 'checksheets', 'keretas', 'detail'));
@@ -151,20 +151,20 @@ class ChecksheetController extends Controller
         Checksheet::destroy($id);
         return redirect()->route('checksheet.index')->with('status', 'Data Checksheet berhasil dihapus!');
     }
-    
+
     public function print($id)
     {
         setlocale(LC_ALL, 'IND');
         //set locale for vps
         setlocale(LC_TIME, 'id_ID.utf8');
         Carbon::setLocale('id');
-        
+
         $photo = Foto::select('foto.*', 'detail_checksheet.*', 'item_checksheet.*', 'checksheet.*', 'master_kereta.nama_kereta', 'checksheet.date_time as datetime')
-        ->join('detail_checksheet', 'foto.id_detail', '=', 'detail_checksheet.id')
-        ->join('item_checksheet', 'detail_checksheet.id_item_checksheet', '=', 'item_checksheet.id')
-        ->join('checksheet', 'detail_checksheet.id_checksheet', '=', 'checksheet.id')
-        ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
-        ->get();
+            ->join('detail_checksheet', 'foto.id_detail', '=', 'detail_checksheet.id')
+            ->join('item_checksheet', 'detail_checksheet.id_item_checksheet', '=', 'item_checksheet.id')
+            ->join('checksheet', 'detail_checksheet.id_checksheet', '=', 'checksheet.id')
+            ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
+            ->get();
 
         $detail = Checksheet::select('checksheet.*', 'master_kereta.nama_kereta')
             ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
