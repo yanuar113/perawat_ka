@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Controllers\Api\ResponseController;
+use App\Models\Detail_checksheet;
 use App\Models\Foto;
+use App\Models\Item_checksheet;
+use App\Models\Kereta;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class FotoController extends Controller
 {
@@ -13,8 +18,17 @@ class FotoController extends Controller
      */
     public function index()
     {
-        $active = 'Foto';
-        return view('foto.show', compact('active'));
+        $detail = Foto::select('foto.id as foto_id', 'detail_checksheet.*', 'item_checksheet.*', 'checksheet.*', 'master_kereta.nama_kereta', 'checksheet.date_time as datetime')
+        ->join('detail_checksheet', 'foto.id_detail', '=', 'detail_checksheet.id')
+        ->join('item_checksheet', 'detail_checksheet.id_item_checksheet', '=', 'item_checksheet.id')
+        ->join('checksheet', 'detail_checksheet.id_checksheet', '=', 'checksheet.id')
+        ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
+        ->groupBy('master_kereta.nama_kereta')
+        ->get();
+        // dd($detail);
+        $keretas = Kereta::all(); 
+        $active = 'photo';
+        return view('foto.show', compact('active', 'detail', 'keretas'));
     }
 
     /**
@@ -68,17 +82,24 @@ class FotoController extends Controller
     /**
      * Export a PDF and return the print view.
      */
-    public function print($id)
+    public function print()
     {
         //
-        $detail = Foto::select('foto.*', 'master_kereta.nama_kereta')
-            ->join('master_kereta', 'foto.id_kereta', '=', 'master_kereta.id')
-            ->where('foto.id', $id)
-            ->first();
+         $detail = Foto::select('foto.*', 'detail_checksheet.*', 'item_checksheet.*', 'checksheet.*', 'master_kereta.nama_kereta', 'checksheet.date_time as datetime')
+            ->join('detail_checksheet', 'foto.id_detail', '=', 'detail_checksheet.id')
+            ->join('item_checksheet', 'detail_checksheet.id_item_checksheet', '=', 'item_checksheet.id')
+            ->join('checksheet', 'detail_checksheet.id_checksheet', '=', 'checksheet.id')
+            ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
+            ->get();
+
+        // dd($detail);
+        // foreach ($detail as $item) {
+        //     $item->formatted_date = Carbon::parse($item->date_time)->translatedFormat('d F Y');
+        // }
+
         $active = 'Foto';
         $pdf = Pdf::loadView('foto.print', compact('active', 'detail'));
         $pdf->setPaper('A4', 'potrait');
         return $pdf->stream();
     }
 }
-

@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Checksheet;
 use App\Models\Detail_checksheet;
+use App\Models\Foto;
 use App\Models\Item_checksheet;
 use App\Models\Kategori_checksheet;
 use App\Models\Kereta;
 use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class ChecksheetController extends Controller
 {
@@ -23,8 +25,15 @@ class ChecksheetController extends Controller
         $checksheets = Checksheet::select('checksheet.*', 'master_kereta.nama_kereta')
             ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
             ->get();
-         $keretas = Kereta::all();
-        return view('master_checksheet.checksheet.show', compact('active', 'checksheets', 'keretas'));
+        $detail = Foto::select('foto.*', 'detail_checksheet.*', 'item_checksheet.*', 'checksheet.*', 'master_kereta.nama_kereta', 'checksheet.date_time as datetime')
+            ->join('detail_checksheet', 'foto.id_detail', '=', 'detail_checksheet.id')
+            ->join('item_checksheet', 'detail_checksheet.id_item_checksheet', '=', 'item_checksheet.id')
+            ->join('checksheet', 'detail_checksheet.id_checksheet', '=', 'checksheet.id')
+            ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
+            // ->where('checksheet.id', '=', 'detail_checksheet.id_checksheet')  
+            ->get();
+        $keretas = Kereta::all();
+        return view('master_checksheet.checksheet.show', compact('active', 'checksheets', 'keretas', 'detail'));
     }
 
     /**
@@ -131,7 +140,7 @@ class ChecksheetController extends Controller
                 'tipe' => $request->tipe,
                 'jam_engine' => $request->jam_engine
             ]);
-        return redirect()->route('checksheet.index')->with('success', 'Data Checksheet berhasil diubah!');
+        return redirect()->route('checksheet.index')->with('status', 'Data Checksheet berhasil diubah!');
     }
 
     /**
@@ -142,12 +151,46 @@ class ChecksheetController extends Controller
         Checksheet::destroy($id);
         return redirect()->route('checksheet.index')->with('status', 'Data Checksheet berhasil dihapus!');
     }
-    public function print($id){
-        $item = Item_checksheet::findOrFail($id);
-        $pdf = Pdf::loadview('master_checksheet.checksheet.print', compact('item'));
+    
+    public function print($id)
+    {
+        setlocale(LC_ALL, 'IND');
+        //set locale for vps
+        setlocale(LC_TIME, 'id_ID.utf8');
+        Carbon::setLocale('id');
+        
+        $photo = Foto::select('foto.*', 'detail_checksheet.*', 'item_checksheet.*', 'checksheet.*', 'master_kereta.nama_kereta', 'checksheet.date_time as datetime')
+        ->join('detail_checksheet', 'foto.id_detail', '=', 'detail_checksheet.id')
+        ->join('item_checksheet', 'detail_checksheet.id_item_checksheet', '=', 'item_checksheet.id')
+        ->join('checksheet', 'detail_checksheet.id_checksheet', '=', 'checksheet.id')
+        ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
+        ->get();
+
+        $detail = Checksheet::select('checksheet.*', 'master_kereta.nama_kereta')
+            ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
+            ->where('checksheet.id', $id)
+            ->first();
+        $detail->tanggal = Carbon::parse($detail->date_time)->isoFormat('dddd, D MMMM Y');
+        $detail->jam = Carbon::parse($detail->date_time)->isoFormat('HH:mm');
+
+        $categories = Kategori_checksheet::where('id_kereta', $detail->id_kereta)->get();
+        $categories = $categories->map(function ($item) use ($id, $detail) {
+            $items = Item_checksheet::where('id_kategori_checksheet', $item->id)->where('id_kereta', $detail->id_kereta)->get();
+            $item->lists = $items->map(function ($item) use ($id) {
+                $detail = Detail_checksheet::where('id_item_checksheet', $item->id)->where('id_checksheet', $id)->first();
+                $item->dilakukan = $detail->dilakukan ?? null;
+                $item->hasil = $detail->hasil ?? null;
+                $item->keterangan = $detail->keterangan ?? null;
+                return $item;
+            });
+            return $item;
+        });
+        // dd($categories);
+        // dd($detail);
+        $pdf = Pdf::loadview('master_checksheet.checksheet.print', compact('detail', 'categories', 'photo'));
         $pdf->setPaper('A4', 'potrait');
-        $title = $item->nama_item;
-        return $pdf->stream('checksheet-'.$title.'.pdf');
+        $title = $detail->nama_kereta;
+        return $pdf->stream('checksheet-' . $title . '.pdf');
     }
 
     public function filter($id)

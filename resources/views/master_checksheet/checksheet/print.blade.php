@@ -2,19 +2,33 @@
 <html>
 
 <head>
+    <title>Checksheet - {{ $detail->nama_kereta }}</title>
     <style>
-        /* CSS untuk styling lembar checklist */
-        /* Sesuaikan sesuai kebutuhan Anda */
+        /* CSS untuk styling lembar list */
         body {
             font-family: Arial, sans-serif;
             font-size: 13px;
-            margin: 20px;
+            margin-top: 0.3cm;
+            /* margin-bottom: 0.3cm; */
+        }
+
+        .text {
+            text-transform: uppercase;
         }
 
         table {
             border-collapse: collapse;
             width: 100%;
         }
+
+        /* .kelas {
+            page-break-after: avoid;
+        }
+
+        .kelas tr,
+        .kelas td {
+            page-break-inside: avoid;
+        } */
 
         .kelas th,
         .kelas td {
@@ -28,22 +42,9 @@
             text-align: center;
         }
 
-        .header-section {
-            margin-bottom: 20px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-
-        .header-section div {
-            flex: 0 0 48%;
-            /* 48% width for each div */
-            margin-bottom: 10px;
-        }
-
-        .header-section input {
-            width: calc(100% - 10px);
-            /* 100% width minus padding */
+        td>.underline {
+            display: inline-block;
+            border-bottom: 2px solid black;
         }
 
         .header-table {
@@ -53,45 +54,124 @@
         .logo-container {
             display: flex;
             flex-direction: column;
-            /* justify-content: flex-end;
-      align-items: flex-end; */
             margin-bottom: 20px;
-            padding: 10px;
         }
 
         .logo-container img {
             margin-bottom: 5px;
         }
+
+        .icon {
+            width: 28px;
+        }
+
+        .page-break {
+            page-break-before: always;
+        }
+
+        header {
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+            height: 2cm;
+        }
+
+        h5 {
+            margin: 0px;
+            font-size: 18px;
+        }
+
+        p {
+            text-align: center;
+            margin: 5px;
+        }
+
+        .container {
+            margin-top: 1.8cm;
+        }
+
+        .photo img {
+            width: 40%;
+        }
+
+        .photo {
+            border: 1px solid black;
+            padding: 8px;
+            margin-top: 0.3cm;
+            margin-left: 8rem;
+            margin-right: 8rem;
+            text-align: center;
+        }
+
+        @page {
+            margin-top: 0.3cm;
+            margin-bottom: 2.5cm;
+        }
+
+        @page :first {
+            margin-top: 0.3cm;
+            header: first-page-header;
+        }
+
+        @page :header {
+            content: "DOKUMENTASI PERAWATAN HARIAN PERIODE SEPTEMBER 2023\n{{ $detail->nama_kereta }}";
+            margin-top: 0.3cm;
+        }
+
+        @page :nth-child(n+4) {
+            header: third-page-header;
+            margin-top: 0.3cm;
+        }
+
+        @page :nth-child(2) {
+            header: no-header;
+        }
+
+        @page fourth-page {
+            margin-top: 5cm;
+            content: "Header on the fourth page content";
+        }
+
+        .header-on-fourth-page {
+            position: unset;;
+            top: 0;
+            left: 1cm;
+            right: 1cm;
+            height: 5cm;
+        }
     </style>
 </head>
 
 <body>
-
     <div class="logo-container">
         <img src="https://assets.kompasiana.com/items/album/2016/05/31/logo-kereta-api-baru-cdr-574d84880123bda309d001d0.png?t=o&v=770"
             alt="Logo KAI" style="height: 50px;">
         <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Logo_INKA_-_Industri_Kereta_Api_Indonesia.svg"
-            alt="Logo PT INKA" style="height: 50px; margin-top:1rem; margin-left:14rem;">
+            alt="Logo PT INKA" style="height: 50px; margin-top: 1rem; margin-left: 18rem;">
         <img src="https://imsservice.co.id/assets/logo/logo-md.png" alt="Logo PT IMSS"
-            style="height: 40px; margin-bottom:1rem;">
+            style="height: 40px; margin-bottom: 1rem;">
     </div>
 
-    <h3 style="text-align: center;"> CHECK SHEET PERAWATAN RAILBUS <BR> PEMERIKSAAN HARIAN</h3>
+    <h3 style="text-align: center;" class="text"> SHEET PERAWATAN {{ $detail->nama_kereta }} <BR> PEMERIKSAAN HARIAN
+    </h3>
 
     <div class="header-table">
-        <table style="border:0px;">
+        <table>
             <tr>
-                <td>Hari/Tanggal:</td>
-                <td>No. Kereta:</td>
+                <td style="text-align: left;width: 5rem">Hari/Tanggal</td>
+                <td>: {{ $detail->tanggal }}</td>
+                <td style="text-align: left;width: 5rem">Jam Engine</td>
+                <td>: {{ $detail->jam_engine }}</td>
             </tr>
             <tr>
-                <td>Jam Engine:</td>
-                <td>Jam:</td>
+                <td style="text-align: left;width: 5rem">No. Kereta</td>
+                <td>: {{ $detail->no_kereta }}</td>
+                <td>Jam</td>
+                <td>: {{ $detail->jam }}</td>
             </tr>
         </table>
     </div>
-
-
+    
     <table class="kelas">
         <thead>
             <tr>
@@ -99,7 +179,7 @@
                 <th style="text-align: center;" rowspan="2">Uraian Pekerjaan</th>
                 <th style="text-align: center;" colspan="2">Dilakukan</th>
                 <th style="text-align: center;" colspan="2">Hasil</th>
-                <th rowspan="2">Keterangan</th>
+                <th style="text-align: center;" rowspan="2">Keterangan</th>
             </tr>
             <tr>
                 <th>YA</th>
@@ -108,357 +188,95 @@
                 <th>TIDAK</th>
             </tr>
         </thead>
-        <tbody>
-            <tr>
-                <td style="border: 1px solid #ccc; font-weight:bold;" colspan="7"> KELOMPOK BOOGIE </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Pengecekan Axle bearing (16 buah)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Pemeriksaan Suspensi Primer (8 buah)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Pemeriksaan Suspensi sekunder</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Pemeriksaan Air Spring</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Pemeriksaan Levelling Valve</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ccc; font-weight:bold;" colspan="7"> KELOMPOK ENGINE DAN SISTEM PROPULSI </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><b>ENGINE</b></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Pemeriksaan V-Belt (Alternator & Charging Battery)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Pemeriksaan Pulley Alternator Charging Battery</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Pemeriksaan level oli engine (pelumas mesin diesel)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Pemeriksaan level air radiator</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Pemeriksaan kebocoran oli pada engine</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Pemeriksaan pembuangan air di filter HSD</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>7</td>
-                <td>Pemeriksaan Saluran udara</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>8</td>
-                <td>Pemeriksaan ketidaknormalan suara engine</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>9</td>
-                <td>Pemeriksaan visual rubber mounting engine</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>10</td>
-                <td>Pemeriksaan visual rubber hose</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>11</td>
-                <td>Pemeriksaan connector ECM (Electronic Control Module)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><b>SISTEM PROPULSI</b></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Pemeriksaan visual pada bogie (4 Set)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Pemeriksaan level oli pada gearbox (tambah jika kurang)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Pemeriksaan fungsi motor traksi (2 Unit)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ccc; font-weight:bold;" colspan="7"> KELOMPOK PENGEREMAN DAN SUPLAI UDARA </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Pemeriksaan tekanan udara pada Min Reservoir dan Brake</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Pemeriksaan fungsi kerja pengereman (service brake, parking brake, dan emergency brake)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Pemeriksaan Remblok (ganti bila tipis)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>4</td>
-                <td>Pemeriksaan jalur pemipaan (piping)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>5</td>
-                <td>Pemeriksaan kompresor (fungsi kompresor, pressure switch fovernor, dan air kondensasi)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>6</td>
-                <td>Pemeriksaan level oli pada kompresor (min-max dipstick)</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ccc; font-weight:bold;" colspan="7"> KELOMPOK ALAT PERANGKAI MEKANIK </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Pemeriksaan visual automatic coupler</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Pemeriksaan visual bar coupler</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ccc; font-weight:bold;" colspan="7"> KELOMPOK EKSTERIROR DAN INTERIOR KERETA </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Pemeriksaan kelengkapan dan fungsi peralatan pintu</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ccc; font-weight:bold;" colspan="7"> KELOMPOK ELEKTRIK DAN PERALATAN KERETA </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Pemeriksaan visual junction box dan electric coupler</td>
-                <td></td>u
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>2</td>
-                <td>Pemeriksaan visual dan fungsi panel kontrol</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>3</td>
-                <td>Pemeriksaan fungsi peralatan elektrik (horn, headlight, lampu sinyal, lampu penerangan, lampu emergency, blower ruangan, exhaust fan, deadman system, wiper, washer, pintu penumpang, kondisi tegangan 24V DC, dan kondisi tegangan 380V AC</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ccc; font-weight:bold;" colspan="7"> KELOMPOK PANEL LISTRIK </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Pembersihan dan pemeriksaan kondisi komponen (panel distribusi, panel relay, panel batere, panel kontrol, panel kompresor udara, switch pada dashboard, dan koneksi perkabelan.</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td style="border: 1px solid #ccc; font-weight:bold;" colspan="7"> SISTEM PENDINGIN UDARA </td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>Pemeriksaan fungsi AC</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-            <tr>
-                <td>1</td>
-                <td>PENGAWALAN DALAM DINAS KA RAILBUS PERINTIS</td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-        </tbody>
+        @foreach ($categories as $category)
+            <tbody>
+                <tr>
+                    <td style="border: 1px solid #ccc; font-weight:bold;" colspan="7"> {{ $category->nama }} </td>
+                </tr>
+                @forelse ($category->lists as $list)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $list->nama_item }}</td>
+                        <td style="text-align: center">
+                            @if ($list->dilakukan == '1')
+                                <img class="icon" src="templates/source/assets/images/check-symbol.png" alt="">
+                            @endif
+                        </td>
+                        <td style="text-align: center">
+                            @if ($list->dilakukan == '0')
+                                <img class="icon" src="templates/source/assets/images/check-symbol.png" alt="">
+                            @endif
+                        </td>
+                        <td style="text-align: center">
+                            @if ($list->hasil == '1')
+                                <img class="icon" src="templates/source/assets/images/check-symbol.png" alt="">
+                            @endif
+                        </td>
+                        <td style="text-align: center">
+                            @if ($list->hasil == '0')
+                                <img class="icon" src="templates/source/assets/images/check-symbol.png" alt="">
+                            @endif
+                        </td>
+                        <td>{{ $list->keterangan }}</td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="7" style="text-align: center">Tidak ada data</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        @endforeach
     </table>
+
+    <table style="margin-top: 5rem;">
+        <tr style="text-align: center;">
+            <td>Mengetahui:</td>
+            <td>SPV RUAS LUAR</td>
+            <td>PM PERAWATAN KA</td>
+            <td>TEKNISI</td>
+        </tr>
+        <tr style="text-align: center;">
+            <td>Assman. UPT Depo Lok Solo</td>
+            <td>UPT Depo Lok Solo</td>
+            <td>PT Inka Multi Solusi service</td>
+            <td>PT Inka Multi Solusi service</td>
+        </tr>
+        <tr>
+            <td style="height: 75px"></td>
+            <td style="height: 75px"></td>
+            <td style="height: 75px"></td>
+            <td style="height: 75px"></td>
+        </tr>
+        <tr style="text-align: center;">
+            <td><span class="underline">SUHANA SENJAYA</span></td>
+            <td><span class="underline">TRI WIYONO</span></td>
+            <td><span class="underline">____________</span> </td>
+            <td><span class="underline">____________</span></td>
+        </tr>
+        <tr>
+            <td style="vertical-align: top;text-align: center">NIPP. 44733</td>
+            <td style="vertical-align: top;text-align: center"> NIPP. 41493</td>
+        </tr>
+    </table>
+    {{-- <div class="page-break"></div> --}}
+    <header>
+        <h5>DOKUMENTASI PERAWATAN HARIAN PERIODE SEPTEMBER 2023</h5>
+        <h5 class="text">{{ $detail->nama_kereta }}</h5>
+    </header>
+    <div class="container">
+        @forelse ($photo as $item)
+            <div class="photo">
+                @php
+                    $imagePath = public_path('foto/' . $item->foto);
+                @endphp
+                <img src="{{ $imagePath }}" alt="{{ $item->nama_item }}">
+            </div>
+            <p>{{ $item->datetime }}</p>
+            <p>{{ $item->nama_item }}</p>
+        @empty
+            <p>Tidak ada foto</p>
+        @endforelse
+        </div>
 
 </body>
 

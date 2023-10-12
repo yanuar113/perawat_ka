@@ -52,22 +52,27 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {{-- @forelse ($kategoris as $item) --}}
+                                        @forelse ($detail as $item)
                                         <tr>
-                                            {{-- <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->nama_kategori }}</td> --}}
-                                            <td>contoh hari</td>
-                                            <td>contoh hari</td>
-                                            <td>contoh hari</td>
-                                            <td>contoh nama kereta</td>
-                                            <td>contoh tipe laporan</td>
+                                            <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->datetime }}</td>
+                                        <td>{{ $item->nama_kereta }}</td>
+                                        <td>{{ $item->no_kereta }}</td>
+                                        {{-- <td>{{ $item->tipe }}</td> --}}
+                                        <td>
+                                            @if ($item->tipe == '0')
+                                                <span class="badge bg-success">Harian</span>
+                                            @else
+                                                <span class="badge bg-warning">Bulanan</span>
+                                        @endif    
+                                        </td>
                                             <td>
                                                 {{-- <a href="{{route('checksheet.show', $item->id)}}"
                                                 class="btn btn-sm btn-primary mb-1"> --}}
                                                 <a href="" class="btn btn-sm btn-primary mb-1">
                                                     <i class="material-icons">visibility</i>Lihat
                                                 </a>
-                                                <a href="{{ route('photo.print') }}" class="btn btn-sm btn-success mb-1">
+                                                <a href="{{ route('photo.print',$item->id) }}" class="btn btn-sm btn-success mb-1">
                                                     {{-- <a href="" class="btn btn-sm btn-success mb-1"> --}}
                                                     <i class="material-icons">print</i>Cetak
                                                 </a>
@@ -76,11 +81,11 @@
                                                         class="material-icons">delete</i>Hapus</button>
                                             </td>
                                         </tr>
-                                        {{-- @empty --}}
-                                        {{-- <tr>
+                                        @empty
+                                        <tr>
                                         <td colspan="6" class="text-center">Tidak ada data</td>
-                                    </tr> --}}
-                                        {{-- @endforelse --}}
+                                    </tr>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>

@@ -109,8 +109,8 @@
                         Reports
                     </li>
                     <li>
-                        <a href="{{ url('photo') }}" class="{{ $active == 'foto' ? 'active' : '' }}">
-                            <i class="material-icons-two-tone">perm_media</i>Foto</a>
+                        <a href="{{ url('photo') }}" class="{{ $active == 'photo' ? 'active' : '' }}">
+                            <i class="material-icons-two-tone">perm_media</i>Foto Checksheet</a>
                     </li>
                     <li>
                         <a href="#" class="{{ $active == 'laporan' ? 'active' : '' }}">
@@ -155,7 +155,7 @@
                                     <ul class="dropdown-menu dropdown-menu-end"
                                         aria-labelledby="navbarDropdownMenuLink">
                                         <li><a class="dropdown-item" href="#">Profile</a></li>
-                                        <li><a class="dropdown-item" href="#">Logout</a></li>
+                                        <li><a class="dropdown-item" href={{route('logout')}}>Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>
