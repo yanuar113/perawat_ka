@@ -133,7 +133,8 @@
         }
 
         .header-on-fourth-page {
-            position: unset;;
+            position: unset;
+            ;
             top: 0;
             left: 1cm;
             right: 1cm;
@@ -171,7 +172,7 @@
             </tr>
         </table>
     </div>
-    
+
     <table class="kelas">
         <thead>
             <tr>
@@ -199,22 +200,26 @@
                         <td>{{ $list->nama_item }}</td>
                         <td style="text-align: center">
                             @if ($list->dilakukan == '1')
-                                <img class="icon" src="templates/source/assets/images/check-symbol.png" alt="">
+                                <img class="icon" src="templates/source/assets/images/check-symbol.png"
+                                    alt="">
                             @endif
                         </td>
                         <td style="text-align: center">
                             @if ($list->dilakukan == '0')
-                                <img class="icon" src="templates/source/assets/images/check-symbol.png" alt="">
+                                <img class="icon" src="templates/source/assets/images/check-symbol.png"
+                                    alt="">
                             @endif
                         </td>
                         <td style="text-align: center">
                             @if ($list->hasil == '1')
-                                <img class="icon" src="templates/source/assets/images/check-symbol.png" alt="">
+                                <img class="icon" src="templates/source/assets/images/check-symbol.png"
+                                    alt="">
                             @endif
                         </td>
                         <td style="text-align: center">
                             @if ($list->hasil == '0')
-                                <img class="icon" src="templates/source/assets/images/check-symbol.png" alt="">
+                                <img class="icon" src="templates/source/assets/images/check-symbol.png"
+                                    alt="">
                             @endif
                         </td>
                         <td>{{ $list->keterangan }}</td>
@@ -267,16 +272,20 @@
         @forelse ($photo as $item)
             <div class="photo">
                 @php
-                    $imagePath = public_path('foto/' . $item->foto);
+                    $imagePath = 'https://api-pka.herly.tech/foto/' . $item->foto;
+                    $pathToImage = public_path('foto/' . $item->foto);
+                    $type = pathinfo($pathToImage, PATHINFO_EXTENSION);
+                    $data = file_get_contents($pathToImage);
+                    $base64Image = 'data:image/' . $type . ';base64,' . base64_encode($data);
                 @endphp
-                <img src="{{ $imagePath }}" alt="{{ $item->nama_item }}">
+                <img src="{{ $base64Image }}" alt="{{ $item->nama_item }}">
             </div>
             <p>{{ $item->datetime }}</p>
             <p>{{ $item->nama_item }}</p>
         @empty
             <p>Tidak ada foto</p>
         @endforelse
-        </div>
+    </div>
 
 </body>
 

@@ -187,6 +187,7 @@ class ChecksheetController extends Controller
         });
         // dd($categories);
         // dd($detail);
+        // return view('master_checksheet.checksheet.print', compact('detail', 'categories', 'photo'));
         $pdf = Pdf::loadview('master_checksheet.checksheet.print', compact('detail', 'categories', 'photo'));
         $pdf->setPaper('A4', 'potrait');
         $title = $detail->nama_kereta;
