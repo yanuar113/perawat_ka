@@ -198,9 +198,9 @@ class ChecksheetController extends Controller
         $pdf_final = $merger->merge();
 
         $title = $detail->nama_kereta;
-        header("Content-Type: application/pdf");
-        header("Content-Disposition: inline;filename='" . $title . ".pdf'");
-        echo $pdf_final;
+        return response($pdf_final)
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', "inline;filename='$title.pdf'");
     }
 
     public function filter($id)
