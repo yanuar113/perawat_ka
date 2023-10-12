@@ -44,18 +44,18 @@ Route::resource('kategori', KategorisparepartController::class);
 Route::resource('sparepart', SparepartController::class);
 
 // //Checksheet
-Route::resource('kategori_checksheet',KategoriChecksheetController::class);
+Route::resource('kategori_checksheet', KategoriChecksheetController::class);
 //Route::resource('sub_checksheet',SubChecksheetController::class);
-Route::resource('item_checksheet',ItemChecksheetController::class);
-Route::resource('checksheet',ChecksheetController::class);
+Route::resource('item_checksheet', ItemChecksheetController::class);
+Route::resource('checksheet', ChecksheetController::class);
 
 // cetak checksheet
 Route::get('checksheet/print/{id}', [ChecksheetController::class, 'print'])->name('checksheet.print');
 
 //filter
-Route::get('kategori_checksheet/filter/{id}', [KategoriChecksheetController::class,'filter'])->name('kategori_checksheet.filter');
-Route::get('item_checksheet/filter/{id}', [ItemChecksheetController::class,'filter'])->name('item_checksheet.filter');
-Route::get('checksheet/filter/{id}', [ChecksheetController::class,'filter'])->name('checksheet.filter');
+Route::get('kategori_checksheet/filter/{id}', [KategoriChecksheetController::class, 'filter'])->name('kategori_checksheet.filter');
+Route::get('item_checksheet/filter/{id}', [ItemChecksheetController::class, 'filter'])->name('item_checksheet.filter');
+Route::get('checksheet/filter/{id}', [ChecksheetController::class, 'filter'])->name('checksheet.filter');
 
 
 // //Foto
@@ -65,5 +65,3 @@ Route::get('print', [FotoController::class, 'print'])->name('photo.print');
 
 // //Laporan
 // Route::resource('laporan', LaporanController::class);
-
-
