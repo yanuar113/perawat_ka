@@ -12,6 +12,7 @@ use Illuminate\Auth\Events\Validated;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
+use iio\libmergepdf\Merger;
 
 class ChecksheetController extends Controller
 {
@@ -185,12 +186,21 @@ class ChecksheetController extends Controller
             });
             return $item;
         });
-        // dd($categories);
-        // dd($detail);
+
         $pdf = Pdf::loadview('master_checksheet.checksheet.print', compact('detail', 'categories', 'photo'));
         $pdf->setPaper('A4', 'potrait');
+        $pdf2 = Pdf::loadview('master_checksheet.checksheet.print2', compact('detail', 'categories', 'photo'));
+        $pdf2->setPaper('A4', 'potrait');
+        //join pdf 1 dan 2
+        $merger = new Merger;
+        $merger->addRaw($pdf->output());
+        $merger->addRaw($pdf2->output());
+        $pdf_final = $merger->merge();
+
         $title = $detail->nama_kereta;
-        return $pdf->stream('checksheet-' . $title . '.pdf');
+        return response($pdf_final)
+            ->header('Content-Type', 'application/pdf')
+            ->header('Content-Disposition', "inline;filename='$title.pdf'");
     }
 
     public function filter($id)
