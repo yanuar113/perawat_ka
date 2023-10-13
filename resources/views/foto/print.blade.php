@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Print Foto - nama kereta</title>
+    <title>Print Foto - {{ $detail[0]->nama_kereta }}</title>
     <style>
         @page {
             margin: 0px;
@@ -41,7 +41,7 @@
         }
 
         img {
-            width: 40%;
+            /* width: 100%; */
         }
 
         .photo {
@@ -62,20 +62,18 @@
 
 <body>
     <header>
-        <h5>DOKUMENTASI PERAWATAN HARIAN PERIODE SEPTEMBER 2023</h5>
-        <h5>KERETA PERINTIS KRDE MAKASAR-PARE-PARE</h5>
+        <h5>DOKUMENTASI PERAWATAN HARIAN PERIODE {{ $bulan }} {{ $tahun }}</h5>
+        <h5>KERETA {{ strtoupper($detail[0]->nama_kereta) }}</h5>
     </header>
     <div class="container">
         @forelse ($detail as $item)
             <div class="photo">
                 @php
-                    $imagePath = asset('foto/' . $item->foto);
-                    $imageData = base64_encode(file_get_contents($imagePath));
-                    $src = 'data: ' . mime_content_type($imagePath) . ';base64,' . $imageData;
+                    $imagePath = 'https://perawatan-ka.herly.tech/foto/' . $item->foto;
                 @endphp
-                <img src="{{ $imagePath }}" alt="">
+                <img src="{{ $imagePath }}" alt="{{ $item->nama_item }}" width="100%" height="250"
+                    style="object-fit: fill">
             </div>
-            <p>{{ $item->datetime }}</p>
             <p>{{ $item->nama_item }}</p>
         @empty
             <p>Tidak ada foto</p>

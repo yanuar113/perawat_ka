@@ -22,69 +22,32 @@
                                     {{ session()->get('status') }}
                                 </div>
                             @endif
-                            <div class="btn-group mb-3">
-                                <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Pilih Kereta
-                                </button>
-                                {{-- <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <li><a class="dropdown-item" href="{{ route('item_checksheet.index') }}">Semua
-                                        Kereta</a></li>
-                                @foreach ($keretas as $item)
-                                    <li><a class="dropdown-item"
-                                            href="{{ route('item_checksheet.filter', $item->id) }}">{{ $item->nama_kereta }}</a>
-                                    </li>
-                                @endforeach
-                            </ul> --}}
-                            </div>
-                            {{-- <a href="{{ route('kategori.create') }}" class="btn btn-primary mb-3"> --}}
-                            <a href="" class="btn btn btn-primary mb-3"><i class="material-icons">add</i>Tambah</a>
                             <div class="table table-responsive">
                                 <table id="datatable1" class="display" style="width:100%">
                                     <thead>
                                         <tr>
                                             <th>No</th>
-                                            <th>Hari Tanggal</th>
-                                            <th>Kereta</th>
-                                            <th>No Kereta</th>
-                                            <th>Tipe Laporan</th>
+                                            <th>Bulan</th>
                                             <th>Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @forelse ($detail as $item)
-                                        <tr>
-                                            <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->datetime }}</td>
-                                        <td>{{ $item->nama_kereta }}</td>
-                                        <td>{{ $item->no_kereta }}</td>
-                                        {{-- <td>{{ $item->tipe }}</td> --}}
-                                        <td>
-                                            @if ($item->tipe == '0')
-                                                <span class="badge bg-success">Harian</span>
-                                            @else
-                                                <span class="badge bg-warning">Bulanan</span>
-                                        @endif    
-                                        </td>
-                                            <td>
-                                                {{-- <a href="{{route('checksheet.show', $item->id)}}"
-                                                class="btn btn-sm btn-primary mb-1"> --}}
-                                                <a href="" class="btn btn-sm btn-primary mb-1">
-                                                    <i class="material-icons">visibility</i>Lihat
-                                                </a>
-                                                <a href="{{ route('photo.print',$item->id) }}" class="btn btn-sm btn-success mb-1">
-                                                    {{-- <a href="" class="btn btn-sm btn-success mb-1"> --}}
-                                                    <i class="material-icons">print</i>Cetak
-                                                </a>
-                                                <button type="submit" class="btn btn-sm btn-danger" data-bs-toggle="modal"
-                                                    data-bs-target="#exampleModal"><i
-                                                        class="material-icons">delete</i>Hapus</button>
-                                            </td>
-                                        </tr>
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>Checksheet Bulan {{ $item->nama_bulan }}</td>
+                                                <td>
+                                                    <a href="{{ route('photo.print', ['bulan' => $item->month, 'tahun' => $item->year]) }}"
+                                                        class="btn btn-sm btn-success mb-1">
+                                                        {{-- <a href="" class="btn btn-sm btn-success mb-1"> --}}
+                                                        <i class="material-icons">print</i>Cetak
+                                                    </a>
+                                                </td>
+                                            </tr>
                                         @empty
-                                        <tr>
-                                        <td colspan="6" class="text-center">Tidak ada data</td>
-                                    </tr>
+                                            <tr>
+                                                <td colspan="6" class="text-center">Tidak ada data</td>
+                                            </tr>
                                         @endforelse
                                     </tbody>
                                 </table>

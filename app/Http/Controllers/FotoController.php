@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Api\ResponseController;
+use App\Models\Checksheet;
 use App\Models\Detail_checksheet;
 use App\Models\Foto;
 use App\Models\Item_checksheet;
@@ -18,15 +19,25 @@ class FotoController extends Controller
      */
     public function index()
     {
-        $detail = Foto::select('foto.id as foto_id', 'detail_checksheet.*', 'item_checksheet.*', 'checksheet.*', 'master_kereta.nama_kereta', 'checksheet.date_time as datetime')
-        ->join('detail_checksheet', 'foto.id_detail', '=', 'detail_checksheet.id')
-        ->join('item_checksheet', 'detail_checksheet.id_item_checksheet', '=', 'item_checksheet.id')
-        ->join('checksheet', 'detail_checksheet.id_checksheet', '=', 'checksheet.id')
-        ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
-        ->groupBy('master_kereta.nama_kereta')
-        ->get();
-        // dd($detail);
-        $keretas = Kereta::all(); 
+        $detail = Checksheet::all();
+        //groupBy date_time checksheet by month
+        $detail = $detail->map(function ($item) {
+            $item->bulan = Carbon::parse($item->date_time)->translatedFormat('F Y');
+            return $item;
+        });
+        //group by but return array example [{month:1,year:2021},{month:2,year:2021}]
+        $detail = $detail->groupBy('bulan')->map(function ($item) {
+            return [
+                'month' => Carbon::parse($item[0]->date_time)->month,
+                'year' => Carbon::parse($item[0]->date_time)->year,
+                'nama_bulan' => $item[0]->bulan,
+            ];
+        });
+        //remove keys
+        $detail = array_values($detail->toArray());
+        //change to stdClass
+        $detail = json_decode(json_encode($detail));
+        $keretas = Kereta::all();
         $active = 'photo';
         return view('foto.show', compact('active', 'detail', 'keretas'));
     }
@@ -82,24 +93,26 @@ class FotoController extends Controller
     /**
      * Export a PDF and return the print view.
      */
-    public function print()
+    public function print(Request $request)
     {
-        //
-         $detail = Foto::select('foto.*', 'detail_checksheet.*', 'item_checksheet.*', 'checksheet.*', 'master_kereta.nama_kereta', 'checksheet.date_time as datetime')
+        //get bulan & tahun in query params
+        $bulan = $request->bulan;
+        $tahun = $request->tahun;
+        $detail = Foto::select('foto.*', 'item_checksheet.*', 'master_kereta.nama_kereta', 'checksheet.date_time as datetime', 'checksheet.tipe as tipe_laporan')
             ->join('detail_checksheet', 'foto.id_detail', '=', 'detail_checksheet.id')
             ->join('item_checksheet', 'detail_checksheet.id_item_checksheet', '=', 'item_checksheet.id')
             ->join('checksheet', 'detail_checksheet.id_checksheet', '=', 'checksheet.id')
             ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
+            ->whereMonth('checksheet.date_time', $bulan)
+            ->whereYear('checksheet.date_time', $tahun)
             ->get();
 
-        // dd($detail);
-        // foreach ($detail as $item) {
-        //     $item->formatted_date = Carbon::parse($item->date_time)->translatedFormat('d F Y');
-        // }
+        $bulan = strtoupper(Carbon::parse($detail[0]->datetime)->translatedFormat('F'));
+        $tahun = strtoupper(Carbon::parse($detail[0]->datetime)->year);
 
         $active = 'Foto';
-        $pdf = Pdf::loadView('foto.print', compact('active', 'detail'));
+        $pdf = Pdf::loadView('foto.print', compact('active', 'detail', 'bulan', 'tahun'));
         $pdf->setPaper('A4', 'potrait');
-        return $pdf->stream();
+        return $pdf->stream('foto.pdf');
     }
 }

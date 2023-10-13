@@ -104,6 +104,10 @@
         }
 
         @page {
+            margin-left: 1cm;
+        }
+
+        /* @page {
             margin-top: 0.3cm;
             margin-bottom: 2.5cm;
         }
@@ -130,7 +134,7 @@
         @page fourth-page {
             margin-top: 5cm;
             content: "Header on the fourth page content";
-        }
+        } */
 
         .header-on-fourth-page {
             position: unset;
@@ -155,7 +159,7 @@
         </div>
 
         <h3 style="text-align: center;" class="text"> SHEET PERAWATAN {{ $detail->nama_kereta }} <BR> PEMERIKSAAN
-            HARIAN
+            {{ $detail->tipe == '0' ? 'HARIAN' : 'BULANAN' }}
         </h3>
 
         <div class="header-table">
@@ -175,7 +179,7 @@
             </table>
         </div>
 
-        <table class="kelas">
+        <table class="kelas" style="background-color">
             <thead>
                 <tr>
                     <th rowspan="2">No</th>
