@@ -8,8 +8,15 @@
         body {
             font-family: Arial, sans-serif;
             font-size: 13px;
-            margin-top: 0.3cm;
-            /* margin-bottom: 0.3cm; */
+            margin-top: 0.2cm;
+            margin-bottom: 0.3cm;
+            margin-left: 1.5cm;
+        }
+
+        @page{
+            margin-top: 0.2cm;
+            margin-bottom: 0.3cm;
+            margin-left: 1.5cm;
         }
 
         .text {
@@ -20,15 +27,6 @@
             border-collapse: collapse;
             width: 100%;
         }
-
-        /* .kelas {
-            page-break-after: avoid;
-        }
-
-        .kelas tr,
-        .kelas td {
-            page-break-inside: avoid;
-        } */
 
         .kelas th,
         .kelas td {
@@ -54,11 +52,12 @@
         .logo-container {
             display: flex;
             flex-direction: column;
-            margin-bottom: 20px;
+            margin-bottom: 5px;
+            /* background-color: aquamarine */
         }
 
         .logo-container img {
-            margin-bottom: 5px;
+            margin-bottom: 2px;
         }
 
         .icon {
@@ -76,9 +75,9 @@
             height: 2cm;
         }
 
-        h5 {
-            margin: 0px;
-            font-size: 18px;
+        h3 {
+            text-align: center;
+            margin-top: 0;
         }
 
         p {
@@ -101,10 +100,6 @@
             margin-left: 8rem;
             margin-right: 8rem;
             text-align: center;
-        }
-
-        @page {
-            margin-left: 1cm;
         }
 
         /* @page {
@@ -136,14 +131,14 @@
             content: "Header on the fourth page content";
         } */
 
-        .header-on-fourth-page {
+        /* .header-on-fourth-page {
             position: unset;
             ;
             top: 0;
             left: 1cm;
             right: 1cm;
             height: 5cm;
-        }
+        } */
     </style>
 </head>
 
@@ -153,12 +148,12 @@
             <img src="https://assets.kompasiana.com/items/album/2016/05/31/logo-kereta-api-baru-cdr-574d84880123bda309d001d0.png?t=o&v=770"
                 alt="Logo KAI" style="height: 50px;">
             <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Logo_INKA_-_Industri_Kereta_Api_Indonesia.svg"
-                alt="Logo PT INKA" style="height: 50px; margin-top: 1rem; margin-left: 18rem;">
+                alt="Logo PT INKA" style="height: 50px; margin-top: 1rem; margin-left: 18em;">
             <img src="https://imsservice.co.id/assets/logo/logo-md.png" alt="Logo PT IMSS"
                 style="height: 40px; margin-bottom: 1rem;">
         </div>
 
-        <h3 style="text-align: center;" class="text"> SHEET PERAWATAN {{ $detail->nama_kereta }} <BR> PEMERIKSAAN
+        <h3 class="text"> SHEET PERAWATAN {{ $detail->nama_kereta }} <BR> PEMERIKSAAN
             {{ $detail->tipe == '0' ? 'HARIAN' : 'BULANAN' }}
         </h3>
 
@@ -179,7 +174,7 @@
             </table>
         </div>
 
-        <table class="kelas" style="background-color">
+        <table class="kelas">
             <thead>
                 <tr>
                     <th rowspan="2">No</th>
