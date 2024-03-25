@@ -105,6 +105,7 @@ class FotoController extends Controller
             ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
             ->whereMonth('checksheet.date_time', $bulan)
             ->whereYear('checksheet.date_time', $tahun)
+            ->orderBy('item_checksheet.id', 'asc')
             ->get();
 
         $bulan = strtoupper(Carbon::parse($detail[0]->datetime)->translatedFormat('F'));

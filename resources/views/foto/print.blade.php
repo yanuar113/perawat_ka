@@ -69,9 +69,12 @@
         @forelse ($detail as $item)
             <div class="photo">
                 @php
-                    $imagePath = 'https://perawatan-ka.herly.tech/foto/' . $item->foto;
+                    // $imagePath = 'https://perawatan-ka.herly.tech/foto/' . $item->foto;
+                    $gambar = file_get_contents('foto/' . $item->foto);
+                    $gambar = base64_encode($gambar);
+                    $gambar = 'data:image/jpeg;base64,' . $gambar;
                 @endphp
-                <img src="{{ $imagePath }}" alt="{{ $item->nama_item }}" width="100%" height="250"
+                <img src="{{ $gambar }}" alt="{{ $item->nama_item }}" width="100%" height="250"
                     style="object-fit: fill">
             </div>
             <p>{{ $item->nama_item }}</p>
