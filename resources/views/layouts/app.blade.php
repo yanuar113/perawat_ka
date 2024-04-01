@@ -73,7 +73,7 @@
                         <a href="{{ url('kereta') }}" class="{{ $active == 'master_kereta' ? 'active' : '' }}">
                             <i class="material-icons-two-tone">train</i>Master Kereta</a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a class="{{ $active == 'master_sparepart' ? 'active' : '' }}"><i
                                 class="material-icons-two-tone">handyman</i>Master Sparepart<i
                                 class="material-icons has-sub-menu">keyboard_arrow_right</i></a>
@@ -85,7 +85,7 @@
                                 <a href="{{ url('sparepart') }}">Sparepart</a>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li>
                         <a class="{{ $active == 'master_checksheet' ? 'active' : '' }}"><i
                                 class="material-icons-two-tone">save_as</i>Master Checksheet<i
@@ -94,9 +94,9 @@
                             <li>
                                 <a href="{{ url('kategori_checksheet') }}">Kategori Checksheet</a>
                             </li>
-                            <li>
+                            {{-- <li>
                                 <a href="#">Sub Kategori Checksheet</a>
-                            </li>
+                            </li> --}}
                             <li>
                                 <a href="{{ url('item_checksheet') }}">Uraian Pekerjaan</a>
                             </li>
@@ -112,10 +112,10 @@
                         <a href="{{ url('photo') }}" class="{{ $active == 'photo' ? 'active' : '' }}">
                             <i class="material-icons-two-tone">perm_media</i>Foto Checksheet</a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="#" class="{{ $active == 'laporan' ? 'active' : '' }}">
                             <i class="material-icons-two-tone">receipt_long</i>Berita Acara</a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>
@@ -137,6 +137,13 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"> @yield('title')</a>
+                                    @php
+                                        $enc = App\Http\Controllers\Controller::encrypt('solo');
+                                    @endphp
+
+                                    <a href="http://192.168.18.205:8100/autologin?train={{ $enc }}"
+                                        target="_blank">Login to
+                                        webapp</a>
                                 </li>
                             </ul>
 
@@ -155,7 +162,7 @@
                                     <ul class="dropdown-menu dropdown-menu-end"
                                         aria-labelledby="navbarDropdownMenuLink">
                                         <li><a class="dropdown-item" href="#">Profile</a></li>
-                                        <li><a class="dropdown-item" href={{route('logout')}}>Logout</a></li>
+                                        <li><a class="dropdown-item" href={{ route('logout') }}>Logout</a></li>
                                     </ul>
                                 </li>
                             </ul>

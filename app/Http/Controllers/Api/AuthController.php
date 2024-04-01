@@ -44,7 +44,7 @@ class AuthController extends Controller
             if (password_verify($request->password, $user->password)) {
                 $token = $user->createToken('auth_token')->plainTextToken;
                 $response = [
-                    'profile'=> $user,
+                    'profile' => $user,
                     'token' => $token,
                 ];
                 return ResponseController::customResponse(true, 'Login berhasil', $response);
@@ -58,6 +58,21 @@ class AuthController extends Controller
                 ];
                 return ResponseController::customResponse(false, 'Login gagal', $response);
             }
+        }
+    }
+
+    public function autoLogin(Request $request)
+    {
+        $decrypt = $this->decrypt($request->train);
+
+        $user = Kereta::where('username', $decrypt)->first();
+        if ($user) {
+            $token = $user->createToken('auth_token')->plainTextToken;
+            $response = [
+                'profile' => $user,
+                'token' => $token,
+            ];
+            return ResponseController::customResponse(true, 'Login berhasil', $response);
         }
     }
 }
