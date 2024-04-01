@@ -59,14 +59,11 @@ class KategoriController extends Controller
         $authuser = auth()->user();
 
         $data = json_decode($request->getContent(), true);
+
         $rules = [
             'no_kereta' => 'required',
-            'jam_engine' => 'required'
+            'jam_engine' => 'required',
         ];
-
-        if ($request->tipe == 1) {
-            $rules['p'] = 'required';
-        }
 
         $messages = [
             'no_kereta.required' => 'No kereta tidak boleh kosong',
@@ -74,8 +71,10 @@ class KategoriController extends Controller
         ];
 
         if ($request->tipe == 1) {
-            $messages['no_kereta.required'] = 'Kolom ini tidak boleh kosong';
+            $rules['p'] = 'required';
+            $messages['p.required'] = 'Kolom ini tidak boleh kosong';
         }
+
 
         $validator = Validator::make($data, $rules, $messages);
 
@@ -85,7 +84,8 @@ class KategoriController extends Controller
                 'validation' => true,
                 'message' => [
                     'no_kereta' => $response->first('no_kereta') != '' ? $response->first('no_kereta') : null,
-                    'jam_engine' => $response->first('jam_engine') != '' ? $response->first('jam_engine') : null
+                    'jam_engine' => $response->first('jam_engine') != '' ? $response->first('jam_engine') : null,
+                    'p' => $response->first('p') != '' ? $response->first('p') : null
                 ],
             ];
             return ResponseController::customResponse(false, 'Gagal menambahkan Checksheet!', $response);
