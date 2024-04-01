@@ -1,3 +1,7 @@
+@php
+    $enc = App\Http\Controllers\Controller::encrypt('solo');
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -116,6 +120,13 @@
                         <a href="#" class="{{ $active == 'laporan' ? 'active' : '' }}">
                             <i class="material-icons-two-tone">receipt_long</i>Berita Acara</a>
                     </li> --}}
+                    <li class="sidebar-title">
+                        Webapp
+                    </li>
+                    <li>
+                        <a href="http://192.168.18.205:8100/autologin?train={{ $enc }}" target="_blank">
+                            <i class="material-icons-two-tone">smartphone</i>Login Webapp</a>
+                    </li>
                 </ul>
             </div>
         </div>
@@ -137,13 +148,6 @@
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"> @yield('title')</a>
-                                    @php
-                                        $enc = App\Http\Controllers\Controller::encrypt('solo');
-                                    @endphp
-
-                                    <a href="http://192.168.18.205:8100/autologin?train={{ $enc }}"
-                                        target="_blank">Login to
-                                        webapp</a>
                                 </li>
                             </ul>
 
