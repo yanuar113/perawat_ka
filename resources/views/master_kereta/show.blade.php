@@ -24,8 +24,8 @@
                                     {{ session()->get('status') }}
                                 </div>
                             @endif
-                            <a href="{{ route('kereta.create') }}" id="addButton" class="btn btn-primary mb-3"><i
-                                    class="material-icons">add</i>Tambah</a>
+                            {{-- <a href="{{ route('kereta.create') }}" id="addButton" class="btn btn-primary mb-3"><i
+                                    class="material-icons">add</i>Tambah</a> --}}
                             <div class="table table-responsive">
                                 <table id="datatable1" class="display" style="width:100%">
                                     <thead>
@@ -33,7 +33,7 @@
                                             <th>No</th>
                                             <th>Nama Kereta</th>
                                             <th>Username</th>
-                                            <th>Foto</th>
+                                            {{-- <th>Foto</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -42,8 +42,8 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->nama_kereta }}</td>
                                                 <td>{{ $item->username }}</td>
-                                                <td><img src="{{ asset('img/' . $item->foto) }}" alt=""
-                                                        width="100px"></td>
+                                                {{-- <td><img src="{{ asset('img/' . $item->foto) }}" alt=""
+                                                        width="100px"></td> --}}
                                             </tr>
                                         @empty
                                             <tr>
