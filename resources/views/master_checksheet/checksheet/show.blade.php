@@ -64,7 +64,7 @@
                                                     @if ($item->tipe == '0')
                                                         <span class="badge bg-success">Harian</span>
                                                     @else
-                                                        <span class="badge bg-warning">P1</span>
+                                                        <span class="badge bg-warning">{{ $item->p }}</span>
                                                     @endif
                                                 </td>
                                                 <td>{{ $item->jam_engine }}</td>

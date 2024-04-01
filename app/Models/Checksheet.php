@@ -15,6 +15,7 @@ class Checksheet extends Model
         'no_kereta',
         'tipe',
         'jam_engine',
-        'is_so'
+        'is_so',
+        'p'
     ];
 }
