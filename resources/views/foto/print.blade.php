@@ -69,10 +69,11 @@
         @forelse ($detail as $item)
             <div class="photo">
                 @php
-                    $gambar = 'https://pka.dotech.cfd/public/foto/' . $item->foto;
-                    // $gambar = file_get_contents('foto/' . $item->foto);
-                    // $gambar = base64_encode($gambar);
-                    // $gambar = 'data:image/jpeg;base64,' . $gambar;
+                    // $gambar = 'https://pka.dotech.cfd/public/foto/' . $item->foto;
+                    $filePath = public_path('foto/' . $item->foto);
+                    $gambar = file_get_contents($filePath);
+                    $gambar = base64_encode($gambar);
+                    $gambar = 'data:image/jpeg;base64,' . $gambar;
                 @endphp
                 <img src="{{ $gambar }}" alt="{{ $item->nama_item }}" width="100%" height="250"
                     style="object-fit: fill">
