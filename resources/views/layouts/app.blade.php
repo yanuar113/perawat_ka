@@ -1,5 +1,6 @@
 @php
-    $enc = App\Http\Controllers\Controller::encrypt('solo');
+    $auth = auth()->user();
+    $enc = App\Http\Controllers\Controller::encrypt($auth->nip);
 @endphp
 
 <!DOCTYPE html>
@@ -124,7 +125,7 @@
                         Webapp
                     </li>
                     <li>
-                        <a href="http://192.168.18.205:8100/autologin?train={{ $enc }}" target="_blank">
+                        <a href="http://localhost:8100/autologin?nip={{ $enc }}" target="_blank">
                             <i class="material-icons-two-tone">smartphone</i>Login Webapp</a>
                     </li>
                 </ul>

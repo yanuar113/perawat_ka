@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\Kereta;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -13,14 +14,14 @@ class AuthController extends Controller
     {
         $data = json_decode($request->getContent(), true);
         $rules = [
-            'username' => 'required|exists:master_kereta,username',
+            'nip' => 'required|exists:users,nip',
             'password' => 'required|min:3'
         ];
 
         $messages = [
-            'username.required' => 'username tidak boleh kosong',
-            'username.username' => 'username tidak valid',
-            'username.exists' => 'username tidak terdaftar',
+            'nip.required' => 'NIP tidak boleh kosong',
+            'nip.nip' => 'NIP tidak valid',
+            'nip.exists' => 'NIP tidak terdaftar',
             'password.required' => 'Password tidak boleh kosong',
             'password.min' => 'Password minimal 3 karakter'
         ];
@@ -32,17 +33,18 @@ class AuthController extends Controller
             $response = [
                 'validation' => true,
                 'message' => [
-                    'username' => $response->first('username') != '' ? $response->first('username') : null,
+                    'nip' => $response->first('nip') != '' ? $response->first('nip') : null,
                     'password' => $response->first('password') != '' ? $response->first('password') : null
                 ],
             ];
             return ResponseController::customResponse(false, 'Login gagal',  $response);
         }
 
-        $user = Kereta::where('username', $request->username)->first();
+        $user = User::where('nip', $request->nip)->first();
         if ($user) {
             if (password_verify($request->password, $user->password)) {
                 $token = $user->createToken('auth_token')->plainTextToken;
+                $user->train = Kereta::first();
                 $response = [
                     'profile' => $user,
                     'token' => $token,
@@ -52,7 +54,7 @@ class AuthController extends Controller
                 $response = [
                     'validation' => true,
                     'message' => [
-                        'username' => null,
+                        'nip' => null,
                         'password' => 'Password salah'
                     ],
                 ];
@@ -63,11 +65,12 @@ class AuthController extends Controller
 
     public function autoLogin(Request $request)
     {
-        $decrypt = $this->decrypt($request->train);
+        $decrypt = $this->decrypt($request->nip);
 
-        $user = Kereta::where('username', $decrypt)->first();
+        $user = User::where('nip', $decrypt)->first();
         if ($user) {
             $token = $user->createToken('auth_token')->plainTextToken;
+            $user->train = Kereta::first();
             $response = [
                 'profile' => $user,
                 'token' => $token,
