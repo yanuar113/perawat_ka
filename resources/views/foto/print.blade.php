@@ -69,8 +69,8 @@
         @forelse ($detail as $item)
             <div class="photo">
                 @php
-                    // $imagePath = 'https://perawatan-ka.herly.tech/foto/' . $item->foto;
-                    $gambar = file_get_contents('foto/' . $item->foto);
+                    $imagePath = 'https://pka.dotech.cfd/public/foto/' . $item->foto;
+                    // $gambar = file_get_contents('foto/' . $item->foto);
                     $gambar = base64_encode($gambar);
                     $gambar = 'data:image/jpeg;base64,' . $gambar;
                 @endphp
