@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\Checksheet;
 use App\Models\Detail_checksheet;
 use App\Models\Foto;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ChecksheetController extends Controller
 {
@@ -84,6 +86,32 @@ class ChecksheetController extends Controller
             $datas = $datas->whereYear('created_at', $request->tahun);
         }
         $datas = $datas->get();
+
+        return ResponseController::customResponse(true, 'Berhasil mengambil data!', $datas);
+    }
+
+    public function getHistoryFoto()
+    {
+        $authuser = auth()->user();
+        $datas = Checksheet::where('id_user', $authuser->id)->get();
+        //groupBy date_time checksheet by month
+        $datas = $datas->map(function ($item) {
+            $item->bulan = Carbon::parse($item->date_time)->translatedFormat('F Y');
+            return $item;
+        });
+        //group by but return array example [{month:1,year:2021},{month:2,year:2021}]
+        $datas = $datas->groupBy('bulan')->map(function ($item) {
+            return [
+                'id' => Str::uuid(),
+                'month' => Carbon::parse($item[0]->date_time)->month,
+                'year' => Carbon::parse($item[0]->date_time)->year,
+                'nama_bulan' => $item[0]->bulan,
+            ];
+        });
+        //remove keys
+        $datas = array_values($datas->toArray());
+        //change to stdClass
+        $datas = json_decode(json_encode($datas));
 
         return ResponseController::customResponse(true, 'Berhasil mengambil data!', $datas);
     }
