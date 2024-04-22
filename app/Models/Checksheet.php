@@ -11,6 +11,7 @@ class Checksheet extends Model
     protected $table = 'checksheet';
     protected $fillable = [
         'id_kereta',
+        'id_user',
         'date_time',
         'no_kereta',
         'tipe',

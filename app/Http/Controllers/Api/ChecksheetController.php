@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Checksheet;
 use App\Models\Detail_checksheet;
 use App\Models\Foto;
 use Illuminate\Http\Request;
@@ -67,5 +68,20 @@ class ChecksheetController extends Controller
 
         $foto->delete();
         return ResponseController::customResponse(true, 'Berhasil menghapus foto!', $foto);
+    }
+
+    public function getHistory(Request $request)
+    {
+        $authuser = auth()->user();
+        $datas = Checksheet::where('id_user', $authuser->id)
+            ->where('tipe', $request->tipe)
+            ->orderBy('id', 'desc');
+
+        if ($request->tipe == 0) {
+            $datas = $datas->whereMonth('created_at', $request->bulan);
+        }
+        $datas = $datas->get();
+
+        return ResponseController::customResponse(true, 'Berhasil mengambil data!', $datas);
     }
 }
