@@ -146,7 +146,7 @@ class ChecksheetController extends Controller
             return ResponseController::customResponse(false, 'Gagal mengubah status SO/TSO!', $response);
         }
 
-        $data = Checksheet::where('id', $request->id)
+        $data = Checksheet::where('id', $request->id_checksheet)
             ->update([
                 'is_so' => $request->so,
             ]);
