@@ -78,7 +78,10 @@ class ChecksheetController extends Controller
             ->orderBy('id', 'desc');
 
         if ($request->tipe == 0) {
-            $datas = $datas->whereMonth('created_at', $request->bulan);
+            $datas = $datas->whereMonth('created_at', $request->bulan)
+                ->whereYear('created_at', $request->tahun);
+        } else {
+            $datas = $datas->whereYear('created_at', $request->tahun);
         }
         $datas = $datas->get();
 
