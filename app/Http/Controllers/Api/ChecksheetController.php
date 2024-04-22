@@ -130,7 +130,7 @@ class ChecksheetController extends Controller
         ];
 
         $messages = [
-            'so.required' => 'Status tidak boleh kosong',
+            'so.required' => 'Status SO/TSO tidak boleh kosong',
         ];
 
         $validator = Validator::make($data, $rules, $messages);
