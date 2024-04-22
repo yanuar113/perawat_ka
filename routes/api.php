@@ -33,6 +33,7 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('detail-checksheet', [App\Http\Controllers\Api\ChecksheetController::class, 'createDetailChecksheet']);
     Route::post('history', [App\Http\Controllers\Api\ChecksheetController::class, 'getHistory']);
     Route::post('foto', [App\Http\Controllers\Api\ChecksheetController::class, 'getHistoryFoto']);
+    Route::post('so', [App\Http\Controllers\Api\ChecksheetController::class, 'changeSO']);
 });
 Route::post('upload-foto', [App\Http\Controllers\Api\ChecksheetController::class, 'uploadFoto']);
 Route::post('remove-foto', [App\Http\Controllers\Api\ChecksheetController::class, 'removeFoto']);

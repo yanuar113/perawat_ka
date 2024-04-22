@@ -8,6 +8,7 @@ use App\Models\Detail_checksheet;
 use App\Models\Foto;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
 
 class ChecksheetController extends Controller
@@ -118,5 +119,38 @@ class ChecksheetController extends Controller
         $datas = json_decode(json_encode($datas));
 
         return ResponseController::customResponse(true, 'Berhasil mengambil data!', $datas);
+    }
+
+    public function changeSO(Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $rules = [
+            'so' => 'required',
+        ];
+
+        $messages = [
+            'so.required' => 'Status tidak boleh kosong',
+        ];
+
+        $validator = Validator::make($data, $rules, $messages);
+
+        if ($validator->fails()) {
+            $response = $validator->messages();
+            $response = [
+                'validation' => true,
+                'message' => [
+                    'so' => $response->first('so') != '' ? $response->first('so') : null,
+                ],
+            ];
+            return ResponseController::customResponse(false, 'Gagal mengubah status SO/TSO!', $response);
+        }
+
+        $data = Checksheet::where('id', $request->id)
+            ->update([
+                'is_so' => $request->so,
+            ]);
+
+        return ResponseController::customResponse(true, 'Berhasil mengubah status SO/TSO!', $data);
     }
 }
