@@ -90,10 +90,14 @@ class ChecksheetController extends Controller
         return ResponseController::customResponse(true, 'Berhasil mengambil data!', $datas);
     }
 
-    public function getHistoryFoto()
+    public function getHistoryFoto(Request $request)
     {
         $authuser = auth()->user();
-        $datas = Checksheet::where('id_user', $authuser->id)->get();
+        $datas = Checksheet::where('id_user', $authuser->id);
+        if ($request->tahun) {
+            $datas = $datas->whereYear('created_at', $request->tahun);
+        }
+        $datas = $datas->get();
         //groupBy date_time checksheet by month
         $datas = $datas->map(function ($item) {
             $item->bulan = Carbon::parse($item->date_time)->translatedFormat('F Y');
