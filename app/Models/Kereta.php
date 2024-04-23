@@ -15,6 +15,7 @@ class Kereta extends Model
         'username',
         'password',
         'nama_kereta',
+        'nomor_kereta',
         'foto'
     ];
 }

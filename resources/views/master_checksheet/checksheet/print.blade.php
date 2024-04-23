@@ -145,12 +145,16 @@
 <body>
     <div>
         <div class="logo-container">
-            <img src="{{ asset('templates/source/assets/images/inka-border.png') }}"
-                alt="Logo KAI" style="height: 50px;">
-            <img src="{{ asset('templates/source/assets/images/logo_inka.png') }}"
-                alt="Logo PT INKA" style="height: 50px; margin-top: 1rem; margin-left: 18em;">
-            <img src="{{ asset('templates/source/assets/images/inka-border.png') }}" alt="Logo PT IMSS"
-                style="height: 40px; margin-bottom: 1rem;">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Logo_PT_Kereta_Api_Indonesia_%28Persero%29_2020.svg/768px-Logo_PT_Kereta_Api_Indonesia_%28Persero%29_2020.svg.png"
+                alt="Logo KAI" style="height: 40px;">
+            {{-- <img src="{{ asset('templates/source/assets/images/inka-border.png') }}"
+                alt="Logo KAI" style="height: 50px;"> --}}
+            {{-- <img src="{{ asset('templates/source/assets/images/logo_inka.png') }}"
+                alt="Logo PT INKA" style="height: 50px; margin-top: 1rem; margin-left: 18em;"> --}}
+            {{-- <img src="{{ asset('templates/source/assets/images/inka-border.png') }}" alt="Logo PT IMSS"
+                style="height: 40px; margin-bottom: 1rem;"> --}}
+            <img src="https://imsservice.co.id/assets/inka-border.png" alt="Logo PT IMSS"
+                style="height: 40px; margin-left: 30em; margin-bottom: 1rem;">
         </div>
 
         <h3 class="text"> SHEET PERAWATAN {{ $detail->nama_kereta }} <BR> PEMERIKSAAN
@@ -235,17 +239,19 @@
             @endforeach
         </table>
 
+        <h4 class="mt-4">Setelah dilakukan pemeriksaan dinyatakan kereta : SO/TSO</h4>
+
         <table style="margin-top: 5rem;">
             <tr style="text-align: center;">
                 <td>Mengetahui:</td>
                 <td>SPV RUAS LUAR</td>
-                <td>PM PERAWATAN KA</td>
+                {{-- <td>PM PERAWATAN KA</td> --}}
                 <td>TEKNISI</td>
             </tr>
             <tr style="text-align: center;">
                 <td>Assman. UPT Depo Lok Solo</td>
                 <td>UPT Depo Lok Solo</td>
-                <td>PT Inka Multi Solusi service</td>
+                {{-- <td>PT Inka Multi Solusi service</td> --}}
                 <td>PT Inka Multi Solusi service</td>
             </tr>
             <tr>
@@ -257,7 +263,7 @@
             <tr style="text-align: center;">
                 <td><span class="underline">SUHANA SENJAYA</span></td>
                 <td><span class="underline">TRI WIYONO</span></td>
-                <td><span class="underline">____________</span> </td>
+                {{-- <td><span class="underline">____________</span> </td> --}}
                 <td><span class="underline">____________</span></td>
             </tr>
             <tr>

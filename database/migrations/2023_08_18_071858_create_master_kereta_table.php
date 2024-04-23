@@ -13,9 +13,10 @@ return new class extends Migration
     {
         Schema::create('master_kereta', function (Blueprint $table) {
             $table->id();
-            $table->string('username');
-            $table->string('password');
+            $table->string('username')->nullable();
+            $table->string('password')->nullable();
             $table->string('nama_kereta');
+            $table->string('nomor_kereta');
             $table->text('foto')->nullable();
             $table->timestamps();
         });

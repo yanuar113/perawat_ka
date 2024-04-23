@@ -25,13 +25,32 @@
                                         @csrf
                                         <div class="form-group">
                                             <label for="nama_kereta">Nama Kereta</label>
-                                            <input type="text" id="nama_kereta" class="form-control" placeholder="Masukkan nama kereta"
-                                                name="nama_kereta">
+                                            <input type="text" id="nama_kereta" class="form-control"
+                                                placeholder="Masukkan nama kereta" name="nama_kereta">
                                             @error('nama_kereta')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
                                         </div>
                                         <div class="form-group">
+                                            <label for="nomor_kereta" class="col-sm-2 col-form-label">Nomor Kereta</label>
+                                            <div class="row">
+                                                <div class="col-sm-10">
+                                                    <input type="text" id="nomor_kereta" class="form-control "
+                                                        placeholder="Masukkan Nomor Kereta " name="nomor_kereta[]" multiple>
+                                                    @error('nomor_kereta')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <a class="btn btn-primary" id="tambah-nomor-kereta"
+                                                        onclick="tambahNomorKereta()">
+                                                        <i class="material-icons">add</i> Tambah
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        {{-- <div class="form-group">
                                             <label for="username">Username</label>
                                             <input type="text" id="username" class="form-control" placeholder="Masukkan username"
                                                 name="username">
@@ -43,7 +62,6 @@
                                             <label for="password">Password</label>
                                             <input type="text" id="password" class="form-control" placeholder="Masukkan password"
                                                 name="password">
-                                                {{-- create hash password --}}
                                             @error('password')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -55,7 +73,7 @@
                                             @error('foto')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
-                                        </div>
+                                        </div> --}}
                                     </form>
                                 </div>
                             </div>
@@ -67,11 +85,25 @@
                                         class="bi bi-x-circle me-2"></i>
                                     Batal</a>
                             </div>
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    </div>
+    <script>
+        function tambahNomorKereta() {
+            $('#nomor_kereta').after(
+                '<div class="mt-2 d-flex align-items-center" id="opsi-nomor">' +
+                '<input type="text" class="form-control" id="nomor_kereta_add" name="nomor_kereta[]" multiple>' +
+                '<a class="btn btn-danger m-1" id="hapus-nomor" onclick="hapusNomor()"><i class="material-icons">delete</i></a>' +
+                '</div>');
+        }
+
+        function hapusNomor(){
+            $('#nomor_kereta_add').remove();
+            $('#hapus-nomor').remove();
+        }
+    </script>
 @endsection

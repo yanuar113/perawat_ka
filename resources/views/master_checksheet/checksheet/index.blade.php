@@ -46,9 +46,11 @@
                                             <th>No</th>
                                             <th>Hari Tanggal</th>
                                             <th>Nama Kereta</th>
-                                            <th>No Kereta</th>
+                                            {{-- <th>No Kereta</th> --}}
                                             <th>Tipe Laporan</th>
-                                            <th>Jam Engine</th>
+                                            {{-- <th>Jam Engine</th> --}}
+                                            <th>Assman UPT</th>
+                                            <th>SPV UPT</th>
                                             <th>Dibuat Oleh</th>
                                             <th>Aksi</th>
                                         </tr>
@@ -59,7 +61,7 @@
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->date_time }}</td>
                                                 <td>{{ $item->nama_kereta }}</td>
-                                                <td>{{ $item->no_kereta }}</td>
+                                                {{-- <td>{{ $item->no_kereta }}</td> --}}
                                                 <td style="text-align: center">
                                                     {{-- {{$item->tipe == 0 ? "Harian":"P1"}} --}}
                                                     @if ($item->tipe == '0')
@@ -68,7 +70,9 @@
                                                         <span class="badge bg-warning">{{ $item->p }}</span>
                                                     @endif
                                                 </td>
-                                                <td>{{ $item->jam_engine }}</td>
+                                                {{-- <td>{{ $item->jam_engine }}</td> --}}
+                                                <td>nama asman</td>
+                                                <td>nama spv</td>
                                                 <td>{{ $item->name }}</td>
                                                 <td>
                                                     <a href="{{ route('checksheet.show', $item->id) }}"
