@@ -81,7 +81,7 @@ class ChecksheetController extends Controller
         $watermarkText = $request->date;
         $width = $image->width();
         $height = $image->height();
-        $fontSize = 26;
+        $fontSize = $width / 22;
         $margin = 25; // Margin from the edges
         $positionX = $width - strlen($watermarkText) - $margin;
         $positionY = $height - $margin;
@@ -117,10 +117,10 @@ class ChecksheetController extends Controller
 
         // dd($mark, $filename);
 
-        Foto::create([
-            'id_detail' => $id_detail_checksheet,
-            'foto' => $mark,
-        ]);
+        // Foto::create([
+        //     'id_detail' => $id_detail_checksheet,
+        //     'foto' => $mark,
+        // ]);
 
         return ResponseController::customResponse(true, 'Berhasil upload foto!', $mark);
     }
