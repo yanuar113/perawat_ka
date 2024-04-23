@@ -145,11 +145,11 @@
 <body>
     <div>
         <div class="logo-container">
-            <img src="https://assets.kompasiana.com/items/album/2016/05/31/logo-kereta-api-baru-cdr-574d84880123bda309d001d0.png?t=o&v=770"
+            <img src="{{ asset('templates/source/assets/images/inka-border.png') }}"
                 alt="Logo KAI" style="height: 50px;">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/f/f4/Logo_INKA_-_Industri_Kereta_Api_Indonesia.svg"
+            <img src="{{ asset('templates/source/assets/images/logo_inka.png') }}"
                 alt="Logo PT INKA" style="height: 50px; margin-top: 1rem; margin-left: 18em;">
-            <img src="https://imsservice.co.id/assets/logo/logo-md.png" alt="Logo PT IMSS"
+            <img src="{{ asset('templates/source/assets/images/inka-border.png') }}" alt="Logo PT IMSS"
                 style="height: 40px; margin-bottom: 1rem;">
         </div>
 

@@ -24,7 +24,7 @@
                                     {{ session()->get('status') }}
                                 </div>
                             @endif
-                            <div class="btn-group mb-3">
+                            {{-- <div class="btn-group mb-3">
                                 <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
                                     Pilih Kereta
                                 </button>
@@ -34,7 +34,7 @@
                                     <li><a class="dropdown-item" href="{{ route('kategori_checksheet.filter', $item->id) }}">{{ $item->nama_kereta }}</a></li>
                                     @endforeach
                                 </ul>
-                            </div>
+                            </div> --}}
                             
                             <a href="{{route('kategori_checksheet.create')}}" id="addButton" class="btn btn-primary mb-3"><i class="material-icons">add</i>Tambah</a>
                             <div class="table table-responsive">

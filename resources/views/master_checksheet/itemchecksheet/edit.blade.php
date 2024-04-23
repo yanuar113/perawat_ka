@@ -20,7 +20,7 @@
                             <div class="card-body">
                                 <div class="card-content">
                                     <form method="POST" action="{{ route('item_checksheet.update', $items->id) }}" autocomplete="off"
-                                        id="form-tambah-kereta">
+                                        id="form-edit-pekerjaan">
                                         {{-- create input with csrf token and bootstrap class --}}
                                         @csrf
                                         @method('put')

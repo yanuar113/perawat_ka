@@ -9,6 +9,7 @@ use App\Http\Controllers\KategoriChecksheetController;
 use App\Http\Controllers\KategorisparepartController;
 use App\Http\Controllers\KeretaController;
 use App\Http\Controllers\SparepartController;
+use App\Http\Controllers\UserController;
 use App\Models\Kategori_checksheet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;

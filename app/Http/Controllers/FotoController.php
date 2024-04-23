@@ -39,7 +39,7 @@ class FotoController extends Controller
         $detail = json_decode(json_encode($detail));
         $keretas = Kereta::all();
         $active = 'photo';
-        return view('foto.show', compact('active', 'detail', 'keretas'));
+        return view('foto.index', compact('active', 'detail', 'keretas'));
     }
 
     /**

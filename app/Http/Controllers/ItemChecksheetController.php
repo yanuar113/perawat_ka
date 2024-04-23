@@ -21,7 +21,7 @@ class ItemChecksheetController extends Controller
             ->get();
         $keretas = Kereta::all();
         $active = 'master_checksheet';
-        return view('master_checksheet.itemchecksheet.show', compact('active', 'items', 'keretas'));
+        return view('master_checksheet.itemchecksheet.index', compact('active', 'items', 'keretas'));
     }
 
     /**
@@ -119,6 +119,6 @@ class ItemChecksheetController extends Controller
         ->get();
         $keretas = Kereta::all();
         $active = 'master_checksheet';
-        return view('master_checksheet.itemchecksheet.show', compact('items', 'keretas', 'active'));
+        return view('master_checksheet.itemchecksheet.index', compact('items', 'keretas', 'active'));
     }
 }
