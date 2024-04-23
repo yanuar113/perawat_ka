@@ -10,6 +10,10 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
+// use Intervention\Image\Image as Image;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Typography\FontFactory;
 
 class ChecksheetController extends Controller
 {
@@ -57,6 +61,64 @@ class ChecksheetController extends Controller
         ]);
 
         return ResponseController::customResponse(true, 'Berhasil upload foto!', $filename);
+    }
+
+    public function uploadFotov2(Request $request)
+    {
+        $id_detail_checksheet = $request->id_detail_checksheet;
+        $file = $request->file('file');
+        $extension = $file->getClientOriginalExtension();
+
+        $timestamp = now()->timestamp;
+        $filename = $timestamp . '.' . $extension;
+
+        $file->move(public_path('foto'), $filename);
+
+        // read image from file system
+        $image = ImageManager::gd()->read('foto/' . $filename);
+
+        $watermarkText = $request->date;
+        $width = $image->width();
+        $height = $image->height();
+        $fontSize = 16;
+        $margin = 20; // Margin from the edges
+        $positionX = $width - strlen($watermarkText) - $margin;
+        $positionY = $height - $margin;
+
+        $watermarkText2 = $request->location;
+        $positionX2 = $width - strlen($watermarkText) - $margin;
+        $positionY2 = $height - ($margin * 2);
+
+
+        $mark = $timestamp . '_mark.' . $extension;
+
+        $image->text($watermarkText, $positionX2, $positionY2, function (FontFactory $font) use ($fontSize) {
+            $font->filename('./fonts/ubuntu-medium.ttf');
+            $font->size($fontSize);
+            $font->color('fff');
+            $font->align('right'); // Align the text to the right
+            $font->valign('bottom'); // Align the text to the bottom
+        });
+
+        $image->text($watermarkText2, $positionX, $positionY, function (FontFactory $font) use ($fontSize) {
+            $font->filename('./fonts/ubuntu-medium.ttf');
+            $font->size($fontSize);
+            $font->color('fff');
+            $font->align('right'); // Align the text to the right
+            $font->valign('bottom'); // Align the text to the bottom
+        });
+
+        // save modified image in new format
+        $image->toPng()->save('foto/' . $mark);
+
+        // dd($mark, $filename);
+
+        Foto::create([
+            'id_detail' => $id_detail_checksheet,
+            'foto' => $mark,
+        ]);
+
+        return ResponseController::customResponse(true, 'Berhasil upload foto!', $mark);
     }
 
     public function removeFoto(Request $request)
