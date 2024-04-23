@@ -3,9 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Checksheet;
 use App\Models\Detail_checksheet;
 use App\Models\Foto;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class ChecksheetController extends Controller
 {
@@ -67,5 +71,89 @@ class ChecksheetController extends Controller
 
         $foto->delete();
         return ResponseController::customResponse(true, 'Berhasil menghapus foto!', $foto);
+    }
+
+    public function getHistory(Request $request)
+    {
+        $authuser = auth()->user();
+        $datas = Checksheet::where('id_user', $authuser->id)
+            ->orderBy('id', 'desc');
+
+        if ($request->tipe) {
+            $datas = $datas->where('tipe', $request->tipe);
+        }
+
+        if ($request->tipe == 0) {
+            $datas = $datas->whereMonth('created_at', $request->bulan)
+                ->whereYear('created_at', $request->tahun);
+        } else {
+            $datas = $datas->whereYear('created_at', $request->tahun);
+        }
+        $datas = $datas->get();
+
+        return ResponseController::customResponse(true, 'Berhasil mengambil data!', $datas);
+    }
+
+    public function getHistoryFoto(Request $request)
+    {
+        $authuser = auth()->user();
+        $datas = Checksheet::where('id_user', $authuser->id);
+        if ($request->tahun) {
+            $datas = $datas->whereYear('created_at', $request->tahun);
+        }
+        $datas = $datas->get();
+        //groupBy date_time checksheet by month
+        $datas = $datas->map(function ($item) {
+            $item->bulan = Carbon::parse($item->date_time)->translatedFormat('F Y');
+            return $item;
+        });
+        //group by but return array example [{month:1,year:2021},{month:2,year:2021}]
+        $datas = $datas->groupBy('bulan')->map(function ($item) {
+            return [
+                'id' => Str::uuid(),
+                'month' => Carbon::parse($item[0]->date_time)->month,
+                'year' => Carbon::parse($item[0]->date_time)->year,
+                'nama_bulan' => $item[0]->bulan,
+            ];
+        });
+        //remove keys
+        $datas = array_values($datas->toArray());
+        //change to stdClass
+        $datas = json_decode(json_encode($datas));
+
+        return ResponseController::customResponse(true, 'Berhasil mengambil data!', $datas);
+    }
+
+    public function changeSO(Request $request)
+    {
+        $data = json_decode($request->getContent(), true);
+
+        $rules = [
+            'so' => 'required',
+        ];
+
+        $messages = [
+            'so.required' => 'Status SO/TSO tidak boleh kosong',
+        ];
+
+        $validator = Validator::make($data, $rules, $messages);
+
+        if ($validator->fails()) {
+            $response = $validator->messages();
+            $response = [
+                'validation' => true,
+                'message' => [
+                    'so' => $response->first('so') != '' ? $response->first('so') : null,
+                ],
+            ];
+            return ResponseController::customResponse(false, 'Gagal mengubah status SO/TSO!', $response);
+        }
+
+        $data = Checksheet::where('id', $request->id_checksheet)
+            ->update([
+                'is_so' => $request->so,
+            ]);
+
+        return ResponseController::customResponse(true, 'Berhasil mengubah status SO/TSO!', $data);
     }
 }

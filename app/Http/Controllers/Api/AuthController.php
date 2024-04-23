@@ -44,7 +44,7 @@ class AuthController extends Controller
         if ($user) {
             if (password_verify($request->password, $user->password)) {
                 $token = $user->createToken('auth_token')->plainTextToken;
-                $user->train = Kereta::first();
+                $user->train = Kereta::where('id', $user->id_kereta)->first();
                 $response = [
                     'profile' => $user,
                     'token' => $token,
@@ -70,7 +70,7 @@ class AuthController extends Controller
         $user = User::where('nip', $decrypt)->first();
         if ($user) {
             $token = $user->createToken('auth_token')->plainTextToken;
-            $user->train = Kereta::first();
+            $user->train = Kereta::where('id', $user->id_kereta)->first();
             $response = [
                 'profile' => $user,
                 'token' => $token,

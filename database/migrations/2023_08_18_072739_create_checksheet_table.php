@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('checksheet', function (Blueprint $table) {
             $table->id();
             $table->integer('id_kereta');
+            $table->integer('id_user');
             $table->dateTime('date_time');
             $table->string('no_kereta');
             $table->string('tipe');
