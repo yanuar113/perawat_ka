@@ -38,7 +38,7 @@
                                     @endforeach
                                 </ul>
                             </div> --}}
-                            <a href="{{route('checksheet.create')}}" class="btn btn-primary mb-3"><i class="material-icons">add</i>Tambah</a>
+                            <a href="{{route('user.create')}}" class="btn btn-primary mb-3"><i class="material-icons">add</i>Tambah</a>
                             <div class="table table-responsive">
                                 <table id="datatable1" class="display" style="width:100%">
                                     <thead>
@@ -62,7 +62,7 @@
                                                 <td>{{ $item->email }}</td>
                                                 <td>{{ $item->nama_kereta }}</td>
                                                 <td>
-                                                    <a href="{{ route('checksheet.print', $item->id) }}"
+                                                    <a href="{{ route('user.edit', $item->id) }}"
                                                         class="btn btn-sm btn-warning mb-1">
                                                         <i class="material-icons">edit</i>Edit
                                                     </a>
@@ -86,25 +86,25 @@
                 </div>
             </div>
         </div>
-        {{-- @foreach ($checksheets as $item)
+        @foreach ($users as $item)
             <!-- Modal -->
             <div class="modal fade" id="exampleModal-{{ $item->id }}" tabindex="1"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Hapus Checksheet
+                            <h5 class="modal-title" id="exampleModalLabel">Hapus User
                             </h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <p>
-                                Apakah anda yakin akan menghapus checksheet ini?
+                                Apakah anda yakin akan menghapus user ini?
                             </p>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
-                            <form action="{{ route('checksheet.destroy', $item->id) }}" method="POST" class="d-inline">
+                            <form action="{{ route('user.destroy', $item->id) }}" method="POST" class="d-inline">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" class="btn btn-danger">Hapus</button>
@@ -113,6 +113,6 @@
                     </div>
                 </div>
             </div>
-        @endforeach --}}
+        @endforeach
     </div>
 @endsection

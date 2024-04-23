@@ -57,7 +57,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('kategori_checksheet/filter/{id}', [KategoriChecksheetController::class, 'filter'])->name('kategori_checksheet.filter');
     Route::get('item_checksheet/filter/{id}', [ItemChecksheetController::class, 'filter'])->name('item_checksheet.filter');
     Route::get('checksheet/filter/{id}', [ChecksheetController::class, 'filter'])->name('checksheet.filter');
-
+//master_user
+    Route::resource('user', UserController::class);
 
     //Foto
     Route::resource('photo', FotoController::class);

@@ -26,7 +26,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        $active = 'user';
+        $keretas = Kereta::all();
+        return view('master_user.add', compact('active','keretas'));
     }
 
     /**
@@ -34,7 +36,24 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'nip' => 'required',
+            'name' => 'required',
+            'password' => 'required',
+            'id_kereta' => 'required',
+            'email' => 'required',
+        ], [
+            'nip.required' => 'NIP tidak boleh kosong',
+            'name.required' => 'Nama tidak boleh kosong',
+            'password.required' => 'Password tidak boleh kosong',
+            'id_kereta.required' => 'Kereta tidak boleh kosong',
+            'email.required' => 'Email tidak boleh kosong',
+        ]);
+
+        // dd($request->all());
+
+        User::create($request->all());
+        return redirect()->route('user.index')->with('status', 'Data berhasil ditambahkan');
     }
 
     /**
@@ -66,6 +85,7 @@ class UserController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        User::destroy($id);
+        return redirect()->route('user.index')->with('status', 'Data berhasil dihapus');
     }
 }
