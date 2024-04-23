@@ -20,7 +20,7 @@
                             <div class="card-body">
                                 <div class="card-content">
                                     <form method="POST" action="{{ route('kategori_checksheet.store') }}" autocomplete="off"
-                                        id="form-tambah-kereta">
+                                        id="form-tambah-kategori">
                                         @csrf
                                         <div class="form-group">
                                             <label for="id_kereta">Nama Kereta</label>
@@ -46,7 +46,7 @@
                                 </div>
                             </div>
                             <div class="card-footer py-0 border-top-0 pb-4">
-                                <button type="submit" class="btn btn-primary" form="form-tambah-kereta"><i
+                                <button type="submit" class="btn btn-primary" form="form-tambah-kategori"><i
                                         class="bi bi-save me-2"></i>
                                     Simpan</button>
                                 <a href="{{route('kategori_checksheet.index')}}" class="btn btn-danger ms-2"><i

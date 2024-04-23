@@ -16,6 +16,6 @@ class DashboardController extends Controller
         $keretas = Kereta::count();
         $spareparts = Sparepart::count();
         $checksheet = Checksheet::count();
-        return view('dashboard.show', compact('active', 'keretas', 'spareparts', 'checksheet'));
+        return view('dashboard.index', compact('active', 'keretas', 'spareparts', 'checksheet'));
     }
 }

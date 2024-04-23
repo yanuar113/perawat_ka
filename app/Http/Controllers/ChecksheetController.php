@@ -23,8 +23,9 @@ class ChecksheetController extends Controller
     {
         //
         $active = 'master_checksheet';
-        $checksheets = Checksheet::select('checksheet.*', 'master_kereta.nama_kereta')
+        $checksheets = Checksheet::select('checksheet.*', 'master_kereta.nama_kereta', 'users.name')
             ->join('master_kereta', 'checksheet.id_kereta', '=', 'master_kereta.id')
+            ->join('users', 'checksheet.id_user', '=', 'users.id')
             ->get();
         $detail = Foto::select('foto.*', 'detail_checksheet.*', 'item_checksheet.*', 'checksheet.*', 'master_kereta.nama_kereta', 'checksheet.date_time as datetime')
             ->join('detail_checksheet', 'foto.id_detail', '=', 'detail_checksheet.id')
@@ -34,7 +35,8 @@ class ChecksheetController extends Controller
             // ->where('checksheet.id', '=', 'detail_checksheet.id_checksheet')
             ->get();
         $keretas = Kereta::all();
-        return view('master_checksheet.checksheet.show', compact('active', 'checksheets', 'keretas', 'detail'));
+// dump($checksheets);
+        return view('master_checksheet.checksheet.index', compact('active', 'checksheets', 'keretas', 'detail'));
     }
 
     /**
@@ -213,6 +215,6 @@ class ChecksheetController extends Controller
             ->get();
         $keretas = Kereta::all();
         $active = 'master_checksheet';
-        return view('master_checksheet.checksheet.show', compact('checksheets', 'keretas', 'active'));
+        return view('master_checksheet.checksheet.index', compact('checksheets', 'keretas', 'active'));
     }
 }

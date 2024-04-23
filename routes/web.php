@@ -9,6 +9,7 @@ use App\Http\Controllers\KategoriChecksheetController;
 use App\Http\Controllers\KategorisparepartController;
 use App\Http\Controllers\KeretaController;
 use App\Http\Controllers\SparepartController;
+use App\Http\Controllers\UserController;
 use App\Models\Kategori_checksheet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -65,10 +66,16 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('photo', FotoController::class);
     Route::get('print', [FotoController::class, 'print'])->name('photo.print');
     // Route::get('print/{id}', [FotoController::class, 'print'])->name('foto.print');
+
+    //master user
+    Route::resource('user', UserController::class);
 });
 
 //master kereta
 Route::resource('kereta', KeretaController::class);
+
+//master user
+Route::resource('user', UserController::class);
 
 //kategori sparepart
 Route::resource('kategori', KategorisparepartController::class);

@@ -75,6 +75,10 @@
                                 class="material-icons-two-tone">dashboard</i>Dashboard</a>
                     </li>
                     <li>
+                        <a href="{{ url('user') }}" class="{{ $active == 'master_user' ? 'active' : '' }}">
+                            <i class="material-icons-two-tone">group_add</i>Master User</a>
+                    </li>
+                    <li>
                         <a href="{{ url('kereta') }}" class="{{ $active == 'master_kereta' ? 'active' : '' }}">
                             <i class="material-icons-two-tone">train</i>Master Kereta</a>
                     </li>
@@ -106,7 +110,7 @@
                                 <a href="{{ url('item_checksheet') }}">Uraian Pekerjaan</a>
                             </li>
                             <li>
-                                <a href="{{ url('checksheet') }}">Checksheet</a>
+                                <a href="{{ url('checksheet') }}">Laporan Checksheet</a>
                             </li>
                         </ul>
                     </li>
@@ -166,7 +170,7 @@
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end"
                                         aria-labelledby="navbarDropdownMenuLink">
-                                        <li><a class="dropdown-item" href="#">Profile</a></li>
+                                        {{-- <li><a class="dropdown-item" href="#">Profile</a></li> --}}
                                         <li><a class="dropdown-item" href={{ route('logout') }}>Logout</a></li>
                                     </ul>
                                 </li>

@@ -19,7 +19,7 @@ class KategoriChecksheetController extends Controller
         $keretas = Kereta::all();
         // dd($keretas);
         $active = 'master_checksheet';
-        return view('master_checksheet.kategori.show', compact('kategories', 'active', 'keretas'));
+        return view('master_checksheet.kategori.index', compact('kategories', 'active', 'keretas'));
     }
 
     /**
@@ -108,6 +108,6 @@ class KategoriChecksheetController extends Controller
         ->get();
         $keretas = Kereta::all();
         $active = 'master_checksheet';
-        return view('master_checksheet.kategori.show', compact('kategories', 'keretas', 'active'));
+        return view('master_checksheet.kategori.index', compact('kategories', 'keretas', 'active'));
     }
 }
