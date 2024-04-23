@@ -75,7 +75,7 @@ class ChecksheetController extends Controller
         $file->move(public_path('foto'), $filename);
 
         // read image from file system
-        $absolute_path = realpath('foto/' . $filename);
+        $absolute_path = './foto/' . $filename;
         $image = ImageManager::gd()->read($absolute_path);
 
         $watermarkText = $request->date;
@@ -110,7 +110,7 @@ class ChecksheetController extends Controller
         });
 
         // save modified image in new format
-        $absolute_path_save = realpath('foto/' . $mark);
+        $absolute_path_save = './foto/' . $mark;
         $image->toPng()->save($absolute_path_save);
 
         unlink(public_path('foto/' . $filename));
