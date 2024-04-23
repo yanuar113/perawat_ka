@@ -66,6 +66,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('print', [FotoController::class, 'print'])->name('photo.print');
+Route::get('download', [FotoController::class, 'download'])->name('photo.download');
 
 Route::post('login', [App\Http\Controllers\AuthController::class, 'login'])->name('login.action');
 Route::get('logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
