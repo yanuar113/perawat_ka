@@ -111,7 +111,7 @@ class ChecksheetController extends Controller
         // save modified image in new format
         $image->toPng()->save('foto/' . $mark);
 
-        unlink(public_path('foto'), $filename);
+        unlink(public_path('foto/' . $filename));
 
         // dd($mark, $filename);
 
