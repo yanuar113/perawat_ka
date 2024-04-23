@@ -117,10 +117,10 @@ class ChecksheetController extends Controller
 
         // dd($mark, $filename);
 
-        // Foto::create([
-        //     'id_detail' => $id_detail_checksheet,
-        //     'foto' => $mark,
-        // ]);
+        Foto::create([
+            'id_detail' => $id_detail_checksheet,
+            'foto' => $mark,
+        ]);
 
         return ResponseController::customResponse(true, 'Berhasil upload foto!', $mark);
     }
