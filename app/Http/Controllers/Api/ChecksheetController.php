@@ -77,8 +77,11 @@ class ChecksheetController extends Controller
     {
         $authuser = auth()->user();
         $datas = Checksheet::where('id_user', $authuser->id)
-            ->where('tipe', $request->tipe)
             ->orderBy('id', 'desc');
+
+        if ($request->tipe) {
+            $datas = $datas->where('tipe', $request->tipe);
+        }
 
         if ($request->tipe == 0) {
             $datas = $datas->whereMonth('created_at', $request->bulan)
