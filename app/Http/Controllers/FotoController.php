@@ -112,6 +112,8 @@ class FotoController extends Controller
         $tahun = strtoupper(Carbon::parse($detail[0]->datetime)->year);
 
         $active = 'Foto';
+        // return view('foto.print', compact('active', 'detail', 'bulan', 'tahun'));
+
         $pdf = Pdf::loadView('foto.print', compact('active', 'detail', 'bulan', 'tahun'));
         $pdf->setPaper('A4', 'potrait');
         return $pdf->stream('foto.pdf');

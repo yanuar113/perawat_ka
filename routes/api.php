@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\FotoController;
 use App\Http\Controllers\Api\KeretaController;
 use App\Http\Controllers\Api\SparepartController;
 use Illuminate\Http\Request;
@@ -34,7 +35,10 @@ Route::group(['middleware' => 'auth:sanctum'], function () {
     Route::post('history', [App\Http\Controllers\Api\ChecksheetController::class, 'getHistory']);
     Route::post('foto', [App\Http\Controllers\Api\ChecksheetController::class, 'getHistoryFoto']);
     Route::post('so', [App\Http\Controllers\Api\ChecksheetController::class, 'changeSO']);
+
+    Route::get('foto', [FotoController::class, 'print']);
 });
 Route::post('upload-foto', [App\Http\Controllers\Api\ChecksheetController::class, 'uploadFoto']);
+Route::post('v2/upload-foto', [App\Http\Controllers\Api\ChecksheetController::class, 'uploadFotov2']);
 Route::post('remove-foto', [App\Http\Controllers\Api\ChecksheetController::class, 'removeFoto']);
 // Route::resource('spareparts', SparepartController::class);
