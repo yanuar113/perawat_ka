@@ -69,7 +69,10 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $active = 'user';
+        $user = User::find($id);
+        $keretas = Kereta::all();
+        return view('master_user.edit', compact('active', 'user', 'keretas'));
     }
 
     /**
@@ -77,7 +80,22 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nip' => 'required',
+            'name' => 'required',
+            'password' => 'required',
+            'id_kereta' => 'required',
+            'email' => 'required',
+        ], [
+            'nip.required' => 'NIP tidak boleh kosong',
+            'name.required' => 'Nama tidak boleh kosong',
+            'password.required' => 'Password tidak boleh kosong',
+            'id_kereta.required' => 'Kereta tidak boleh kosong',
+            'email.required' => 'Email tidak boleh kosong',
+        ]);
+        $user = User::find($id);
+        $user->update($request->all());
+        return redirect()->route('user.index')->with('status', 'Data berhasil diperbarui');
     }
 
     /**

@@ -73,7 +73,7 @@
                                 <button type="submit" class="btn btn-primary" form="form-tambah-user"><i
                                         class="bi bi-save me-2"></i>
                                     Simpan</button>
-                                <a href="{{route('kategori_checksheet.index')}}" class="btn btn-danger ms-2"><i
+                                <a href="{{route('user.index')}}" class="btn btn-danger ms-2"><i
                                         class="bi bi-x-circle me-2"></i>
                                     Batal</a>
                             </div>
