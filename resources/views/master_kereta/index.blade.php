@@ -35,10 +35,12 @@
                                             <th>Nomor Kereta</th>
                                             {{-- <th>Username</th> --}}
                                             {{-- <th>Foto</th> --}}
+                                            <th>Aksi</th>
+                                            
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @forelse ($trains as $item)
+                                        @forelse ($keretas as $item)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
                                                 <td>{{ $item->nama_kereta }}</td>
@@ -54,6 +56,16 @@
                                                 {{-- <td>{{ $item->username }}</td> --}}
                                                 {{-- <td><img src="{{ asset('img/' . $item->foto) }}" alt=""
                                                         width="100px"></td> --}}
+                                                        <td>
+                                                        <a href="{{ route('kereta.edit', $item->id) }}"
+                                                        class="btn btn-sm btn-warning mb-1">
+                                                        <i class="material-icons">edit</i>Edit
+                                                    </a>
+                                                            <button type="submit" class="btn btn-sm btn-danger mb-1" data-bs-toggle="modal"
+                                                                data-bs-target="#exampleModal-{{ $item->id }}">
+                                                                <i class="material-icons">delete</i>Hapus
+                                                            </button>
+                                                        </td>
                                             </tr>
                                         @empty
                                             <tr>
@@ -70,4 +82,32 @@
             </div>
         </div>
     </div>
+    @foreach ($keretas as $item)
+            <!-- Modal -->
+            <div class="modal fade" id="exampleModal-{{ $item->id }}" tabindex="1"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Hapus Kereta
+                            </h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p>
+                                Apakah anda yakin akan menghapus Kerta ini?
+                            </p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Batal</button>
+                            <form action="{{ route('kereta.destroy', $item->id) }}" method="POST" class="d-inline">
+                                @csrf
+                                @method('delete')
+                                <button type="submit" class="btn btn-danger">Hapus</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforeach
 @endsection

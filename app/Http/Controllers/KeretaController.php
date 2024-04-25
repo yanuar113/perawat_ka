@@ -12,9 +12,9 @@ class KeretaController extends Controller
 
     public function index()
     {
-        $trains = Kereta::all();
+        $keretas = Kereta::all();
         $active = 'master_kereta';
-        return view('master_kereta.index', compact('trains', 'active'));
+        return view('master_kereta.index', compact('keretas', 'active'));
     }
     public function create()
     {
@@ -80,16 +80,38 @@ class KeretaController extends Controller
      * Show the form for editing the specified resource.
      */
     public function edit(string $id)
-    {
-        //
+{
+    $kereta = Kereta::find($id);
+    
+    // If nomor_kereta is a string that should be split into an array
+    if (is_string($kereta->nomor_kereta)) {
+        // Assuming the string is comma-separated
+        $kereta->nomor_kereta = explode(',', $kereta->nomor_kereta);
     }
+
+    $active = 'master_kereta';
+    return view('master_kereta.edit', compact('kereta', 'active'));
+}
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'nama_kereta' => 'required',
+            'nomor_kereta' => 'required',
+        ], [
+            'nama_kereta.required' => 'Nama kereta tidak boleh kosong',
+            'nomor_kereta.required' => 'Nomor kereta tidak boleh kosong',
+        ]);
+
+        $kereta = Kereta::find($id);
+        $kereta->nama_kereta = $request->nama_kereta;
+        $kereta->nomor_kereta = $request->nomor_kereta;
+        $kereta->save();
+
+        return redirect()->route('kereta.index')->with('status', 'Data Kereta berhasil diperbarui!');
     }
 
     /**
@@ -97,7 +119,6 @@ class KeretaController extends Controller
      */
     public function destroy(string $id)
     {
-        //
         Kereta::destroy($id);
         return redirect()->route('kereta.index')->with('status', 'Data Kereta berhasil dihapus!');
     }
