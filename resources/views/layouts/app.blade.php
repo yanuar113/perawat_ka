@@ -75,7 +75,7 @@
                                 class="material-icons-two-tone">dashboard</i>Dashboard</a>
                     </li>
                     <li>
-                        <a href="{{ url('user') }}" class="{{ $active == 'master_user' ? 'active' : '' }}">
+                        <a href="{{ url('user') }}" class="{{ $active == 'user' ? 'active' : '' }}">
                             <i class="material-icons-two-tone">group_add</i>Master User</a>
                     </li>
                     <li>
