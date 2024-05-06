@@ -66,6 +66,19 @@
     </div>
     </div>
     </div>
-    
+    <script>
+        function tambahNomorKereta() {
+            $('#nomor_kereta').after(
+                '<div class="mt-2 d-flex align-items-center" id="opsi-nomor">' +
+                '<input type="text" class="form-control" id="nomor_kereta_add" name="nomor_kereta[]" multiple>' +
+                '<a class="btn btn-danger m-1" id="hapus-nomor" onclick="hapusNomor()"><i class="material-icons">delete</i></a>' +
+                '</div>');
+        }
+
+        function hapusNomor(){
+            $('#nomor_kereta_add').remove();
+            $('#hapus-nomor').remove();
+        }
+    </script>
 @endsection
 

@@ -86,18 +86,24 @@ class KeretaController extends Controller
 {
     $keretas = Kereta::find($id);
     
-    // If nomor_kereta is a string that should be split into an array
-    if (is_string($keretas->nomor_kereta)) {
-        // Assuming the string is comma-separated
+    if (isset($keretas->nomor_kereta)) {
+        // Menghapus bracket [ ] jika ada (belum work)
+        $keretas->nomor_kereta = str_replace(['[', ']'], '', $keretas->nomor_kereta);
+
+        // Jika perlu, bisa memisahkan menjadi array berdasarkan koma
         $keretas->nomor_kereta = explode(',', $keretas->nomor_kereta);
     }
+    // If nomor_kereta is a string that should be split into an array
+    // if (is_string($keretas->nomor_kereta)) {
+    //     // Assuming the string is comma-separated
+    //     $keretas->nomor_kereta = explode(',', $keretas->nomor_kereta);
+    // }
 
-    $active = 'master_kereta';
-    $keretas->map(function ($kereta) {
-        $kereta->nomor_kereta = json_decode($kereta->nomor_kereta);
-    
-        return $kereta;
-    });
+    // $active = 'master_kereta';
+    // $keretas->map(function ($kereta) {
+    //     $kereta->nomor_kereta = json_decode($kereta->nomor_kereta);
+    //     return $kereta;
+    // });
     return view('master_kereta.edit', compact('kereta', 'active'));
 }
 
