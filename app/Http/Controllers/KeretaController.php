@@ -14,13 +14,16 @@ class KeretaController extends Controller
     {
         $keretas = Kereta::all();
         $active = 'master_kereta';
+        
         return view('master_kereta.index', compact('keretas', 'active'));
+        
     }
     public function create()
     {
         //
         $active = 'master_kereta';
         return view('master_kereta.add',compact('active'));
+        
     }
     /**
      * Store a newly created resource in storage.
@@ -81,15 +84,20 @@ class KeretaController extends Controller
      */
     public function edit(string $id)
 {
-    $kereta = Kereta::find($id);
+    $keretas = Kereta::find($id);
     
     // If nomor_kereta is a string that should be split into an array
-    if (is_string($kereta->nomor_kereta)) {
+    if (is_string($keretas->nomor_kereta)) {
         // Assuming the string is comma-separated
-        $kereta->nomor_kereta = explode(',', $kereta->nomor_kereta);
+        $keretas->nomor_kereta = explode(',', $keretas->nomor_kereta);
     }
 
     $active = 'master_kereta';
+    $keretas->map(function ($kereta) {
+        $kereta->nomor_kereta = json_decode($kereta->nomor_kereta);
+    
+        return $kereta;
+    });
     return view('master_kereta.edit', compact('kereta', 'active'));
 }
 
